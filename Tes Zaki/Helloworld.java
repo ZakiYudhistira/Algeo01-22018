@@ -5,7 +5,7 @@ public class Helloworld
         boolean stop = false;
         while(!stop) // mulainya program
         {
-
+            System.out.println("Assalamualaikum kawan");
         }
     }
 } 
