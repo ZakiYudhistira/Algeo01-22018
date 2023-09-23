@@ -49,19 +49,16 @@ public class Matrix {
         }
     }
     //-----------------------------ERROR HANDLING (BOOLEAN)---------------------------------//
-    public boolean isPersegi()
-    {
+    public boolean isPersegi(){
         return this.row == this.collumns; // matriks.isPersegi() -> boolean
     }
 
-    public boolean isValid()
-    {
+    public boolean isValid(){
         return this.row == 0 || this.collumns == 0;
     }
 
     //--------------------------------MODIFIKASI MATRIKS------------------------------------//
-    public static Matrix transpose(Matrix m)
-    {
+    public static Matrix transpose(Matrix m){
         double[][] hasil_data = new double[m.collumns][m.row];
         Matrix hasil = new Matrix(hasil_data, m.collumns, m.row);
         int i,j;
@@ -72,4 +69,14 @@ public class Matrix {
         }
         return hasil;
     }
+    public void self_transpose(){
+        Matrix temp = new Matrix(this.data, this.row, this.collumns);
+        temp = transpose(temp);
+        set_collumns(this, temp.collumns);
+        set_row(this, temp.row);
+        set_data(this, temp.data);
+    }
+    //--------------------------------PERHITUNGAN SPL------------------------------------//
+    
 }
+

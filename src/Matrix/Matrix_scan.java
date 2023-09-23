@@ -22,6 +22,7 @@ public class Matrix_scan {
                 System.out.println("Masukan tidak valid.");
                 break;
             }
+            System.out.println("Masukkan matrix :");
             double[][] data_isi = new double[row][collumn];
             for(i=0;i<row;i++)
             {
@@ -36,5 +37,8 @@ public class Matrix_scan {
             System.out.print("\n");
             break;
         }
+    }
+    public static void scan_file(){
+
     }
 }
