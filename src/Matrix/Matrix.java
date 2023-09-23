@@ -26,9 +26,13 @@ public class Matrix {
 
     public double getELMT(int i, int j){ // buat nyari elemen
         return this.data[i][j];
-    } 
+    }
+    
+    public void setELMT(int i, int j, double val){
+        this.data[i][j] = val;
+    }
 
-    public void print(){ // buat print matriks
+    public void display(){ // buat print matriks pakenya matriks.print()
         int i,j;
         for(i=0;i<this.row;i++)
         {

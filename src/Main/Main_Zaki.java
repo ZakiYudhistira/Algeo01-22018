@@ -19,5 +19,6 @@ public class Main_Zaki {
             System.out.println("6. Regresi Linier Berganda");
             System.out.println("7. Keluar");
         }
+        
     }
 }
