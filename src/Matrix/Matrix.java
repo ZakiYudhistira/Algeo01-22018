@@ -6,6 +6,7 @@ public class Matrix {
     int row;
     int collumns;
     
+    //-----------------------------KONSTRUKTOR & SELEKTOR---------------------------------//
     public Matrix(double[][] matriks, int row_input, int collumn_input){ // konstruktor Matrix
         set_data(this, matriks);
         set_row(this, row_input);
@@ -32,20 +33,43 @@ public class Matrix {
         this.data[i][j] = val;
     }
 
+    //-----------------------------FUNGSI DISPLAY---------------------------------//
     public void display(){ // buat print matriks pakenya matriks.print()
         int i,j;
-        for(i=0;i<this.row;i++)
-        {
-            for(j=0;j<this.collumns;j++)
-            {
+        for(i=0;i<this.row;i++){
+            for(j=0;j<this.collumns;j++){
                 if(j==0) {
                     System.out.print(this.data[i][j]);
                 }
                 else {
-                    System.out.println(" "+this.data[i][j]);
+                    System.out.print(" "+this.data[i][j]);
                 }
             }
             System.out.print("\n");
         }
+    }
+    //-----------------------------ERROR HANDLING (BOOLEAN)---------------------------------//
+    public boolean isPersegi()
+    {
+        return this.row == this.collumns; // matriks.isPersegi() -> boolean
+    }
+
+    public boolean isValid()
+    {
+        return this.row == 0 || this.collumns == 0;
+    }
+
+    //--------------------------------MODIFIKASI MATRIKS------------------------------------//
+    public static Matrix transpose(Matrix m)
+    {
+        double[][] hasil_data = new double[m.collumns][m.row];
+        Matrix hasil = new Matrix(hasil_data, m.collumns, m.row);
+        int i,j;
+        for(i=0;i<m.row;i++){
+            for(j=0;j<m.collumns;j++){
+                hasil.setELMT(j, i, m.getELMT(i, j));
+            }
+        }
+        return hasil;
     }
 }
