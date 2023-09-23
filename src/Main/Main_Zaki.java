@@ -3,7 +3,7 @@ import Functions.*;
 import Matrix.*;
 import java.util.*;
 
-public class Main {
+public class Main_Zaki {
     public static Scanner scan;
     public static void main(String[] args)
     {
