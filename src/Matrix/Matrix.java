@@ -126,8 +126,7 @@ public class Matrix {
         set_data(this, temp.data);
     }
 
-    public void subtract_baris(int row1, int row2, double factor) // row1 - row2*factor
-    {
+    public void subtract_baris(int row1, int row2, double factor){
         if(isRowIndexValid(this, row1) && isRowIndexValid(this, row2)){
             int i;
             for(i=0;i<this.collumns;i++){
@@ -136,8 +135,7 @@ public class Matrix {
         }
     }
 
-    public void divide_baris(int row, double pembagi) // kalo mau ngali langsung aja pembagi nya pake pecahan
-    {
+    public void divide_baris(int row, double pembagi){
         if(isRowIndexValid(this, row) & pembagi != 0){
             int i;
             for(i=0;i<this.collumns;i++){
@@ -147,8 +145,7 @@ public class Matrix {
     }
 
     //--------------------------------PERHITUNGAN REDUKSI ESELON------------------------------------//
-    public Matrix reduksi_eselon(boolean btm) // ini ngereturn value
-    {
+    public Matrix reduksi_eselon(boolean btm) { //ini ngereturn value
         Matrix hasil = new Matrix(this.data, this.row, this.collumns);
         if(btm){
             int i,j,i_p=0,j_p=0;
