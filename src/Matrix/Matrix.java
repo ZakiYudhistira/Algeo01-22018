@@ -190,5 +190,22 @@ public class Matrix {
             }   
         }
     }
+    //--------------------------------PERHITUNGAN DETERMINAN------------------------------------//
+    public static float getDeterminan(Matrix m){
+        float determinan;
+        determinan = 1;
+        Matrix temp = new Matrix(null, 0, 0);
+        temp = m;
+        temp.p_reduksi_eselon(true);
+        int i,j;
+        for(i=0;i<temp.row;i++){
+            for(j=0;j<temp.collumns;j++){
+                if(i==j){
+                    determinan = determinan * temp.getELMT(i,j);
+                }
+            }
+        }
+        return determinan;
+    }
 }
 

@@ -13,7 +13,7 @@ public class Main_Zaki {
         baru.display();
         System.out.print("\n");
         baru = baru.reduksi_eselon(true);
-        baru = baru.reduksi_eselon(false);
         baru.display();
+        System.out.println(Matrix.getDeterminan(baru));
     }
 }
