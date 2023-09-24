@@ -191,7 +191,7 @@ public class Matrix {
         }
     }
     //--------------------------------PERHITUNGAN DETERMINAN------------------------------------//
-    public static float getDeterminan(Matrix m){
+    public static float getDeterminanReduksi(Matrix m){
         float determinan;
         determinan = 1;
         Matrix temp = new Matrix(null, 0, 0);
@@ -202,6 +202,35 @@ public class Matrix {
             for(j=0;j<temp.collumns;j++){
                 if(i==j){
                     determinan = determinan * temp.getELMT(i,j);
+                }
+            }
+        }
+        return determinan;
+    }
+
+    public static float getDeterminanKofaktor(Matrix m){
+        float determinan = 0;
+        Matrix temp = new Matrix(null, 0, 0);
+        temp = m;
+        if (temp.collumns==2 && temp.row==2){ //basis
+            return((float)((temp.getELMT(0, 0))*(temp.getELMT(1, 1)))-((temp.getELMT(0, 1))*(temp.getELMT(1, 0))));
+        } else {
+            for (int i=0; i<temp.row; i++){ //konversi bentuk kofaktor -> matriks kofaktor
+                Matrix mr = new Matrix(null, 0, 0);
+                for (int j=1; j<temp.collumns; j++){
+                    int l=0;
+                    for (int k=0; k<temp.row; k++){
+                        mr = new Matrix(null, temp.row-1, temp.collumns-1);
+                        if (k!=i){
+                            mr.setELMT(j-1, l, mr.getELMT(j, k));
+                            l++;
+                        }
+                    }
+                }
+                if (i%2!=0){ // rekurens
+                    determinan += (-1) * mr.getELMT(0,i) * getDeterminanKofaktor(mr);
+                } else {
+                    determinan += mr.getELMT(0,i) * getDeterminanKofaktor(mr);
                 }
             }
         }

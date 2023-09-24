@@ -14,6 +14,6 @@ public class Main_Zaki {
         System.out.print("\n");
         baru = baru.reduksi_eselon(true);
         baru.display();
-        System.out.println(Matrix.getDeterminan(baru));
+        System.out.println(Matrix.getDeterminanReduksi(baru));
     }
 }
