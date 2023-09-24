@@ -11,9 +11,9 @@ public class Main_Zaki {
         // Matrix baru2 = new Matrix(null, 0, 0);
         Matrix_scan.scan_matriks_keyboard(baru);
         baru.display();
-        baru.divide_baris(0,2);
-        baru.display();
-        baru.substract_baris(0, 1, 1);
+        System.out.print("\n");
+        baru = baru.reduksi_eselon(true);
+        baru = baru.reduksi_eselon(false);
         baru.display();
     }
 }
