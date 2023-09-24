@@ -27,6 +27,8 @@ public class Main {
                 System.out.println("2. Eliminasi Gauss Jordan");
                 System.out.println("3. Metode matriks balikan");
                 System.out.println("4. Aturan Crammer");
+                navigate = scan.nextInt();
+                
             }
             else if(navigate == 2){
                 System.out.println("Pilih metode perhitungan Determinan");

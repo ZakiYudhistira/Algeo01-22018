@@ -57,6 +57,21 @@ public class Matrix {
         return this.row == 0 || this.collumns == 0;
     }
 
+    public static boolean isRowIndexValid(Matrix m, int row)
+    {
+        return row<m.row && row >=0;
+    }
+
+    public static boolean isCollumnIndexValid(Matrix m, int collumn)
+    {
+        return collumn<m.collumns && collumn >=0;
+    }
+    
+    public static boolean isIndexValid(Matrix m, int row, int collumn)
+    {
+        return isRowIndexValid(m, row) && isCollumnIndexValid(m, collumn);
+    }
+
     //--------------------------------MODIFIKASI MATRIKS------------------------------------//
     public static Matrix transpose(Matrix m){
         double[][] hasil_data = new double[m.collumns][m.row];
@@ -76,7 +91,34 @@ public class Matrix {
         set_row(this, temp.row);
         set_data(this, temp.data);
     }
+
+    public void substract_baris(int row1, int row2, double factor) // row1 - row2*factor
+    {
+        if(isRowIndexValid(this, row1) && isRowIndexValid(this, row)){
+            int i;
+            for(i=0;i<this.collumns;i++){
+                setELMT(row1, i, this.getELMT(row1, i) - this.getELMT(row2, i)*factor);
+            }
+        }
+    }
+
+    public void divide_baris(int row, double pembagi)
+    {
+        if(isRowIndexValid(this, row)){
+            int i;
+            for(i=0;i<this.collumns;i++){
+                setELMT(row, i, this.getELMT(row, i)/pembagi);
+            }
+        }
+    }
+
     //--------------------------------PERHITUNGAN SPL------------------------------------//
-    
+    public static void hitung_SPL_Gauss(Matrix m)
+    {
+        int interation_row = m.row;
+        int interation_collumn = m.collumns;
+
+
+    }
 }
 

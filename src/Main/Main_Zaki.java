@@ -8,11 +8,12 @@ public class Main_Zaki {
     public static void main(String[] args)
     {
         Matrix baru = new Matrix(null, 0, 0);
-        Matrix baru2 = new Matrix(null, 0, 0);
+        // Matrix baru2 = new Matrix(null, 0, 0);
         Matrix_scan.scan_matriks_keyboard(baru);
         baru.display();
-        baru.self_transpose();
-        baru2 = baru;
-        baru2.display();
+        baru.divide_baris(0,2);
+        baru.display();
+        baru.substract_baris(0, 1, 1);
+        baru.display();
     }
 }
