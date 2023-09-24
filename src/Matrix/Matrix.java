@@ -207,5 +207,10 @@ public class Matrix {
         }
         return determinan;
     }
+    //-----------------------------------HITUNG INVERSE MATRIX----------------------------------//
+    public void inverse () {
+
+    }
+    //---------------------------------JANGAN GANGGU DI ANTARA INI HEHE-------------------------//
 }
 
