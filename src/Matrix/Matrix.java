@@ -1,19 +1,21 @@
 package Matrix;
 // Library matrix berisikan primitif-primitif matrix dan type matrix
 
+import Functions.regresi;
+
 public class Matrix {
-    float[][] data;
+    double[][] data;
     int row;
     int collumns;
     
     //-----------------------------KONSTRUKTOR & SELEKTOR---------------------------------//
-    public Matrix(float[][] matriks, int row_input, int collumn_input){ // konstruktor Matrix
+    public Matrix(double[][] matriks, int row_input, int collumn_input){ // konstruktor Matrix
         set_data(this, matriks);
         set_row(this, row_input);
         set_collumns(this, collumn_input);
     }
 
-    public static void set_data(Matrix m, float[][] matriks){ //buat set matriks ke tipe data Matrix
+    public static void set_data(Matrix m, double[][] matriks){ //buat set matriks ke tipe data Matrix
         m.data = matriks;
     }
     
@@ -25,11 +27,11 @@ public class Matrix {
         m.collumns = collumns;
     }
 
-    public float getELMT(int i, int j){ // buat nyari elemen
+    public double getELMT(int i, int j){ // buat nyari elemen
         return this.data[i][j];
     }
     
-    public void setELMT(int i, int j, float val){
+    public void setELMT(int i, int j, double val){
         this.data[i][j] = val;
     }
 
@@ -79,9 +81,34 @@ public class Matrix {
         return isRowIndexValid(m, row) && isCollumnIndexValid(m, collumn);
     }
 
+    public static boolean isRowZero(Matrix m, int row){
+        int i;
+        for(i=0;i<m.collumns;i++){
+            if(m.getELMT(row, i)!=0){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static boolean isIdentity(Matrix m){
+        int i,j;
+        for(i=0;i<m.row;i++){
+            for(j=0;i<m.collumns;j++){
+                if(i==j && m.getELMT(i, j) != 1){
+                    return false;
+                }
+                else if(m.getELMT(i, j)!=0){
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
     //--------------------------------MODIFIKASI MATRIKS------------------------------------//
     public static Matrix transpose(Matrix m){
-        float[][] hasil_data = new float[m.collumns][m.row];
+        double[][] hasil_data = new double[m.collumns][m.row];
         Matrix hasil = new Matrix(hasil_data, m.collumns, m.row);
         int i,j;
         for(i=0;i<m.row;i++){
@@ -99,7 +126,7 @@ public class Matrix {
         set_data(this, temp.data);
     }
 
-    public void subtract_baris(int row1, int row2, float factor) // row1 - row2*factor
+    public void subtract_baris(int row1, int row2, double factor) // row1 - row2*factor
     {
         if(isRowIndexValid(this, row1) && isRowIndexValid(this, row2)){
             int i;
@@ -109,7 +136,7 @@ public class Matrix {
         }
     }
 
-    public void divide_baris(int row, float pembagi) // kalo mau ngali langsung aja pembagi nya pake pecahan
+    public void divide_baris(int row, double pembagi) // kalo mau ngali langsung aja pembagi nya pake pecahan
     {
         if(isRowIndexValid(this, row) & pembagi != 0){
             int i;
@@ -119,7 +146,7 @@ public class Matrix {
         }
     }
 
-    //--------------------------------PERHITUNGAN SPL------------------------------------//
+    //--------------------------------PERHITUNGAN REDUKSI ESELON------------------------------------//
     public Matrix reduksi_eselon(boolean btm) // ini ngereturn value
     {
         Matrix hasil = new Matrix(this.data, this.row, this.collumns);
@@ -190,9 +217,31 @@ public class Matrix {
             }   
         }
     }
+    //--------------------------------PERHITUNGAN SPL------------------------------------//
+    public static void hitungSPL(Matrix m, boolean Gauss){
+        m.p_reduksi_eselon(true);
+        boolean multiple_solutions = false;
+        int i;
+        for(i=0;i<m.row;i++){
+            if(isRowZero(m, i)){
+                multiple_solutions = true;
+                break;
+            }
+        }
+        if(m.getELMT(m.row-1,m.collumns-2)==0 && m.getELMT(m.row-1,m.collumns-1)!=0){
+            System.out.println("SPL tidak memiliki solusi");
+        }
+        else if(multiple_solutions){
+            System.out.println("SPL memiliki solusi banyak");
+        }
+        else{
+
+        }
+    }
+
     //--------------------------------PERHITUNGAN DETERMINAN------------------------------------//
-    public static float getDeterminanReduksi(Matrix m){
-        float determinan;
+    public static double getDeterminanReduksi(Matrix m){
+        double determinan;
         determinan = 1;
         Matrix temp = new Matrix(null, 0, 0);
         temp = m;
@@ -208,12 +257,12 @@ public class Matrix {
         return determinan;
     }
 
-    public static float getDeterminanKofaktor(Matrix m){
-        float determinan = 0;
+    public static double getDeterminanKofaktor(Matrix m){
+        double determinan = 0;
         Matrix temp = new Matrix(null, 0, 0);
         temp = m;
         if (temp.collumns==2 && temp.row==2){ //basis
-            return((float)((temp.getELMT(0, 0))*(temp.getELMT(1, 1)))-((temp.getELMT(0, 1))*(temp.getELMT(1, 0))));
+            return((double)((temp.getELMT(0, 0))*(temp.getELMT(1, 1)))-((temp.getELMT(0, 1))*(temp.getELMT(1, 0))));
         } else {
             for (int i=0; i<temp.row; i++){ //konversi bentuk kofaktor -> matriks kofaktor
                 Matrix mr = new Matrix(null, 0, 0);
@@ -237,4 +286,3 @@ public class Matrix {
         return determinan;
     }
 }
-

@@ -23,12 +23,12 @@ public class Matrix_scan {
                 break;
             }
             System.out.println("Masukkan matrix :");
-            float[][] data_isi = new float[row][collumn];
+            double[][] data_isi = new double[row][collumn];
             for(i=0;i<row;i++)
             {
                 for(j=0;j<collumn;j++)
                 {
-                    data_isi[i][j] = scan.nextFloat();
+                    data_isi[i][j] = scan.nextDouble();
                 }
             }
             Matrix.set_data(m, data_isi);
@@ -39,6 +39,5 @@ public class Matrix_scan {
         }
     }
     public static void scan_file(){
-
     }
 }
