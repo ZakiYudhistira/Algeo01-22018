@@ -1,8 +1,6 @@
 package Matrix;
 // Library matrix berisikan primitif-primitif matrix dan type matrix
 
-import Functions.regresi;
-
 public class Matrix {
     double[][] data;
     int row;
