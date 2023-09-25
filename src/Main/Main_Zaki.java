@@ -12,8 +12,7 @@ public class Main_Zaki {
         Matrix_scan.scan_matriks_keyboard(baru);
         baru.display();
         System.out.print("\n");
-        baru = baru.reduksi_eselon(true);
+        baru.tukar_baris(0, 1);
         baru.display();
-        System.out.println(Matrix.getDeterminanReduksi(baru));
     }
 }

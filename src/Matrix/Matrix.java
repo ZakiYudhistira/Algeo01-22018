@@ -2,9 +2,9 @@ package Matrix;
 // Library matrix berisikan primitif-primitif matrix dan type matrix
 
 public class Matrix {
-    double[][] data;
-    int row;
-    int collumns;
+    public double[][] data;
+    public int row;
+    public int collumns;
     
     //-----------------------------KONSTRUKTOR & SELEKTOR---------------------------------//
     public Matrix(double[][] matriks, int row_input, int collumn_input){ // konstruktor Matrix
@@ -142,6 +142,22 @@ public class Matrix {
         }
     }
 
+    public void tukar_baris(int row1, int row2){ //menukar row1 dan row2
+        Matrix temp;
+        temp = this.copyMatrix();
+        int i,j;
+        for(i=0;i<this.row;i++){
+            for(j=0;j<this.collumns;j++){
+                if(i == row1){
+                    this.setELMT(i, j, temp.getELMT(row2, j));
+                }
+                else if(i == row2){
+                    this.setELMT(i, j, temp.getELMT(row1, j));
+                }
+            }
+        }
+    }
+
     //--------------------------------PERHITUNGAN REDUKSI ESELON------------------------------------//
     public Matrix reduksi_eselon(boolean btm) { //ini ngereturn value
         Matrix hasil = new Matrix(this.data, this.row, this.collumns);
@@ -212,27 +228,6 @@ public class Matrix {
             }   
         }
     }
-    //--------------------------------PERHITUNGAN SPL------------------------------------//
-    public static void hitungSPL(Matrix m, boolean Gauss){
-        m.p_reduksi_eselon(true);
-        boolean multiple_solutions = false;
-        int i;
-        for(i=0;i<m.row;i++){
-            if(isRowZero(m, i)){
-                multiple_solutions = true;
-                break;
-            }
-        }
-        if(m.getELMT(m.row-1,m.collumns-2)==0 && m.getELMT(m.row-1,m.collumns-1)!=0){
-            System.out.println("SPL tidak memiliki solusi");
-        }
-        else if(multiple_solutions){
-            System.out.println("SPL memiliki solusi banyak");
-        }
-        else{
-
-        }
-    }
 
     //--------------------------------PERHITUNGAN DETERMINAN------------------------------------//
     public static double getDeterminanReduksi(Matrix m){
@@ -279,5 +274,42 @@ public class Matrix {
             }
         }
         return determinan;
+    }
+
+    //--------------------------------LAIN - LAIN------------------------------------//
+    public static Matrix createIdentity(int n){
+        double[][] data = new double[n][n];
+        Matrix hasil = new Matrix(data, n, n);
+        int i,j;
+        for(i=0;i<hasil.row;i++){
+            for(j=0;j<hasil.collumns;j++){
+                if(i==j){
+                    hasil.setELMT(i, j, 1);
+                }
+                else{
+                    hasil.setELMT(i, j, 0);
+                }
+            }
+        }
+        return hasil;
+    }
+
+    public void convertToIdentity(){
+        int i;
+        for(i=0;i<this.row;i++){
+            divide_baris(i, this.getELMT(i, i));
+        }
+    }
+
+    public Matrix copyMatrix(){
+        double[][] data_hasil = new double[this.row][this.collumns];
+        Matrix hasil = new Matrix(data_hasil, this.row, this.collumns);
+        int i,j;
+        for(i=0;i<hasil.row;i++){
+            for(j=0;j<hasil.collumns;j++){
+                hasil.setELMT(i, j, this.getELMT(i, j));
+            }
+        }
+        return hasil;
     }
 }
