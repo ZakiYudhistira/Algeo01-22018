@@ -12,7 +12,7 @@ public class Main_Zaki {
         Matrix_scan.scan_matriks_keyboard(baru);
         baru.display();
         System.out.print("\n");
-        baru.tukar_baris(0, 1);
+        Inverse.Inverse_matrix_reduksi(baru);
         baru.display();
     }
 }

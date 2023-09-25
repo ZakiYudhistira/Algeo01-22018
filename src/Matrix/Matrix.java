@@ -104,6 +104,16 @@ public class Matrix {
         return true;
     }
 
+    public boolean isRowZero(int row,int batas_collumn){
+        int i;
+        for(i=0;i<=batas_collumn;i++){
+            if(getELMT(row, i)!=0){
+                return false;
+            }
+        }
+        return true;
+    }
+
     //--------------------------------MODIFIKASI MATRIKS------------------------------------//
     public static Matrix transpose(Matrix m){
         double[][] hasil_data = new double[m.collumns][m.row];
@@ -159,41 +169,9 @@ public class Matrix {
     }
 
     //--------------------------------PERHITUNGAN REDUKSI ESELON------------------------------------//
-    public Matrix reduksi_eselon(boolean btm) { //ini ngereturn value
-        Matrix hasil = new Matrix(this.data, this.row, this.collumns);
-        if(btm){
-            int i,j,i_p=0,j_p=0;
-            for(i=0;i<hasil.collumns;i++){
-                for(j=i;j<hasil.row;j++){
-                    if(i==j){
-                        i_p = i;
-                        j_p = j;
-                    }
-                    else{
-                        hasil.subtract_baris(j, i, hasil.getELMT(j,i)/hasil.getELMT(j_p, i_p));
-                    }
-                }
-            }
-        }
-        else{
-            int i,j,i_p=0,j_p=0;
-            int faktor_spl = hasil.collumns - hasil.row;
-            for(i=hasil.collumns-1-faktor_spl;i>=0;i--){
-                for(j=i;j>=0;j--){
-                    if(i==j){
-                        i_p = i;
-                        j_p = j;
-                    }
-                    else{
-                        hasil.subtract_baris(j, i, hasil.getELMT(j,i)/hasil.getELMT(j_p, i_p));
-                        }
-                    }   
-                }
-            }
-        return hasil;
-    }
 
     public void p_reduksi_eselon(boolean btm){ // ini kaga ngereturn value
+        int k =1;
         if(btm){
             int i,j,i_p=0,j_p=0;
             for(i=0;i<this.collumns;i++){
@@ -203,7 +181,18 @@ public class Matrix {
                         j_p = j;
                     }
                     else{
+                        while(this.getELMT(i_p, j_p)==0 && i_p + k < this.row){
+                            tukar_baris(j_p, j_p+1);
+                            k++;
+                        }
+                        k=1;
+                        if(this.getELMT(i_p, j_p)==0){
+                            break;
+                        }
                         this.subtract_baris(j, i, this.getELMT(j,i)/this.getELMT(j_p, i_p));
+                        if(this.isRowZero(j,this.collumns-1)){
+                            break;
+                        }
                     }
                     this.display();
                     System.out.print("\n");
@@ -220,7 +209,19 @@ public class Matrix {
                         j_p = j;
                     }
                     else{
+                        while(this.getELMT(i_p, j_p)==0 && i_p + k < this.row){
+                            tukar_baris(j_p, j_p+1);
+                            k++;
+                        }
+                        k=1;
+                        if(this.getELMT(i_p, j_p)==0){
+                            break;
+                        }
                         this.subtract_baris(j, i, this.getELMT(j,i)/this.getELMT(j_p, i_p));
+                        if(this.isRowZero(j,this.collumns-1)){
+                            break;
+                        }
+                        
                     }
                     this.display();
                     System.out.print("\n");
