@@ -3,6 +3,7 @@ import Matrix.Matrix;
 
 public class Inverse {
     public static void Inverse_matrix_reduksi(Matrix m){
+        boolean inversable = true;
         while(true){
             if(m.isPersegi()){
                 double[][] data_temp = new double[m.row][m.collumns*2];
@@ -22,12 +23,15 @@ public class Inverse {
                 for(i=0;i<temp.row;i++){
                     if(temp.isRowZero(i, m.row-1)){
                         System.out.println("Matriks tidak memiliki inverse.");
+                        inversable = false;
                         break;
                     }
                 }
-                for(i=0;i<m.row;i++){
-                    for(j=0;j<m.collumns;j++){
-                        m.setELMT(i, j, temp.getELMT(i, j+m.collumns));
+                if (inversable){
+                    for(i=0;i<m.row;i++){
+                        for(j=0;j<m.collumns;j++){
+                            m.setELMT(i, j, temp.getELMT(i, j+m.collumns));
+                        }
                     }
                 }
                 break;
