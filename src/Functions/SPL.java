@@ -2,25 +2,36 @@ package Functions;
 import Matrix.Matrix;
 
 public class SPL {
-    double[] solusi_spl = new double[100];
+    private double[] solusi_spl = new double[100];
+    private boolean tanpaSolusi;
+    private boolean banyakSolusi;
+    private boolean solusiUnik;
+    
     //--------------------------------TEMPLATE PROSEDUR PENYELESAIAN SPL----------------------------------//
     // Metode Gauss
-    public static void Gauss(Matrix m) {
+    public void Gauss(Matrix m) {
 
     }
 
     // Metode Gauss-Jordan
-    public static void Gauss_Jordan(Matrix m) {
+    public void Gauss_Jordan(Matrix m) {
 
     }
 
     // Metode Inverse Matriks
-    public static void Inverse(Matrix m) {
+    public void Inverse(Matrix m, Matrix b) {
+        if (!Inverse.isInversable(m)) {
+            solusiUnik = true;
+            for (int i=0; i<m.collumns; i++) {
+                solusi_spl[i] = 0;
+            }
+        } else {
 
+        }
     }
 
     // Metode Cramer
-    public static void Cramer(Matrix m) {
+    public void Cramer(Matrix m) {
 
     }
 }
