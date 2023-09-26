@@ -79,15 +79,15 @@ public class Matrix {
         return isRowIndexValid(m, row) && isCollumnIndexValid(m, collumn);
     }
 
-    public static boolean isRowZero(Matrix m, int row){
-        int i;
-        for(i=0;i<m.collumns;i++){
-            if(m.getELMT(row, i)!=0){
-                return false;
-            }
-        }
-        return true;
-    }
+    // public static boolean isRowZero(Matrix m, int row){
+    //     int i;
+    //     for(i=0;i<m.collumns;i++){
+    //         if(m.getELMT(row, i)!=0){
+    //             return false;
+    //         }
+    //     }
+    //     return true;
+    // }
 
     public static boolean isIdentity(Matrix m){
         int i,j;
