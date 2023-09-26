@@ -295,7 +295,7 @@ public class Matrix {
         return hasil;
     }
 
-    public void convertToIdentity(){
+    public void divideBaris(){
         int i;
         for(i=0;i<this.row;i++){
             divide_baris(i, this.getELMT(i, i));
