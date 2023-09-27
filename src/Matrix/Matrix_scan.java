@@ -12,14 +12,14 @@ public class Matrix_scan {
         {
             if(jenis == "SPL"){
                 int row, collumn, i, j;
-                System.out.println("Masukkan jumlah baris :");
+                System.out.print("Masukkan jumlah baris : ");
                 row = scan.nextInt();
                 if(row <= 0){
                     System.out.println("Masukan tidak valid.");
                     error = true;
                     break;
                 }
-                System.out.println("Masukkan jumlah kolom :");
+                System.out.print("Masukkan jumlah kolom : ");
                 collumn = scan.nextInt();
                 if(collumn <= 0){
                     System.out.println("Masukan tidak valid.");

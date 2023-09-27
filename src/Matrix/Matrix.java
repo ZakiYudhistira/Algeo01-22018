@@ -79,16 +79,6 @@ public class Matrix {
         return isRowIndexValid(m, row) && isCollumnIndexValid(m, collumn);
     }
 
-    // public static boolean isRowZero(Matrix m, int row){
-    //     int i;
-    //     for(i=0;i<m.collumns;i++){
-    //         if(m.getELMT(row, i)!=0){
-    //             return false;
-    //         }
-    //     }
-    //     return true;
-    // }
-
     public static boolean isIdentity(Matrix m){
         int i,j;
         for(i=0;i<m.row;i++){
@@ -108,6 +98,16 @@ public class Matrix {
         int i;
         for(i=0;i<=batas_collumn;i++){
             if(getELMT(row, i)!=0){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public boolean isCollumnZero(int collumn){
+        int i;
+        for(i=0;i<this.row;i++){
+            if(this.getELMT(i, collumn)!=0){
                 return false;
             }
         }
@@ -178,10 +178,44 @@ public class Matrix {
         }
     }
 
+    public void removeCollumn(int collumn){
+        double[][] isi_baru = new double[this.row][this.collumns-1];
+        if(this.collumns == 1 || collumn >= this.collumns || collumn<0){
+            System.out.println("Tidak bisa menghapus row.");
+        }
+        else{
+            int i,j;
+            for(i=0;i<this.row;i++){
+                for(j=0;j<this.collumns-1;j++){
+                    if(j>=collumn){
+                        isi_baru[i][j] = this.getELMT(i, j+1);
+                    }
+                    else{
+                        isi_baru[i][j] = this.getELMT(i,j);
+                    }
+                }
+            }
+        }
+        set_collumns(this, this.collumns-1);
+        set_data(this, isi_baru);
+    }
+
+    public void removeZeroCollumn(){
+        int i=0;
+        while(i<this.collumns){
+            if(this.isCollumnZero(i)){
+                this.removeCollumn(i);
+            }
+            i++;
+        }
+    }
+
+
     //--------------------------------PERHITUNGAN REDUKSI ESELON------------------------------------//
 
     public void p_reduksi_eselon(boolean btm){ // ini kaga ngereturn value
         int k =1;
+        this.removeZeroCollumn();
         if(btm){
             int i,j,i_p=0,j_p=0;
             for(i=0;i<this.collumns;i++){

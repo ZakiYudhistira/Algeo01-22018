@@ -1,5 +1,6 @@
 package Functions;
 import Matrix.Matrix;
+import Functions.Inverse;
 
 public class SPL {
     private Matrix solusi_spl;
@@ -20,7 +21,7 @@ public class SPL {
 
     // Metode Inverse Matriks
     public void Inverse(Matrix m, Matrix b) {
-        if (Inverse.isInversable(m)) {
+        if (Inverse.isInversible(m)) {
             solusiUnik = true;
             if (Matrix.isMatrixZero(b)) {
                 for (int i=0; i<m.collumns; i++) {
