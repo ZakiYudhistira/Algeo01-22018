@@ -114,6 +114,16 @@ public class Matrix {
         return true;
     }
 
+    public static boolean isMatrixZero(Matrix m) {
+        boolean allZero = true;
+        for (int i=0; i<m.row; i++) {
+            if (m.getELMT(i, 0) != 0) {
+                allZero = false;
+            }
+        }
+        return allZero;
+    }
+
     //--------------------------------MODIFIKASI MATRIKS------------------------------------//
     public static Matrix transpose(Matrix m){
         double[][] hasil_data = new double[m.collumns][m.row];
@@ -312,5 +322,30 @@ public class Matrix {
             }
         }
         return hasil;
+    }
+
+    //-----------------------------------OPERASI MATRIKS------------------------------------//
+    public static Matrix multiplyMatrix(Matrix m1, Matrix m2) {
+        double[][] data_hasil = new double[m1.row][m2.collumns];
+        Matrix m3 = new Matrix(data_hasil, m1.row, m2.collumns);
+
+        int i, j, k;
+        for (i=0; i<m3.row; i++) {
+            for (j=0; j<m3.collumns; j++) {
+                m3.setELMT(i, j, 0);
+            }
+        }
+
+        double val;
+        for (i=0; i<m1.row; i++) {
+            for (j=0; j<m2.collumns; j++) {
+                for (k=0; k<m2.row; k++) {
+                    val = m1.getELMT(i, k)*m2.getELMT(k, j);
+                    m3.setELMT(i, j, m3.getELMT(i, j)+val);
+                }
+            }
+        }
+
+        return m3;
     }
 }

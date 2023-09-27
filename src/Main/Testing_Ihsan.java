@@ -10,7 +10,12 @@ public class Testing_Ihsan {
         Matrix m1 = new Matrix(null, 0, 0);
         Matrix_scan.scan_matriks_keyboard(m1, "SPL", false);
         m1.display();
-        boolean x = Inverse.isInversable(m1);
-        System.out.println(x);
+        Matrix m2 = new Matrix(null, 0, 0);
+        Matrix_scan.scan_matriks_keyboard(m2, "SPL", false);
+        Matrix m3 = new Matrix(null, 0, 0);
+        m3 = Matrix.multiplyMatrix(m1, m2);
+        m3.display();
+        // boolean x = Inverse.isInversable(m1);
+        // System.out.println(x);
     }
 }

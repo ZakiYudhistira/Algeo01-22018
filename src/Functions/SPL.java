@@ -2,7 +2,7 @@ package Functions;
 import Matrix.Matrix;
 
 public class SPL {
-    private double[] solusi_spl = new double[100];
+    private Matrix solusi_spl;
     private boolean tanpaSolusi;
     private boolean banyakSolusi;
     private boolean solusiUnik;
@@ -20,10 +20,15 @@ public class SPL {
 
     // Metode Inverse Matriks
     public void Inverse(Matrix m, Matrix b) {
-        if (!Inverse.isInversable(m)) {
+        if (Inverse.isInversable(m)) {
             solusiUnik = true;
-            for (int i=0; i<m.collumns; i++) {
-                solusi_spl[i] = 0;
+            if (Matrix.isMatrixZero(b)) {
+                for (int i=0; i<m.collumns; i++) {
+
+                }
+            } else {
+                Inverse.Inverse_matrix_reduksi(m);
+                solusi_spl = Matrix.multiplyMatrix(m, b);
             }
         } else {
 
