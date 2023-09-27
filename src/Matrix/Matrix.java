@@ -260,27 +260,25 @@ public class Matrix {
 
     public static double getDeterminanKofaktor(Matrix m){
         double determinan = 0;
-        Matrix temp = new Matrix(null, 0, 0);
-        temp = m;
-        if (temp.collumns==2 && temp.row==2){ //basis
-            return((double)((temp.getELMT(0, 0))*(temp.getELMT(1, 1)))-((temp.getELMT(0, 1))*(temp.getELMT(1, 0))));
+        if (m.collumns==2 && m.row==2){ //basis
+            return((double)((m.getELMT(0, 0))*(m.getELMT(1, 1)))-((m.getELMT(0, 1))*(m.getELMT(1, 0))));
         } else {
-            for (int i=0; i<temp.row; i++){ //konversi bentuk kofaktor -> matriks kofaktor
-                Matrix mr = new Matrix(null, 0, 0);
-                for (int j=1; j<temp.collumns; j++){
+            for (int i=0; i<m.row; i++){ //konversi bentuk kofaktor -> matriks kofaktor
+                double[][] data = new double[m.collumns-1][m.row-1];
+                Matrix mr = new Matrix(data, m.row-1, m.collumns-1);
+                for (int j=1; j<m.collumns; j++){
                     int l=0;
-                    for (int k=0; k<temp.row; k++){
-                        mr = new Matrix(null, temp.row-1, temp.collumns-1);
+                    for (int k=0; k<m.row; k++){
                         if (k!=i){
-                            mr.setELMT(j-1, l, mr.getELMT(j, k));
+                            mr.setELMT(j-1, l, m.getELMT(j, k));
                             l++;
                         }
                     }
                 }
-                if (i%2!=0){ // rekurens
-                    determinan += (-1) * mr.getELMT(0,i) * getDeterminanKofaktor(mr);
+                if (i% 2 != 0){ // rekurens
+                    determinan += (-1) * m.getELMT(0,i) * getDeterminanKofaktor(mr);
                 } else {
-                    determinan += mr.getELMT(0,i) * getDeterminanKofaktor(mr);
+                    determinan += m.getELMT(0,i) * getDeterminanKofaktor(mr);
                 }
             }
         }
