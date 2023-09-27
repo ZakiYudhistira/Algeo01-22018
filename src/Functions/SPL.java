@@ -3,24 +3,24 @@ import Matrix.Matrix;
 import Functions.Inverse;
 
 public class SPL {
-    private Matrix solusi_spl;
-    private boolean tanpaSolusi;
-    private boolean banyakSolusi;
-    private boolean solusiUnik;
+    public static Matrix solusi_spl;
+    private static boolean tanpaSolusi;
+    private static boolean banyakSolusi;
+    private static boolean solusiUnik;
     
     //--------------------------------TEMPLATE PROSEDUR PENYELESAIAN SPL----------------------------------//
     // Metode Gauss
-    public void Gauss(Matrix m) {
+    public static void Gauss(Matrix m, Matrix b) {
 
     }
 
     // Metode Gauss-Jordan
-    public void Gauss_Jordan(Matrix m) {
+    public static void Gauss_Jordan(Matrix m, Matrix b) {
 
     }
 
     // Metode Inverse Matriks
-    public void Inverse(Matrix m, Matrix b) {
+    public static void Inverse(Matrix m, Matrix b) {
         double[][] solusi = new double[1][m.collumns];
         solusi_spl = new Matrix(solusi, m.row, 1);
 
@@ -41,7 +41,7 @@ public class SPL {
     }
 
     // Metode Cramer
-    public void Cramer(Matrix m, Matrix b) {
+    public static void Cramer(Matrix m, Matrix b) {
         double[][] solusi = new double[1][m.collumns];
         solusi_spl = new Matrix(solusi, m.row, 1);
 
