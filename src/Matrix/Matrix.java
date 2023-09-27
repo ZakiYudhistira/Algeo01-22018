@@ -144,6 +144,17 @@ public class Matrix {
         set_data(this, temp.data);
     }
 
+    public void multiplyByConst(double val){
+        Matrix temp = new Matrix(this.data, this.row, this.collumns);
+        for (int i=0; i<this.row; i++){
+            for (int j=0; j<this.collumns; j++)
+            temp.setELMT(i, j, val * temp.getELMT(i, j));
+        }
+        set_collumns(this, temp.collumns);
+        set_row(this, temp.row);
+        set_data(this, temp.data);
+    }
+
     public void subtract_baris(int row1, int row2, double factor){
         if(isRowIndexValid(this, row1) && isRowIndexValid(this, row2)){
             int i;
