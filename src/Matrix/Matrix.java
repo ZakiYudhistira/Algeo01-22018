@@ -439,7 +439,7 @@ public class Matrix {
     public static double[] kali_array(double[] array, double faktor){
         int i;
         double array_baru[] = new double[array.length];
-        for(i=0;i<array.length-1;i++){
+        for(i=0;i<array.length;i++){
             array_baru[i] = array[i]*faktor;
         }
         return array_baru;
@@ -447,7 +447,7 @@ public class Matrix {
 
     public static void kurang_array(double[] array1, double[] array2){
         int i;
-        for(i=0;i<array1.length-1;i++){
+        for(i=0;i<array1.length;i++){
             array1[i] -= array2[i];
         }
     }

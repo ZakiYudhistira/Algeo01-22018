@@ -74,6 +74,7 @@ public class SPL {
         m.removeZeroCollumn();
         m.normalize();
         m.p_reduksi_eselon(true);
+        m.divideBaris();
         if(m.isRowZero(m.row-1, m.collumns-2) && m.getELMT(m.row-1, m.collumns-1) != 0){
             System.out.println("SPL tidak memiliki solusi.");
         }
@@ -87,7 +88,6 @@ public class SPL {
                     count_var++;
                 }
             }
-            int panjang_array = count_var+1;
             double[][] array_jawaban = new double[m.row][count_var+1];
             for(i=0;i<m.row;i++){
                 for(j=0;j<count_var+1;j++){
@@ -100,18 +100,13 @@ public class SPL {
                 }
             }
             count_var = 1;
+            // perhitungan
             for(i=m.row-1;i>=0;i--){
                 if(m.isRowZero(i, m.collumns-1)){
                     array_jawaban[i][count_var] = 1;
                     count_var++;
                 }
                 else{
-                    double[] array_temp = new double[count_var+1];
-                    int k;
-                    for(k=0;k<count_var+1;k++){
-                        array_temp[i] = 0;
-                    }
-            
                     for(j=i+1;j<m.collumns-1;j++){
                         Matrix.kurang_array(array_jawaban[i], Matrix.kali_array(array_jawaban[j], m.getELMT(i,j)));
                     }
@@ -119,7 +114,22 @@ public class SPL {
             }
             for(i=0;i<array_jawaban.length;i++){
                 for(j=0;j<array_jawaban[0].length;j++){
-                    System.out.print(array_jawaban[i][j]+" ");
+                    if(j==0){
+                        if(array_jawaban[i][j] == 0){
+                            System.out.print("x"+i+" = ");
+                        }
+                        else{
+                            System.out.print("x"+i+" = " + array_jawaban[i][j]);
+                        }
+                    }
+                    else{
+                        if(array_jawaban[i][j] > 0){
+                            System.out.print("+"+array_jawaban[i][j]+alphabet[j-1]);
+                        }
+                        else if(array_jawaban[i][j]<0){
+                            System.out.print(array_jawaban[i][j]+alphabet[j-1]);
+                        }
+                    }
                 }
                 System.out.println("");
             }

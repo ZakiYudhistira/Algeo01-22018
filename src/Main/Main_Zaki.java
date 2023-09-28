@@ -16,5 +16,12 @@ public class Main_Zaki {
         // baru.p_reduksi_eselon(true);
         SPL.Gauss_Jordan(baru);
         baru.display();
+        // double[] ini1= {1,2,3};
+        // double[] ini2= {4,5,6};
+        // Matrix.kurang_array(ini1,ini2);
+        // int i;
+        // for(i=0;i<ini1.length;i++){
+        //     System.out.println(ini1[i]);
+        // }
     }
 }
