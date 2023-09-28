@@ -13,7 +13,7 @@ public class Main_Syarafi {
         Matrix_scan.scan_matriks_keyboard(m, "SPL", error);
         // m2 = m;
         // m2.display();
-        Inverse.Inverse_Kofaktor(m).display();;
+        System.out.println(Interpolasi.Interpolasi_Polinom(m, 9.2));
         // m.self_transpose();
         // Inverse.adjoint(m).display();;
     }
