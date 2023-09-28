@@ -11,8 +11,6 @@ public class SPL {
     //--------------------------------TEMPLATE PROSEDUR PENYELESAIAN SPL----------------------------------//
     // Metode Gauss
     public static void Gauss(Matrix m) {
-        double[] solusi = new double[m.row];
-        String[] alphabet = {"a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"};
         m.removeZeroCollumn();
         m.normalize();
         m.p_reduksi_eselon(true);
@@ -21,9 +19,34 @@ public class SPL {
             System.out.println("SPL tidak memiliki solusi.");
         }
         else if(m.isRowZero(m.row-1,m.collumns-1)){
+            String[] solusi = new String[m.row];
             System.out.println("SPL tidak memiliki solusi tunggal.");
+            String[] alphabet = {"a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"};
+            int j,i,idx_aplhabet = 0;
+            for(i=m.row-1;i>=0;i--){
+                solusi[i] = ""+m.getELMT(i, m.collumns-1);
+            }
+            for(i=m.row-1;i>=0;i--){
+                if(m.isRowZero(i,m.collumns-1)){
+                    solusi[i] = alphabet[idx_aplhabet];
+                    idx_aplhabet++;
+                }
+                else{
+                    String sum = "";
+                    for (j = i+1; j < m.collumns-1; j++){
+                        if(m.getELMT(i, j)!=0){
+                            sum += "+"+"("+ m.getELMT(i, j)*(-1) + solusi[j]+")";
+                            solusi[i] = solusi[i]+sum;
+                        }
+                    }
+                }
+            }
+            for(i=0;i<m.row;i++){
+                System.out.println("x" + i + " = " + solusi[i]);
+            }
         }
         else{
+            double[] solusi = new double[m.row];
             int i;
             for(i=m.row-1;i>=0;i--){
                 solusi[i] = m.getELMT(i, m.collumns-1);
@@ -48,20 +71,20 @@ public class SPL {
 
     // Metode Gauss-Jordan
     public static void Gauss_Jordan(Matrix m) {
-        double[] solusi = new double[m.row];
-        String[] alphabet = {"a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"};
         m.removeZeroCollumn();
         m.normalize();
         m.p_reduksi_eselon(true);
-        m.p_reduksi_eselon(false);
-        m.divideBaris();
         if(m.isRowZero(m.row-1, m.collumns-2) && m.getELMT(m.row-1, m.collumns-1) != 0){
             System.out.println("SPL tidak memiliki solusi.");
         }
         else if(m.isRowZero(m.row-1,m.collumns-1)){
             System.out.println("SPL tidak memiliki solusi tunggal.");
+            String[] alphabet = {"a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"};
         }
         else{
+            double[] solusi = new double[m.row];
+            m.p_reduksi_eselon(false);
+            m.divideBaris();
             int i;
             for(i=m.row-1;i>=0;i--){
                 solusi[i] = m.getELMT(i, m.collumns-1);

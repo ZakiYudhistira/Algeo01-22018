@@ -274,9 +274,6 @@ public class Matrix {
                             break;
                         }
                         this.subtract_baris(j, i, this.getELMT(j,i)/this.getELMT(j_p, i_p));
-                        if(this.isRowZero(j,this.collumns-1)){
-                            break;
-                        }
                     }
                     this.display();
                     System.out.print("\n");
@@ -313,8 +310,6 @@ public class Matrix {
             }   
         }
     }
-
-    
 
     //--------------------------------PERHITUNGAN DETERMINAN------------------------------------//
     public static double getDeterminanReduksi(Matrix m){
