@@ -85,6 +85,6 @@ public class Inverse {
     
 
     public static boolean isInversible(Matrix m) {
-        return Matrix.getDeterminanKofaktor(m) != 0;
+        return Matrix.getDeterminanReduksi(m) != 0;
     }
 }

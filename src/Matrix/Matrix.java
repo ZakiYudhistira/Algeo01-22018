@@ -400,8 +400,8 @@ public class Matrix {
         int i, j;
         for (i=0; i<m1.row; i++) {
             for (j=0; j<m1.collumns; j++) {
-                if (j+1==col) {
-                    m3.setELMT(i, j, m2.getELMT(i, j));
+                if (j==col) {
+                    m3.setELMT(i, j, m2.getELMT(i, 0));
                 }
             }
         }
