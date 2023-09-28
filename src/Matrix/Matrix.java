@@ -314,6 +314,8 @@ public class Matrix {
         }
     }
 
+    
+
     //--------------------------------PERHITUNGAN DETERMINAN------------------------------------//
     public static double getDeterminanReduksi(Matrix m){
         double determinan;

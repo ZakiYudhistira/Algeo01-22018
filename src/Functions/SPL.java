@@ -73,6 +73,21 @@ public class SPL {
         }
     }
 
+    // fungsi
+    public static double[] HitungSPL(Matrix m){
+        double[] solusi = new double[m.row];
+        m.removeZeroCollumn();
+        m.normalize();
+        m.p_reduksi_eselon(true);
+        m.p_reduksi_eselon(false);
+        m.divideBaris();
+        int i;
+            for(i=m.row-1;i>=0;i--){
+                solusi[i] = m.getELMT(i, m.collumns-1);
+            }
+        return solusi;
+    }
+
     // Metode Inverse Matriks
     public static void Inverse(Matrix m, Matrix b) {
         double[][] solusi = new double[m.row][1];
