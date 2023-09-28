@@ -13,6 +13,7 @@ public class Main_Zaki {
         Matrix_scan.scan_matriks_keyboard(baru, "SPL", error);
         baru.display();
         System.out.print("\n");
+        // baru.p_reduksi_eselon(true);
         SPL.Gauss(baru);
         baru.display();
     }
