@@ -19,30 +19,59 @@ public class SPL {
             System.out.println("SPL tidak memiliki solusi.");
         }
         else if(m.isRowZero(m.row-1,m.collumns-1)){
-            String[] solusi = new String[m.row];
             System.out.println("SPL tidak memiliki solusi tunggal.");
             String[] alphabet = {"a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"};
-            int j,i,idx_aplhabet = 0;
-            for(i=m.row-1;i>=0;i--){
-                solusi[i] = ""+m.getELMT(i, m.collumns-1);
-            }
-            for(i=m.row-1;i>=0;i--){
+            int count_var = 0;
+            int i,j;
+            for(i=0;i<m.row;i++){
                 if(m.isRowZero(i,m.collumns-1)){
-                    solusi[i] = alphabet[idx_aplhabet];
-                    idx_aplhabet++;
+                    count_var++;
                 }
-                else{
-                    String sum = "";
-                    for (j = i+1; j < m.collumns-1; j++){
-                        if(m.getELMT(i, j)!=0){
-                            sum += "+"+"("+ m.getELMT(i, j)*(-1) + solusi[j]+")";
-                            solusi[i] = solusi[i]+sum;
-                        }
-                    }
+            }
+            double[][] array_jawaban = new double[m.row][count_var+1];
+            for(i=0;i<m.row;i++){
+                for(j=0;j<count_var+1;j++){
+                    array_jawaban[i][j] = 0;
                 }
             }
             for(i=0;i<m.row;i++){
-                System.out.println("x" + i + " = " + solusi[i]);
+                if(!m.isRowZero(i, m.collumns-1)){
+                    array_jawaban[i][0] = m.getELMT(i, m.collumns-1);
+                }
+            }
+            count_var = 1;
+            // perhitungan
+            for(i=m.row-1;i>=0;i--){
+                if(m.isRowZero(i, m.collumns-1)){
+                    array_jawaban[i][count_var] = 1;
+                    count_var++;
+                }
+                else{
+                    for(j=i+1;j<m.collumns-1;j++){
+                        Matrix.kurang_array(array_jawaban[i], Matrix.kali_array(array_jawaban[j], m.getELMT(i,j)));
+                    }
+                }
+            }
+            for(i=0;i<array_jawaban.length;i++){
+                for(j=0;j<array_jawaban[0].length;j++){
+                    if(j==0){
+                        if(array_jawaban[i][j] == 0){
+                            System.out.print("x"+i+" = ");
+                        }
+                        else{
+                            System.out.print("x"+i+" = " + array_jawaban[i][j]);
+                        }
+                    }
+                    else{
+                        if(array_jawaban[i][j] > 0){
+                            System.out.print("+"+array_jawaban[i][j]+alphabet[j-1]);
+                        }
+                        else if(array_jawaban[i][j]<0){
+                            System.out.print(array_jawaban[i][j]+alphabet[j-1]);
+                        }
+                    }
+                }
+                System.out.println("");
             }
         }
         else{

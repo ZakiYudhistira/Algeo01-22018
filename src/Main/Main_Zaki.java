@@ -14,7 +14,7 @@ public class Main_Zaki {
         baru.display();
         System.out.print("\n");
         // baru.p_reduksi_eselon(true);
-        SPL.Gauss_Jordan(baru);
+        SPL.Gauss(baru);
         baru.display();
         // double[] ini1= {1,2,3};
         // double[] ini2= {4,5,6};
