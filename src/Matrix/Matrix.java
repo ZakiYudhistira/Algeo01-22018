@@ -419,15 +419,18 @@ public class Matrix {
     }
 
     public static Matrix gantiKolom(Matrix m1, Matrix m2, int col) {
-        // ukuran m1 = axb dan ukuran m2 = ax1, menggantikan nilai pada satu kolom col[1..b]
+        // ukuran m1 = axb dan ukuran m2 = ax1, menggantikan nilai pada satu kolom col[0..b-1]
         double[][] data_hasil = new double[m1.row][m1.collumns];
         Matrix m3 = new Matrix(data_hasil, m1.row, m1.collumns);
+
+        m3 = m1.copyMatrix();
 
         int i, j;
         for (i=0; i<m1.row; i++) {
             for (j=0; j<m1.collumns; j++) {
                 if (j==col) {
                     m3.setELMT(i, j, m2.getELMT(i, 0));
+                    m3.display();
                 }
             }
         }

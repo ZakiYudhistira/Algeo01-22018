@@ -171,7 +171,6 @@ public class SPL {
         solusi_spl = new Matrix(solusi, m.row, 1);
 
         if (Inverse.isInversible(m)) {
-            solusiUnik = true;
             if (Matrix.isMatrixZero(b)) {
                 for (int i=0; i<m.collumns; i++) {
                     solusi_spl.setELMT(i, 0, 0);;
@@ -181,10 +180,9 @@ public class SPL {
                 solusi_spl = Matrix.multiplyMatrix(m, b);
             }
         } else {
-            banyakSolusi = true;
 
         }
-        solusi_spl.display();
+        // solusi_spl.display();
     }
 
     // Metode Cramer
@@ -192,7 +190,7 @@ public class SPL {
         double[][] solusi = new double[m.row][1];
         solusi_spl = new Matrix(solusi, m.row, 1);
 
-        Matrix mtemp;
+        Matrix mtemp = m.copyMatrix();
 
         double detUtama = Matrix.getDeterminanReduksi(m);
         if (detUtama != 0) {
@@ -205,7 +203,7 @@ public class SPL {
         } else {
 
         }
-        solusi_spl.display();
+        // solusi_spl.display();
     }
 }
     //----------------------------PENYELESAIAN PARAMETRIK----------------------------------//
