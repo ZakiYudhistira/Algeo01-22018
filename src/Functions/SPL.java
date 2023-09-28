@@ -80,6 +80,50 @@ public class SPL {
         else if(m.isRowZero(m.row-1,m.collumns-1)){
             System.out.println("SPL tidak memiliki solusi tunggal.");
             String[] alphabet = {"a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"};
+            int count_var = 0;
+            int i,j;
+            for(i=0;i<m.row;i++){
+                if(m.isRowZero(i,m.collumns-1)){
+                    count_var++;
+                }
+            }
+            int panjang_array = count_var+1;
+            double[][] array_jawaban = new double[m.row][count_var+1];
+            for(i=0;i<m.row;i++){
+                for(j=0;j<count_var+1;j++){
+                    array_jawaban[i][j] = 0;
+                }
+            }
+            for(i=0;i<m.row;i++){
+                if(!m.isRowZero(i, m.collumns-1)){
+                    array_jawaban[i][0] = m.getELMT(i, m.collumns-1);
+                }
+            }
+            count_var = 1;
+            for(i=m.row-1;i>=0;i--){
+                if(m.isRowZero(i, m.collumns-1)){
+                    array_jawaban[i][count_var] = 1;
+                    count_var++;
+                }
+                else{
+                    double[] array_temp = new double[count_var+1];
+                    int k;
+                    for(k=0;k<count_var+1;k++){
+                        array_temp[i] = 0;
+                    }
+            
+                    for(j=i+1;j<m.collumns-1;j++){
+                        Matrix.kurang_array(array_jawaban[i], Matrix.kali_array(array_jawaban[j], m.getELMT(i,j)));
+                    }
+                }
+            }
+            for(i=0;i<array_jawaban.length;i++){
+                for(j=0;j<array_jawaban[0].length;j++){
+                    System.out.print(array_jawaban[i][j]+" ");
+                }
+                System.out.println("");
+            }
+
         }
         else{
             double[] solusi = new double[m.row];
