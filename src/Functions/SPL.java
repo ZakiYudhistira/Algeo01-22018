@@ -21,7 +21,7 @@ public class SPL {
 
     // Metode Inverse Matriks
     public static void Inverse(Matrix m, Matrix b) {
-        double[][] solusi = new double[1][m.collumns];
+        double[][] solusi = new double[m.row][1];
         solusi_spl = new Matrix(solusi, m.row, 1);
 
         if (Inverse.isInversible(m)) {
@@ -38,25 +38,32 @@ public class SPL {
             banyakSolusi = true;
 
         }
+        solusi_spl.display();
     }
 
     // Metode Cramer
     public static void Cramer(Matrix m, Matrix b) {
-        double[][] solusi = new double[1][m.collumns];
+        double[][] solusi = new double[m.row][1];
         solusi_spl = new Matrix(solusi, m.row, 1);
 
         Matrix mtemp;
 
-        double detUtama = Matrix.getDeterminanKofaktor(m);
+        double detUtama = Matrix.getDeterminanReduksi(m);
         if (detUtama != 0) {
             int i;
             for (i=0; i<m.collumns; i++) {
                 mtemp = Matrix.gantiKolom(m, b, i);
-                double detTemp = Matrix.getDeterminanKofaktor(mtemp);
+                double detTemp = Matrix.getDeterminanReduksi(mtemp);
                 solusi_spl.setELMT(i, 0, (detTemp/detUtama));
             }
         } else {
 
         }
+        solusi_spl.display();
+    }
+
+    //----------------------------PENYELESAIAN PARAMETRIK----------------------------------//
+    public void parametrik() {
+
     }
 }

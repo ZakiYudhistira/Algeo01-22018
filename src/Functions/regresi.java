@@ -5,8 +5,10 @@ import Functions.SPL;
 public class regresi {
     public static Matrix solusi_regresi;
 
-    public void solusiRegresi(Matrix m, Matrix b) {
+    public static void solusiRegresi(Matrix m, Matrix b, double x) {
         SPL.Gauss(m, b);
+        solusi_regresi = SPL.solusi_spl;
+        solusi_regresi.display();
     }
 
 }
