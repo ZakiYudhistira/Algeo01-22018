@@ -318,8 +318,8 @@ public class Matrix {
     public static double getDeterminanReduksi(Matrix m){
         double determinan;
         determinan = 1;
-        Matrix temp = new Matrix(null, 0, 0);
-        temp = m;
+        Matrix temp;
+        temp = m.copyMatrix();
         temp.p_reduksi_eselon(true);
         int i,j;
         for(i=0;i<temp.row;i++){
