@@ -10,8 +10,40 @@ public class SPL {
     
     //--------------------------------TEMPLATE PROSEDUR PENYELESAIAN SPL----------------------------------//
     // Metode Gauss
-    public static void Gauss(Matrix m, Matrix b) {
-
+    public static void Gauss(Matrix m) {
+        double[] solusi = new double[m.row];
+        String[] alphabet = {"a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"};
+        m.removeZeroCollumn();
+        m.normalize();
+        m.p_reduksi_eselon(true);
+        m.divideBaris();
+        if(m.isRowZero(m.row-1, m.collumns-2) && m.getELMT(m.row-1, m.collumns-1) != 0){
+            System.out.println("SPL tidak memiliki solusi.");
+        }
+        else if(m.isRowZero(m.row-1,m.collumns-1)){
+            System.out.println("SPL tidak memiliki solusi tunggal.");
+        }
+        else{
+            int i;
+            for(i=m.row-1;i>=0;i--){
+                solusi[i] = m.getELMT(i, m.collumns-1);
+            }
+            for(i=m.row-1;i>=0;i--){
+                if(i==m.row-1){
+                    solusi[i] = m.getELMT(i, m.collumns-1);
+                }
+                else{
+                    double sum = 0.0;
+                    for (int j = i+1; j < m.collumns-1; j++) 
+                        sum += m.getELMT(i, j) * solusi[i+1];
+                        solusi[i] = solusi[i]-sum;
+                }
+            }
+            System.out.println("Berikut solusi dari SPL :");
+            for(i=0;i<m.row;i++){
+                System.out.println("x" + i + " = " + solusi[i]);
+            }
+        }
     }
 
     // Metode Gauss-Jordan
@@ -61,9 +93,5 @@ public class SPL {
         }
         solusi_spl.display();
     }
-
-    //----------------------------PENYELESAIAN PARAMETRIK----------------------------------//
-    public void parametrik() {
-
-    }
 }
+    //----------------------------PENYELESAIAN PARAMETRIK----------------------------------//

@@ -124,6 +124,16 @@ public class Matrix {
         return allZero;
     }
 
+    public boolean isAllRowNotZero(){
+        int i;
+        for(i=0;i<this.row;i++){
+            if(this.isRowZero(i,this.collumns-1)){
+                return false;
+            }
+        }
+        return true;
+    }
+
     //--------------------------------MODIFIKASI MATRIKS------------------------------------//
     public static Matrix transpose(Matrix m){
         double[][] hasil_data = new double[m.collumns][m.row];
@@ -218,6 +228,25 @@ public class Matrix {
                 this.removeCollumn(i);
             }
             i++;
+        }
+    }
+
+    public void normalize(){
+        if(this.collumns != this.row+1){
+            double[][] data_0 = new double[this.collumns-1][this.collumns];
+            int i,j;
+            for(i=0;i<this.collumns-1;i++){
+                for(j=0;j<this.collumns;j++){
+                    if(i<=this.row-1){
+                        data_0[i][j] = this.getELMT(i, j);
+                    }
+                    else{
+                        data_0[i][j] = 0;
+                    } 
+                }
+            }
+            set_data(this, data_0);
+            set_row(this, this.collumns-1);
         }
     }
 
