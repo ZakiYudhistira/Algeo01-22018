@@ -13,7 +13,7 @@ public class Testing_Ihsan {
         // Matrix m2 = new Matrix(null, 0, 0);
         // Matrix_scan.scan_matriks_keyboard(m2, "SPL", false);
         // Inverse.Inverse_matrix_reduksi(m1);
-        // Matrix m3 = new Matrix(null, 0, 0);
+        Matrix m3 = new Matrix(null, 0, 0);
         // m3 = Matrix.multiplyMatrix(m1, m2);
         // m3.display();
         
@@ -22,7 +22,8 @@ public class Testing_Ihsan {
         Matrix_scan.scan_matriks_keyboard(m, "SPL", false);
         Matrix b = new Matrix(null, 0, 0);
         Matrix_scan.scan_matriks_keyboard(b, "SPL", false);
-        // Matrix.gantiKolom(m, b, 0);
+        // m3 = Matrix.gantiKolom(m, b, 1);
+        // m3.display();
         SPL.Cramer(m, b);
     }
 }
