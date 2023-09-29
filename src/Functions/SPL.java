@@ -224,45 +224,59 @@ public class SPL {
     }
 
     // Metode Inverse Matriks
-    public static void Inverse(Matrix m, Matrix b) {
-        double[][] solusi = new double[m.row][1];
-        solusi_spl = new Matrix(solusi, m.row, 1);
+    public static void Inverse(Matrix m) {
+        double[][] mSPL_data = new double[m.row][m.collumns-1];
+        Matrix mSPL = new Matrix(mSPL_data, m.row, 1);
+
+        double[][] mJwb_data = new double[m.row][1];
+        Matrix mJwb = new Matrix(mJwb_data, m.row, 1);
+
+        Matrix.splitAugmentMtx(m, mSPL, mJwb);
+
+        double[][] solusi = new double[mSPL.row][1];
+        solusi_spl = new Matrix(solusi, mSPL.row, 1);
         String[] pp = new String[1];
 
-        if (Inverse.isInversible(m)) {
-            if (Matrix.isMatrixZero(b)) {
-                for (int i=0; i<m.collumns; i++) {
+        if (Inverse.isInversible(mSPL)) {
+            if (Matrix.isMatrixZero(mJwb)) {
+                for (int i=0; i<mSPL.collumns; i++) {
                     solusi_spl.setELMT(i, 0, 0);;
                 }
             } else {
-                Inverse.Inverse_matrix_reduksi(m,pp,0);
-                solusi_spl = Matrix.multiplyMatrix(m, b);
+                Inverse.Inverse_matrix_reduksi(mSPL,pp,0);
+                solusi_spl = Matrix.multiplyMatrix(mSPL, mJwb);
             }
         } else {
-
+            System.out.println("SPL tidak dapat diselesaikan menggunakan metode inverse");
         }
-        // solusi_spl.display();
     }
 
     // Metode Cramer
-    public static void Cramer(Matrix m, Matrix b) {
+    public static void Cramer(Matrix m) {
+        double[][] mSPL_data = new double[m.row][m.collumns-1];
+        Matrix mSPL = new Matrix(mSPL_data, m.row, 1);
+
+        double[][] mJwb_data = new double[m.row][1];
+        Matrix mJwb = new Matrix(mJwb_data, m.row, 1);
+
+        Matrix.splitAugmentMtx(m, mSPL, mJwb);
+
         double[][] solusi = new double[m.row][1];
         solusi_spl = new Matrix(solusi, m.row, 1);
 
-        Matrix mtemp = m.copyMatrix();
+        Matrix mtemp = mSPL.copyMatrix();
 
         double detUtama = Matrix.getDeterminanReduksi(m);
         if (detUtama != 0) {
             int i;
             for (i=0; i<m.collumns; i++) {
-                mtemp = Matrix.gantiKolom(m, b, i);
+                mtemp = Matrix.gantiKolom(mSPL, mJwb, i);
                 double detTemp = Matrix.getDeterminanReduksi(mtemp);
                 solusi_spl.setELMT(i, 0, (detTemp/detUtama));
             }
         } else {
-
+            System.out.println("SPL tidak dapat diselesaikan menggunakan metode Cramer");
         }
-        // solusi_spl.display();
     }
 }
     //----------------------------PENYELESAIAN PARAMETRIK----------------------------------//

@@ -456,6 +456,20 @@ public class Matrix {
         return hasil;
     }
 
+    public static void splitAugmentMtx(Matrix mAug, Matrix mSPL, Matrix mJwb) {
+        // mAug berukuran mxn, mSPL berukuran mxn-1, mJwb berukuran mx1
+        int i, j;
+        for (i=0; i<mAug.row; i++) {
+            for (j=0; j<mAug.collumns; j++) {
+                if (j == mAug.collumns) {
+                    mJwb.setELMT(i, j, mAug.getELMT(i, j));
+                } else {
+                    mSPL.setELMT(i, j, mAug.getELMT(i, j));
+                }
+            }
+        }
+    }
+
     //-----------------------------------OPERASI MATRIKS------------------------------------//
     public static Matrix multiplyMatrix(Matrix m1, Matrix m2) {
         double[][] data_hasil = new double[m1.row][m2.collumns];
@@ -506,6 +520,16 @@ public class Matrix {
         int i;
         for (i=0; i<m.collumns; i++) {
             sum += (m.getELMT(row1, i)*m.getELMT(row2, i));
+        }
+
+        return sum;
+    }
+
+    public static double sumColumnWithoutOP(Matrix m, int row) {
+        double sum = 0;
+        int i;
+        for (i=0; i<m.collumns; i++) {
+            sum += (m.getELMT(row, i));
         }
 
         return sum;
