@@ -461,8 +461,8 @@ public class Matrix {
         int i, j;
         for (i=0; i<mAug.row; i++) {
             for (j=0; j<mAug.collumns; j++) {
-                if (j == mAug.collumns) {
-                    mJwb.setELMT(i, j, mAug.getELMT(i, j));
+                if (j == mAug.collumns-1) {
+                    mJwb.setELMT(i, 0, mAug.getELMT(i, j));
                 } else {
                     mSPL.setELMT(i, j, mAug.getELMT(i, j));
                 }
@@ -507,7 +507,6 @@ public class Matrix {
             for (j=0; j<m1.collumns; j++) {
                 if (j==col) {
                     m3.setELMT(i, j, m2.getELMT(i, 0));
-                    m3.display();
                 }
             }
         }

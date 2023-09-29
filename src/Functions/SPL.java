@@ -226,7 +226,7 @@ public class SPL {
     // Metode Inverse Matriks
     public static void Inverse(Matrix m) {
         double[][] mSPL_data = new double[m.row][m.collumns-1];
-        Matrix mSPL = new Matrix(mSPL_data, m.row, 1);
+        Matrix mSPL = new Matrix(mSPL_data, m.row, m.collumns-1);
 
         double[][] mJwb_data = new double[m.row][1];
         Matrix mJwb = new Matrix(mJwb_data, m.row, 1);
@@ -246,6 +246,7 @@ public class SPL {
                 Inverse.Inverse_matrix_reduksi(mSPL,pp,0);
                 solusi_spl = Matrix.multiplyMatrix(mSPL, mJwb);
             }
+            solusi_spl.display();
         } else {
             System.out.println("SPL tidak dapat diselesaikan menggunakan metode inverse");
         }
@@ -254,7 +255,7 @@ public class SPL {
     // Metode Cramer
     public static void Cramer(Matrix m) {
         double[][] mSPL_data = new double[m.row][m.collumns-1];
-        Matrix mSPL = new Matrix(mSPL_data, m.row, 1);
+        Matrix mSPL = new Matrix(mSPL_data, m.row, m.collumns-1);
 
         double[][] mJwb_data = new double[m.row][1];
         Matrix mJwb = new Matrix(mJwb_data, m.row, 1);
@@ -266,14 +267,15 @@ public class SPL {
 
         Matrix mtemp = mSPL.copyMatrix();
 
-        double detUtama = Matrix.getDeterminanReduksi(m);
+        double detUtama = Matrix.getDeterminanReduksi(mSPL);
         if (detUtama != 0) {
             int i;
-            for (i=0; i<m.collumns; i++) {
+            for (i=0; i<mSPL.collumns; i++) {
                 mtemp = Matrix.gantiKolom(mSPL, mJwb, i);
                 double detTemp = Matrix.getDeterminanReduksi(mtemp);
                 solusi_spl.setELMT(i, 0, (detTemp/detUtama));
             }
+            solusi_spl.display();
         } else {
             System.out.println("SPL tidak dapat diselesaikan menggunakan metode Cramer");
         }
