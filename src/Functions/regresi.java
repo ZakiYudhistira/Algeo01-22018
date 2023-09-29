@@ -3,12 +3,21 @@ import Matrix.Matrix;
 import Functions.SPL;
 
 public class regresi {
-    public static Matrix solusi_regresi;
+    public static double[] solusi_regresi;
 
-    public static void solusiRegresi(Matrix m, Matrix b, double x) {
-        SPL.Gauss(m);
-        solusi_regresi = SPL.solusi_spl;
-        solusi_regresi.display();
+    public static void normalEstEq(Matrix m) {
+        int i, j;
+        for (i=0; i<m.row; i++) {
+            for (j=0; j<m.collumns; j++) {
+                m.setELMT(i, j, Matrix.sumColumnWithOp(m, i, j));
+            }
+        }
+        m = Matrix.addCol(m, false);
+        m = Matrix.addRow(m, false);
+    }
+
+    public static void solusiRegresi(Matrix m, double x) {
+        
     }
 
 }

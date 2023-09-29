@@ -250,6 +250,62 @@ public class Matrix {
         }
     }
 
+    public static Matrix addRow(Matrix m, boolean under) {
+        double[][] data_temp = new double[m.row+1][m.collumns];
+        Matrix mtemp = new Matrix(data_temp, m.row+1, m.collumns);
+        int i, j;
+        if (under) {
+            for (i=0; i<m.row+1; i++) {
+                for (j=0; j<m.collumns; j++) {
+                    if (i<m.row) {
+                        mtemp.setELMT(i, j, m.getELMT(i, j));
+                    } else {
+                        mtemp.setELMT(i, j, 0);
+                    }
+                }
+            }
+        } else {
+            for (i=0; i<m.row+1; i++) {
+                for (j=0; j<m.collumns; j++) {
+                    if (i>0) {
+                        mtemp.setELMT(i, j, m.getELMT(i, j));
+                    } else {
+                        mtemp.setELMT(i, j, 0);
+                    }
+                }
+            }
+        }
+        return mtemp;
+    }
+
+    public static Matrix addCol(Matrix m, boolean right) {
+        double[][] data_temp = new double[m.row][m.collumns+1];
+        Matrix mtemp = new Matrix(data_temp, m.row, m.collumns+1);
+        int i, j;
+        if (right) {
+            for (i=0; i<m.row; i++) {
+                for (j=0; j<m.collumns+1; j++) {
+                    if (i<m.collumns) {
+                        mtemp.setELMT(i, j, m.getELMT(i, j));
+                    } else {
+                        mtemp.setELMT(i, j, 0);
+                    }
+                }
+            }
+        } else {
+            for (i=0; i<m.row; i++) {
+                for (j=0; j<m.collumns+1; j++) {
+                    if (i>0) {
+                        mtemp.setELMT(i, j, m.getELMT(i, j));
+                    } else {
+                        mtemp.setELMT(i, j, 0);
+                    }
+                }
+            }
+        }
+        return mtemp;
+    }
+
 
     //--------------------------------PERHITUNGAN REDUKSI ESELON------------------------------------//
 
@@ -436,6 +492,16 @@ public class Matrix {
         }
 
         return m3;
+    }
+
+    public static double sumColumnWithOp(Matrix m, int row1, int row2) {
+        double sum = 0;
+        int i;
+        for (i=0; i<m.collumns; i++) {
+            sum += (m.getELMT(row1, i)*m.getELMT(row2, i));
+        }
+
+        return sum;
     }
 
     //-----------------------------------OPERASI ARRAY------------------------------------//
