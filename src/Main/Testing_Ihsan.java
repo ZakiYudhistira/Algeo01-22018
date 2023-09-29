@@ -19,9 +19,9 @@ public class Testing_Ihsan {
         
 
         Matrix m = new Matrix(null, 0, 0);
-        Matrix_scan.scan_matriks_keyboard(m, "SPL", false);
+        Matrix_scan.scan_matriks_keyboard(m, "SPL");
         Matrix b = new Matrix(null, 0, 0);
-        Matrix_scan.scan_matriks_keyboard(b, "SPL", false);
+        Matrix_scan.scan_matriks_keyboard(b, "SPL");
         // m3 = Matrix.gantiKolom(m, b, 1);
         // m3.display();
         SPL.Cramer(m, b);

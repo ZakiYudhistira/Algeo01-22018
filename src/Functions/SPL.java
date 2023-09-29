@@ -11,6 +11,8 @@ public class SPL {
     //--------------------------------TEMPLATE PROSEDUR PENYELESAIAN SPL----------------------------------//
     // Metode Gauss
     public static void Gauss(Matrix m) {
+        System.out.println("Menghitung SPL dengan metode GAUSS.");
+        m.display();
         m.removeZeroCollumn();
         m.normalize();
         m.p_reduksi_eselon(true);
@@ -100,6 +102,7 @@ public class SPL {
 
     // Metode Gauss-Jordan
     public static void Gauss_Jordan(Matrix m) {
+        System.out.println("Menghitung SPL dengan metode GAUSS JORDAN.");
         m.removeZeroCollumn();
         m.normalize();
         m.p_reduksi_eselon(true);

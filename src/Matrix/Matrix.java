@@ -39,20 +39,10 @@ public class Matrix {
         for(i=0;i<this.row;i++){
             for(j=0;j<this.collumns;j++){
                 if(j==0) {
-                    if(getELMT(i, j) >=0){
-                        System.out.print(" "+this.getELMT(i, j));
-                    }
-                    else{
-                        System.out.print(this.getELMT(i, j));
-                    }
+                    System.out.print(this.getELMT(i, j));
                 }
                 else {
-                    if(getELMT(i, j)>=0){
-                        System.out.print("  "+this.getELMT(i, j));
-                    }
-                    else{
-                        System.out.print(" "+this.getELMT(i, j));
-                    }
+                    System.out.print("  "+this.getELMT(i, j));       
                 }
             }
             System.out.print("\n");
@@ -331,8 +321,8 @@ public class Matrix {
                         }
                         this.subtract_baris(j, i, this.getELMT(j,i)/this.getELMT(j_p, i_p));
                     }
-                    this.display();
-                    System.out.print("\n");
+                    // this.display();
+                    // System.out.print("\n");
                 }
             }
         }
@@ -360,8 +350,8 @@ public class Matrix {
                         }
                         
                     }
-                    this.display();
-                    System.out.print("\n");
+                    // this.display();
+                    // System.out.print("\n");
                 }
             }   
         }

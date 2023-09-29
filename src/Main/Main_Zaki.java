@@ -10,7 +10,7 @@ public class Main_Zaki {
         error = false;
         Matrix baru = new Matrix(null, 0, 0);
         // Matrix baru2 = new Matrix(null, 0, 0);
-        Matrix_scan.scan_matriks_keyboard(baru, "SPL", error);
+        Matrix_scan.scan_matriks_keyboard(baru, "SPL");
         baru.display();
         System.out.print("\n");
         // baru.p_reduksi_eselon(true);

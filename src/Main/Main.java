@@ -5,12 +5,21 @@ import java.util.*;
 
 
 public class Main {
-    public static Scanner scan;
+    public static Scanner scan = new Scanner(System.in);;
     public static void main(String[] args)
     {
+        String[] to_be_written = new String[100];
+        int k;
+        for(k=0;k<to_be_written.length;k++){
+            to_be_written[k] = "";
+        }
+        Matrix mainMatrix = new Matrix(null, 0, 0);
         int navigate;
-        while(true)
-        {
+        int usage = 100;
+        String nama_sesi;
+        System.out.print("Masukkan nama sesi : ");
+        nama_sesi = scan.nextLine();
+        while(usage < 100){
             System.out.println("MENU");
             System.out.println("1. Sistem Persamaan Linier");
             System.out.println("2. Determinan");
@@ -28,13 +37,99 @@ public class Main {
                 System.out.println("3. Metode matriks balikan");
                 System.out.println("4. Aturan Crammer");
                 navigate = scan.nextInt();
-                
+                if(navigate == 1){
+                    System.out.println("Pilih jenis masukan");
+                    System.out.println("1. Masukan dari keyboard");
+                    System.out.println("2. Masukan dari file");
+                    navigate = scan.nextInt();
+                    if(navigate == 1){
+                        Matrix_scan.scan_matriks_keyboard(mainMatrix, "SPL");
+                        SPL.Gauss(mainMatrix);
+                        usage++;
+                    }
+                    else if(navigate == 2){
+
+                    }
+                }
+                else if(navigate == 2){
+                    System.out.println("Pilih jenis masukan");
+                    System.out.println("1. Masukan dari keyboard");
+                    System.out.println("2. Masukan dari file");
+                    navigate = scan.nextInt();
+                    if(navigate == 1){
+                        Matrix_scan.scan_matriks_keyboard(mainMatrix, "SPL");
+                        SPL.Gauss_Jordan(mainMatrix);
+                    }
+                    else if(navigate == 2){
+
+                    }
+                    else{
+                        System.out.println("Masukan tidak dikenali.");
+                    }
+                }
+                else{
+                    System.out.println("Masukan tidak dikenali.");
+                }
             }
             else if(navigate == 2){
                 System.out.println("Pilih metode perhitungan Determinan");
                 System.out.println("1. Ekspansi Kofaktor");
                 System.out.println("2. Eliminasi Gauss Jordan");
                 System.out.println("3. Aturan Crammer");
+                navigate = scan.nextInt();
+                if(navigate == 1){
+                    System.out.println("Pilih jenis masukan");
+                    System.out.println("1. Masukan dari keyboard");
+                    System.out.println("2. Masukan dari file");
+                    navigate = scan.nextInt();
+                    if(navigate == 1){
+                        
+                    }
+                    else if(navigate == 2){
+
+                    }
+                    else{
+                        System.out.println("Masukan tidak dikenali.");
+                    }
+                }
+                else if(navigate == 2){
+                    System.out.println("Pilih jenis masukan");
+                    System.out.println("1. Masukan dari keyboard");
+                    System.out.println("2. Masukan dari file");
+                    navigate = scan.nextInt();
+                    if(navigate == 1){
+                        Matrix_scan.scan_matriks_keyboard(mainMatrix, "DETERMINAN");
+                        System.out.println("Mencari determinan matriks dengan eliminasi GAUSS : ");
+                        mainMatrix.display();
+                        System.out.println("Determinan : "+Matrix.getDeterminanReduksi(mainMatrix));
+                        
+                    }
+                    else if(navigate == 2){
+
+                    }
+                    else{
+                        System.out.println("Masukan tidak dikenali.");
+                    }
+                    
+                }
+                else if(navigate == 3){
+                    System.out.println("Pilih jenis masukan");
+                    System.out.println("1. Masukan dari keyboard");
+                    System.out.println("2. Masukan dari file");
+                    if(navigate == 1){
+                        
+                    }
+                    else if(navigate == 2){
+
+                    }
+                    else{
+                        System.out.println("Masukan tidak dikenali.");
+                    }
+
+                }
+                else{
+                    System.out.println("Masukan tidak dikenali.");
+                }
             }
             else if(navigate == 3){
                 

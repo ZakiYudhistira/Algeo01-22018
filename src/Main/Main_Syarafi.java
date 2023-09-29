@@ -10,7 +10,7 @@ public class Main_Syarafi {
         error = false;
         Matrix m = new Matrix(null, 0, 0);
         // Matrix m2 = new Matrix(null, 0, 0);
-        Matrix_scan.scan_matriks_keyboard(m, "SPL", error);
+        Matrix_scan.scan_matriks_keyboard(m, "SPL");
         // m2 = m;
         // m2.display();
         System.out.println(Interpolasi.Interpolasi_Polinom(m, 9.2));
