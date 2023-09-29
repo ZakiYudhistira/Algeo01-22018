@@ -104,9 +104,13 @@ public class SPL {
         m.normalize();
         m.p_reduksi_eselon(true);
         m.divideBaris();
+
+        // Tidak punya solusi
         if(m.isRowZero(m.row-1, m.collumns-2) && m.getELMT(m.row-1, m.collumns-1) != 0){
             System.out.println("SPL tidak memiliki solusi.");
         }
+
+        // Solusi banyak (parametrik)
         else if(m.isRowZero(m.row-1,m.collumns-1)){
             System.out.println("SPL tidak memiliki solusi tunggal.");
             String[] alphabet = {"a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"};
@@ -164,6 +168,8 @@ public class SPL {
             }
 
         }
+
+        // Solusi unik
         else{
             double[] solusi = new double[m.row];
             m.p_reduksi_eselon(false);
