@@ -11,11 +11,11 @@ public class Main {
         String[] to_be_written = new String[100];
         int k;
         for(k=0;k<to_be_written.length;k++){
-            to_be_written[k] = "";
+            to_be_written[k] = "["+(k+1)+"]\n";
         }
         Matrix mainMatrix = new Matrix(null, 0, 0);
         int navigate;
-        int usage = 100;
+        int usage = 0;
         String nama_sesi;
         System.out.print("Masukkan nama sesi : ");
         nama_sesi = scan.nextLine();
@@ -44,7 +44,8 @@ public class Main {
                     navigate = scan.nextInt();
                     if(navigate == 1){
                         Matrix_scan.scan_matriks_keyboard(mainMatrix, "SPL");
-                        SPL.Gauss(mainMatrix);
+                        SPL.Gauss(mainMatrix, to_be_written,usage);
+                        System.out.print(to_be_written[usage]);
                         usage++;
                     }
                     else if(navigate == 2){
@@ -58,7 +59,8 @@ public class Main {
                     navigate = scan.nextInt();
                     if(navigate == 1){
                         Matrix_scan.scan_matriks_keyboard(mainMatrix, "SPL");
-                        SPL.Gauss_Jordan(mainMatrix);
+                        SPL.Gauss_Jordan(mainMatrix, to_be_written, usage);
+                        usage++;
                     }
                     else if(navigate == 2){
 

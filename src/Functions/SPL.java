@@ -10,8 +10,10 @@ public class SPL {
     
     //--------------------------------TEMPLATE PROSEDUR PENYELESAIAN SPL----------------------------------//
     // Metode Gauss
-    public static void Gauss(Matrix m) {
+    public static void Gauss(Matrix m, String[] array_solusi, int idx_array) {
         System.out.println("Menghitung SPL dengan metode GAUSS.");
+        array_solusi[idx_array] += "Menghitung SPL dengan metode GAUSS.\n";
+        array_solusi[idx_array] += Matrix.MatrixtoString(m);
         m.display();
         m.removeZeroCollumn();
         m.normalize();
@@ -19,6 +21,7 @@ public class SPL {
         m.divideBaris();
         if(m.isRowZero(m.row-1, m.collumns-2) && m.getELMT(m.row-1, m.collumns-1) != 0){
             System.out.println("SPL tidak memiliki solusi.");
+            array_solusi[idx_array] += "SPL tidak memiliki solusi.\n";
         }
         else if(m.isRowZero(m.row-1,m.collumns-1)){
             System.out.println("SPL tidak memiliki solusi tunggal.");
@@ -59,21 +62,26 @@ public class SPL {
                     if(j==0){
                         if(array_jawaban[i][j] == 0){
                             System.out.print("x"+i+" = ");
+                            array_solusi[idx_array] += "x"+i+" = ";
                         }
                         else{
                             System.out.print("x"+i+" = " + array_jawaban[i][j]);
+                            array_solusi[idx_array] += "x"+i+" = " + array_jawaban[i][j];
                         }
                     }
                     else{
                         if(array_jawaban[i][j] > 0){
                             System.out.print("+"+array_jawaban[i][j]+alphabet[j-1]);
+                            array_solusi[idx_array] += "+"+array_jawaban[i][j]+alphabet[j-1]; 
                         }
                         else if(array_jawaban[i][j]<0){
                             System.out.print(array_jawaban[i][j]+alphabet[j-1]);
+                            array_solusi[idx_array] += array_jawaban[i][j]+alphabet[j-1];
                         }
                     }
                 }
                 System.out.println("");
+                array_solusi[idx_array] += "\n";
             }
         }
         else{
@@ -94,15 +102,19 @@ public class SPL {
                 }
             }
             System.out.println("Berikut solusi dari SPL :");
+            array_solusi[idx_array] += "Berikut solusi dari SPL :\n";
             for(i=0;i<m.row;i++){
                 System.out.println("x" + i + " = " + solusi[i]);
+                array_solusi[idx_array] += "x" + i + " = " + solusi[i]+"\n";
             }
         }
     }
 
     // Metode Gauss-Jordan
-    public static void Gauss_Jordan(Matrix m) {
+    public static void Gauss_Jordan(Matrix m, String[] array_solusi, int idx_array) {
         System.out.println("Menghitung SPL dengan metode GAUSS JORDAN.");
+        array_solusi[idx_array] += "Menghitung SPL dengan metode GAUSS JORDAN.\n";
+        array_solusi[idx_array] += Matrix.MatrixtoString(m);
         m.removeZeroCollumn();
         m.normalize();
         m.p_reduksi_eselon(true);
@@ -111,6 +123,7 @@ public class SPL {
         // Tidak punya solusi
         if(m.isRowZero(m.row-1, m.collumns-2) && m.getELMT(m.row-1, m.collumns-1) != 0){
             System.out.println("SPL tidak memiliki solusi.");
+            array_solusi[idx_array] += "SPL tidak memiliki solusi.\n";
         }
 
         // Solusi banyak (parametrik)
@@ -153,21 +166,26 @@ public class SPL {
                     if(j==0){
                         if(array_jawaban[i][j] == 0){
                             System.out.print("x"+i+" = ");
+                            array_solusi[idx_array] += "x"+i+" = ";
                         }
                         else{
                             System.out.print("x"+i+" = " + array_jawaban[i][j]);
+                            array_solusi[idx_array] += "x"+i+" = " + array_jawaban[i][j];
                         }
                     }
                     else{
                         if(array_jawaban[i][j] > 0){
                             System.out.print("+"+array_jawaban[i][j]+alphabet[j-1]);
+                            array_solusi[idx_array] += "+"+array_jawaban[i][j]+alphabet[j-1]; 
                         }
                         else if(array_jawaban[i][j]<0){
                             System.out.print(array_jawaban[i][j]+alphabet[j-1]);
+                            array_solusi[idx_array] += array_jawaban[i][j]+alphabet[j-1];
                         }
                     }
                 }
                 System.out.println("");
+                array_solusi[idx_array] += "\n";
             }
 
         }
@@ -182,8 +200,10 @@ public class SPL {
                 solusi[i] = m.getELMT(i, m.collumns-1);
             }
             System.out.println("Berikut solusi dari SPL :");
+            array_solusi[idx_array] += "Berikut solusi dari SPL :\n";
             for(i=0;i<m.row;i++){
                 System.out.println("x" + i + " = " + solusi[i]);
+                array_solusi[idx_array] += "x" + i + " = " + solusi[i]+"\n";
             }
         }
     }

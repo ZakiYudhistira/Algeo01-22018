@@ -42,7 +42,7 @@ public class Matrix {
                     System.out.print(this.getELMT(i, j));
                 }
                 else {
-                    System.out.print("  "+this.getELMT(i, j));       
+                    System.out.print(" "+this.getELMT(i, j));       
                 }
             }
             System.out.print("\n");
@@ -435,6 +435,23 @@ public class Matrix {
             for(j=0;j<hasil.collumns;j++){
                 hasil.setELMT(i, j, this.getELMT(i, j));
             }
+        }
+        return hasil;
+    }
+
+    public static String MatrixtoString(Matrix m){
+        String hasil = "";
+        int i,j;
+        for(i=0;i<m.row;i++){
+            for(j=0;j<m.collumns;j++){
+                if(j==0){
+                    hasil += m.getELMT(i, j);
+                }
+                else{
+                    hasil += " "+m.getELMT(i, j);
+                }
+            }
+            hasil += "\n";
         }
         return hasil;
     }
