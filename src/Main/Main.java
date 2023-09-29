@@ -102,9 +102,11 @@ public class Main {
                     if(navigate == 1){
                         Matrix_scan.scan_matriks_keyboard(mainMatrix, "DETERMINAN");
                         System.out.println("Mencari determinan matriks dengan eliminasi GAUSS : ");
+                        to_be_written[usage] = Matrix.MatrixtoString(mainMatrix);
                         mainMatrix.display();
                         System.out.println("Determinan : "+Matrix.getDeterminanReduksi(mainMatrix));
-                        
+                        to_be_written[usage] += "Determinan : "+Matrix.getDeterminanReduksi(mainMatrix);
+                        usage++;
                     }
                     else if(navigate == 2){
 
@@ -134,7 +136,45 @@ public class Main {
                 }
             }
             else if(navigate == 3){
-                
+                System.out.println("Pilih metode balikan matriks.");
+                System.out.println("1. Invers reduksi");
+                System.out.println("2. Invers determinan kofaktor");
+                navigate = scan.nextInt();
+                if(navigate == 1){
+                    System.out.println("Pilih jenis masukan");
+                    System.out.println("1. Masukan dari keyboard");
+                    System.out.println("2. Masukan dari file");
+                    navigate = scan.nextInt();
+                    if(navigate == 1){
+                        Matrix_scan.scan_matriks_keyboard(mainMatrix, "DETERMINAN");
+                        Inverse.Inverse_matrix_reduksi(mainMatrix, to_be_written, usage);
+                        usage++;
+                    }
+                    else if(navigate == 2){
+
+                    }
+                }
+                else if(navigate == 2){
+                    System.out.println("Pilih jenis masukan");
+                    System.out.println("1. Masukan dari keyboard");
+                    System.out.println("2. Masukan dari file");
+                    navigate = scan.nextInt();
+                    if(navigate == 1){
+                        Matrix_scan.scan_matriks_keyboard(mainMatrix, "SPL");
+                        SPL.Gauss_Jordan(mainMatrix, to_be_written, usage);
+                        usage++;
+                    }
+                    else if(navigate == 2){
+
+                    }
+                    else{
+                        System.out.println("Masukan tidak dikenali.");
+                    }
+                }
+                else{
+                    System.out.println("Masukan tidak dikenali.");
+                }
+
             }
             else if(navigate == 4){
                 
