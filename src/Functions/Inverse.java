@@ -2,8 +2,11 @@ package Functions;
 import Matrix.Matrix;
 
 public class Inverse {
-    public static void Inverse_matrix_reduksi(Matrix m){
+    public static void Inverse_matrix_reduksi(Matrix m, String[] array_solusi, int idx_array){
         boolean inversable = true;
+        System.out.println("Menghitung inverse matriks dengan reduksi baris.");
+        array_solusi[idx_array] += "Menghitung inverse matriks dengan reduksi baris.\n";
+        array_solusi[idx_array] += Matrix.MatrixtoString(m);
         while(true){
             if(m.isPersegi()){
                 double[][] data_temp = new double[m.row][m.collumns*2];
@@ -23,6 +26,7 @@ public class Inverse {
                 for(i=0;i<temp.row;i++){
                     if(temp.isRowZero(i, m.row-1)){
                         System.out.println("Matriks tidak memiliki inverse.");
+                        array_solusi[idx_array] += "Matriks tidak memiliki inverse.\n";
                         inversable = false;
                         break;
                     }
@@ -33,11 +37,16 @@ public class Inverse {
                             m.setELMT(i, j, temp.getELMT(i, j+m.collumns));
                         }
                     }
+                    System.out.println("Berikut hasil matriks reduksi : ");
+                    m.display();
+                    array_solusi[idx_array] += "Berikut hasil matriks reduksi :";
+                    array_solusi[idx_array] += Matrix.MatrixtoString(m);
                 }
                 break;
             }
             else{
                 System.out.println("Matriks tidak memiliki inverse.");
+                array_solusi[idx_array] += "Matriks tidak memiliki inverse.\n";
                 break;
             }
         }

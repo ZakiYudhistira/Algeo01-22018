@@ -227,6 +227,7 @@ public class SPL {
     public static void Inverse(Matrix m, Matrix b) {
         double[][] solusi = new double[m.row][1];
         solusi_spl = new Matrix(solusi, m.row, 1);
+        String[] pp = new String[1];
 
         if (Inverse.isInversible(m)) {
             if (Matrix.isMatrixZero(b)) {
@@ -234,7 +235,7 @@ public class SPL {
                     solusi_spl.setELMT(i, 0, 0);;
                 }
             } else {
-                Inverse.Inverse_matrix_reduksi(m);
+                Inverse.Inverse_matrix_reduksi(m,pp,0);
                 solusi_spl = Matrix.multiplyMatrix(m, b);
             }
         } else {
