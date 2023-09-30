@@ -519,11 +519,11 @@ public class Matrix {
         return m3;
     }
 
-    public static double sumColumnWithOp(Matrix m, int row1, int row2) {
+    public static double sumColumnWithOp(Matrix m, int col1, int col2) {
         double sum = 0;
         int i;
-        for (i=0; i<m.collumns; i++) {
-            sum += (m.getELMT(row1, i)*m.getELMT(row2, i));
+        for (i=0; i<m.row; i++) {
+            sum += (m.getELMT(i, col1)*m.getELMT(i, col2));
         }
 
         return sum;
