@@ -13,13 +13,14 @@ public class Testing_Ihsan {
         // Matrix m2 = new Matrix(null, 0, 0);
         // Matrix_scan.scan_matriks_keyboard(m2, "SPL", false);
         // Inverse.Inverse_matrix_reduksi(m1);
-        // Matrix m3 = new Matrix(null, 0, 0);
+        
         // m3 = Matrix.multiplyMatrix(m1, m2);
         // m3.display();
         
 
         Matrix m = new Matrix(null, 0, 0);
-        Matrix_scan.scan_matriks_keyboard(m, "SPL");
-        SPL.Inverse(m);;
+        Matrix_scan.scan_matriks_keyboard(m, "LAINNYA");
+        
+        regresi.solusiRegresi(m);
     }
 }
