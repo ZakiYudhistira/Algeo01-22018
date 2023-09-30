@@ -15,7 +15,7 @@ public class regresi {
                 if (i==0 && j==0) {
                     mnew.setELMT(i, j, (double) m.row);
                 } else if (i==0 && j!= 0) {
-                    mnew.setELMT(i, j, Matrix.sumColumnWithoutOP(m, j));
+                    mnew.setELMT(i, j, Matrix.sumColumnWithoutOP(m, j-1));
                 } else if (i!=0 && j==0) {
                     mnew.setELMT(i, j, mnew.getELMT(j, i));
                 } else {

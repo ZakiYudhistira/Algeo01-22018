@@ -59,6 +59,33 @@ public class Matrix_scan {
                 Matrix.set_collumns(m, row);
                 Matrix.set_row(m, row);
                 break;
+            } else if (jenis == "LAINNYA") { // Untuk regresi dan interpolasi
+                int row, collumn, i, j;
+                System.out.print("Masukkan jumlah baris : ");
+                row = scan.nextInt();
+                while (row <= 0){
+                    System.out.print("Masukan tidak valid, tolong masukkan nilai yang valid : ");
+                    row = scan.nextInt();
+                }
+                System.out.print("Masukkan jumlah kolom : ");
+                collumn = scan.nextInt();
+                while (collumn <= 0) {
+                    System.out.print("Masukan tidak valid, tolong masukkan nilai yang valid : ");
+                    collumn = scan.nextInt();
+                }
+                System.out.println("Masukkan matrix :");
+                double[][] data_isi = new double[row][collumn];
+                for(i=0;i<row;i++)
+                {
+                    for(j=0;j<collumn;j++)
+                    {
+                        data_isi[i][j] = scan.nextDouble();
+                    }
+                }
+                Matrix.set_data(m, data_isi);
+                Matrix.set_collumns(m, collumn);
+                Matrix.set_row(m, row);
+                break;
             }
         }
     }

@@ -247,7 +247,6 @@ public class SPL {
                 Inverse.Inverse_matrix_reduksi(mSPL,pp,0);
                 solusi_spl = Matrix.multiplyMatrix(mSPL, mJwb);
             }
-            solusi_spl.display();
         } else {
             System.out.println("SPL tidak dapat diselesaikan menggunakan metode inverse");
         }
