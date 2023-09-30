@@ -3,18 +3,17 @@ import Functions.*;
 import Matrix.*;
 
 import java.util.*;
+import java.text.SimpleDateFormat;
 
 
 public class Main {
     public static Scanner scan = new Scanner(System.in);
-    public static void main(String[] args)
-    {
-        String dir = "test\\Save_files\\";
+    public static void main(String[] args){
+        Date thisDate = new Date();
+        SimpleDateFormat dateForm = new SimpleDateFormat("MM-dd-YY");
+        String date = dateForm.format(thisDate);
+        String dir = "test\\Save_files\\"+date+"\\";
         String[] to_be_written = new String[100];
-        int k;
-        for(k=0;k<to_be_written.length;k++){
-            to_be_written[k] = "["+(k+1)+"]\n";
-        }
         Matrix mainMatrix = new Matrix(null, 0, 0);
         int navigate;
         int usage = 0;

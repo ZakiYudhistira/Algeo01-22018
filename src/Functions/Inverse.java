@@ -22,7 +22,7 @@ public class Inverse {
                 }
                 temp.p_reduksi_eselon(true);
                 temp.p_reduksi_eselon(false);
-                temp.divideBaris();
+                temp.divideByPivot();
                 for(i=0;i<temp.row;i++){
                     if(temp.isRowZero(i, m.row-1)){
                         System.out.println("Matriks tidak memiliki inverse.");
