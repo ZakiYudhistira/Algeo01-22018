@@ -105,8 +105,8 @@ public class SPL {
             System.out.println("Berikut solusi dari SPL :");
             array_solusi[idx_array] += "Berikut solusi dari SPL :\n";
             for(i=0;i<m.row;i++){
-                System.out.println("x" + i + " = " + solusi[i]);
-                array_solusi[idx_array] += "x" + i + " = " + solusi[i]+"\n";
+                System.out.println("x" + i + " = " + String.format("%.4f",solusi[i]));
+                array_solusi[idx_array] += "x" + i + " = " + String.format("%.4f",solusi[i])+"\n";
             }
         }
     }
@@ -203,7 +203,7 @@ public class SPL {
             System.out.println("Berikut solusi dari SPL :");
             array_solusi[idx_array] += "Berikut solusi dari SPL :\n";
             for(i=0;i<m.row;i++){
-                System.out.println("x" + i + " = " + solusi[i]);
+                System.out.println("x" + i + " = " + String.format("%.4f",solusi[i]));
                 array_solusi[idx_array] += "x" + i + " = " + solusi[i]+"\n";
             }
         }

@@ -62,6 +62,7 @@ public class Matrix_scan {
             }
         }
     }
-    public static void scan_file(){
+    public static void scan_file(String jenis, String path){
+        
     }
 }
