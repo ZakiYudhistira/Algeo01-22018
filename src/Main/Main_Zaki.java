@@ -14,7 +14,6 @@ public class Main_Zaki {
         baru.display();
         System.out.print("\n");
         baru.p_reduksi_eselon(true);
-        baru.p_reduksi_eselon(false);
         // baru.p_reduksi_eselon(false);
         // String tes = Matrix.MatrixtoString(baru);
         // System.out.println(tes);

@@ -39,10 +39,10 @@ public class Matrix {
         for(i=0;i<this.row;i++){
             for(j=0;j<this.collumns;j++){
                 if(j==0) {
-                    System.out.print(this.getELMT(i, j));
+                    System.out.print(String.format("%.4f",this.getELMT(i, j)));
                 }
                 else {
-                    System.out.print(" "+this.getELMT(i, j));       
+                    System.out.print(" "+ String.format("%.4f",this.getELMT(i, j)));       
                 }
             }
             System.out.print("\n");
