@@ -1,13 +1,15 @@
 package Main;
 import Functions.*;
 import Matrix.*;
+
 import java.util.*;
 
 
 public class Main {
-    public static Scanner scan = new Scanner(System.in);;
+    public static Scanner scan = new Scanner(System.in);
     public static void main(String[] args)
     {
+        String dir = "test\\Save_files\\";
         String[] to_be_written = new String[100];
         int k;
         for(k=0;k<to_be_written.length;k++){
@@ -192,6 +194,7 @@ public class Main {
                 
             }
             else if(navigate == 7){
+                Matrix_save.saveFile(to_be_written, dir, nama_sesi, usage);
                 System.exit(0);
             }
             else{
