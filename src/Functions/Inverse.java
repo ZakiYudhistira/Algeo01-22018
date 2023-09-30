@@ -39,7 +39,7 @@ public class Inverse {
                     }
                     System.out.println("Berikut hasil matriks reduksi : ");
                     m.display();
-                    array_solusi[idx_array] += "Berikut hasil matriks reduksi :";
+                    array_solusi[idx_array] += "Berikut hasil matriks reduksi :\n";
                     array_solusi[idx_array] += Matrix.MatrixtoString(m);
                 }
                 break;

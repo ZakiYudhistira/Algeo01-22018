@@ -11,7 +11,7 @@ public class Matrix_save {
             PrintWriter pw = new PrintWriter(fw);
             int i;
             for(i=0;i<count;i++){
-                pw.println("["+(i+1)+"]");
+                pw.println("["+(i+1)+"]-----------------------");
                 pw.print(array_solusi[i]);
             }
             pw.close();

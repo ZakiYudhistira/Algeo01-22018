@@ -14,6 +14,10 @@ public class Main {
         String date = dateForm.format(thisDate);
         String dir = "test\\Save_files\\"+date+"\\";
         String[] to_be_written = new String[100];
+        int k;
+        for(k=0;k<100;k++){
+            to_be_written[k] ="";
+        }
         Matrix mainMatrix = new Matrix(null, 0, 0);
         int navigate;
         int usage = 0;
@@ -64,6 +68,7 @@ public class Main {
                     navigate = scan.nextInt();
                     if(navigate == 1){
                         if(mainMatrix.row < mainMatrix.collumns){
+                            Matrix_scan.scan_matriks_keyboard(mainMatrix, "SPL");
                             SPL.Gauss_Jordan(mainMatrix, to_be_written,usage);
                             usage++;
                         }
@@ -85,8 +90,7 @@ public class Main {
             else if(navigate == 2){
                 System.out.println("Pilih metode perhitungan Determinan");
                 System.out.println("1. Ekspansi Kofaktor");
-                System.out.println("2. Eliminasi Gauss Jordan");
-                System.out.println("3. Aturan Crammer");
+                System.out.println("2. Reduksi baris Matriks");
                 navigate = scan.nextInt();
                 if(navigate == 1){
                     System.out.println("Pilih jenis masukan");
@@ -110,11 +114,12 @@ public class Main {
                     navigate = scan.nextInt();
                     if(navigate == 1){
                         Matrix_scan.scan_matriks_keyboard(mainMatrix, "DETERMINAN");
-                        System.out.println("Mencari determinan matriks dengan eliminasi GAUSS : ");
-                        to_be_written[usage] = Matrix.MatrixtoString(mainMatrix);
+                        System.out.println("Mencari determinan matriks dengan reduksi baris : ");
+                        to_be_written[usage] += "Mencari determinan matriks dengan reduksi baris :";
+                        to_be_written[usage] += Matrix.MatrixtoString(mainMatrix);
                         mainMatrix.display();
                         System.out.println("Determinan : "+Matrix.getDeterminanReduksi(mainMatrix));
-                        to_be_written[usage] += "Determinan : "+Matrix.getDeterminanReduksi(mainMatrix);
+                        to_be_written[usage] += "Determinan : "+Matrix.getDeterminanReduksi(mainMatrix) +"\n";
                         usage++;
                     }
                     else if(navigate == 2){
