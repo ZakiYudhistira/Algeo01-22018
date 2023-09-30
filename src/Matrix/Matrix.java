@@ -8,7 +8,7 @@ public class Matrix {
     
     //-----------------------------KONSTRUKTOR & SELEKTOR---------------------------------//
     public Matrix(double[][] matriks, int row_input, int collumn_input){ // konstruktor Matrix
-        set_data(this, matriks);
+        this.data = matriks;
         set_row(this, row_input);
         set_collumns(this, collumn_input);
     }
@@ -300,34 +300,39 @@ public class Matrix {
     //--------------------------------PERHITUNGAN REDUKSI ESELON------------------------------------//
 
     public void p_reduksi_eselon(boolean btm){ // ini kaga ngereturn value
-        int k =1;
-        this.removeZeroCollumn();
         if(btm){
-            int i,j,i_p=0,j_p=0;
-            for(i=0;i<this.collumns;i++){
-                for(j=i;j<this.row;j++){
-                    if(i==j){
-                        i_p = i;
-                        j_p = j;
-                    }
-                    else{
-                        while(this.getELMT(i_p, j_p)==0 && i_p + k < this.row){
-                            tukar_baris(j_p, j_p+1);
-                            k++;
-                        }
-                        k=1;
-                        if(this.getELMT(i_p, j_p)==0){
-                            break;
-                        }
-                        this.subtract_baris(j, i, this.getELMT(j,i)/this.getELMT(j_p, i_p));
-                    }
-                    // this.display();
-                    // System.out.print("\n");
+            int i=0,j=0,i_pivot=0,j_pivot=0, k;
+            while(i<this.collumns-1 && j<this.row){
+                i_pivot = i;
+                j_pivot = j;
+                k=1;
+                // System.out.println(this.getELMT(j_pivot, i_pivot));
+                while(this.getELMT(j_pivot, i_pivot)==0 && j_pivot + k < this.row){
+                    this.tukar_baris(j_pivot, j_pivot+k);
+                    // System.out.println("swap "+(j_pivot) +" "+(i_pivot));
+                    // m.display();
+                    // System.out.println("");
+                    k++;
                 }
+                if(this.getELMT(j_pivot, i_pivot)==0){
+                    // System.out.println("No pivot " +(j_pivot)+" "+(i_pivot));
+                    i++;
+                }
+                else{
+                    // System.out.println("VV pivot " +(j_pivot)+" "+(i_pivot) +" "+m.getELMT(j_pivot, i_pivot));
+                    int g;
+                    for(g=j_pivot+1;g<this.row;g++){
+                        this.subtract_baris(g, j_pivot, this.getELMT(g,i_pivot)/this.getELMT(j_pivot, i_pivot));
+                    }
+                    i++;
+                    j++;
+                }
+                // m.display();
+                // System.out.println("");    
             }
         }
         else{
-            int i,j,i_p=0,j_p=0;
+            int i,j,i_p=0,j_p=0, k=1;
             int faktor_spl = this.collumns - this.row;
             for(i=this.collumns-1-faktor_spl;i>=0;i--){
                 for(j=i;j>=0;j--){

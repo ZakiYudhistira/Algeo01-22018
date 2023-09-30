@@ -45,7 +45,6 @@ public class Main {
                     if(navigate == 1){
                         Matrix_scan.scan_matriks_keyboard(mainMatrix, "SPL");
                         SPL.Gauss(mainMatrix, to_be_written,usage);
-                        System.out.print(to_be_written[usage]);
                         usage++;
                     }
                     else if(navigate == 2){
@@ -160,9 +159,7 @@ public class Main {
                     System.out.println("2. Masukan dari file");
                     navigate = scan.nextInt();
                     if(navigate == 1){
-                        Matrix_scan.scan_matriks_keyboard(mainMatrix, "SPL");
-                        SPL.Gauss_Jordan(mainMatrix, to_be_written, usage);
-                        usage++;
+                        
                     }
                     else if(navigate == 2){
 

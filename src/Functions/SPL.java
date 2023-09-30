@@ -25,6 +25,7 @@ public class SPL {
         }
         else if(m.isRowZero(m.row-1,m.collumns-1)){
             System.out.println("SPL tidak memiliki solusi tunggal.");
+            array_solusi[idx_array] += "SPL tidak memiliki solusi tunggal.\n";
             String[] alphabet = {"a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"};
             int count_var = 0;
             int i,j;
@@ -129,6 +130,7 @@ public class SPL {
         // Solusi banyak (parametrik)
         else if(m.isRowZero(m.row-1,m.collumns-1)){
             System.out.println("SPL tidak memiliki solusi tunggal.");
+            array_solusi[idx_array] += "SPL tidak memiliki solusi tunggal.\n";
             String[] alphabet = {"a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"};
             int count_var = 0;
             int i,j;
