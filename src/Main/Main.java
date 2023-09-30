@@ -44,8 +44,13 @@ public class Main {
                     navigate = scan.nextInt();
                     if(navigate == 1){
                         Matrix_scan.scan_matriks_keyboard(mainMatrix, "SPL");
-                        SPL.Gauss(mainMatrix, to_be_written,usage);
-                        usage++;
+                        if(mainMatrix.row < mainMatrix.collumns){
+                            SPL.Gauss(mainMatrix, to_be_written,usage);
+                            usage++;
+                        }
+                        else{
+                            System.out.println("Kalkulasi matrix gagal, progress tidak disimpan.");
+                        }
                     }
                     else if(navigate == 2){
 
@@ -57,9 +62,13 @@ public class Main {
                     System.out.println("2. Masukan dari file");
                     navigate = scan.nextInt();
                     if(navigate == 1){
-                        Matrix_scan.scan_matriks_keyboard(mainMatrix, "SPL");
-                        SPL.Gauss_Jordan(mainMatrix, to_be_written, usage);
-                        usage++;
+                        if(mainMatrix.row < mainMatrix.collumns){
+                            SPL.Gauss_Jordan(mainMatrix, to_be_written,usage);
+                            usage++;
+                        }
+                        else{
+                            System.out.println("Kalkulasi matrix gagal, progress tidak disimpan.");
+                        }
                     }
                     else if(navigate == 2){
 

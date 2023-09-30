@@ -18,7 +18,6 @@ public class SPL {
         m.removeZeroCollumn();
         m.normalize();
         m.p_reduksi_eselon(true);
-        m.divideBaris();
         if(m.isRowZero(m.row-1, m.collumns-2) && m.getELMT(m.row-1, m.collumns-1) != 0){
             System.out.println("SPL tidak memiliki solusi.");
             array_solusi[idx_array] += "SPL tidak memiliki solusi.\n";
@@ -86,6 +85,7 @@ public class SPL {
             }
         }
         else{
+            m.divideByPivot();
             double[] solusi = new double[m.row];
             int i;
             for(i=m.row-1;i>=0;i--){
@@ -119,7 +119,6 @@ public class SPL {
         m.removeZeroCollumn();
         m.normalize();
         m.p_reduksi_eselon(true);
-        m.divideBaris();
 
         // Tidak punya solusi
         if(m.isRowZero(m.row-1, m.collumns-2) && m.getELMT(m.row-1, m.collumns-1) != 0){
@@ -196,7 +195,7 @@ public class SPL {
         else{
             double[] solusi = new double[m.row];
             m.p_reduksi_eselon(false);
-            m.divideBaris();
+            m.divideByPivot();
             int i;
             for(i=m.row-1;i>=0;i--){
                 solusi[i] = m.getELMT(i, m.collumns-1);
@@ -217,7 +216,7 @@ public class SPL {
         m.normalize();
         m.p_reduksi_eselon(true);
         m.p_reduksi_eselon(false);
-        m.divideBaris();
+        m.divideByPivot();
         int i;
             for(i=m.row-1;i>=0;i--){
                 solusi[i] = m.getELMT(i, m.collumns-1);

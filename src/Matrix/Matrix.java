@@ -164,7 +164,7 @@ public class Matrix {
         }
     }
 
-    public void divide_baris(int row, double pembagi){
+    public void divideBaris(int row, double pembagi){
         if(isRowIndexValid(this, row) & pembagi != 0){
             int i;
             for(i=0;i<this.collumns;i++){
@@ -425,10 +425,10 @@ public class Matrix {
         return hasil;
     }
 
-    public void divideBaris(){
+    public void divideByPivot(){
         int i;
         for(i=0;i<this.row;i++){
-            divide_baris(i, this.getELMT(i, i));
+            divideBaris(i, this.getELMT(i, i));
         }
     }
 
