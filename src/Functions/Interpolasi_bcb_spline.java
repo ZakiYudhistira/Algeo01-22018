@@ -3,6 +3,7 @@ import Matrix.Matrix;
 
 public class Interpolasi_bcb_spline {
     public static void Interpolasi_bcb(Matrix fxy, Matrix xy){
+        double count = 0;
         double [][] X = {{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},{1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0},{1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,0},
         {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0},{0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},{0,1,2,3,0,0,0,0,0,0,0,0,0,0,0,0,0},
         {0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0},{0,1,2,3,0,1,2,3,0,1,2,3,0,1,2,3,0},{0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0},
@@ -17,11 +18,20 @@ public class Interpolasi_bcb_spline {
                 k++;
             }
         }
-        SPL.Gauss(Xmatrix);
-        // Xmatrix.display();
-        // SPL.HitungSPL(Xmatrix);
-        // for (int y=0; y<16; k++){
-        //     System.out.print("["+SPL.HitungSPL(Xmatrix)[y]+"]");
-        // }
+        int h=0;
+        for (int y=0; y<4; y++){ 
+            for (int x=0; x<4; x++){
+                count += SPL.HitungSPL(Xmatrix)[h]*PangkatN(xy.getELMT(0, 0), x)*PangkatN(xy.getELMT(0, 1), y);
+            }
+        }
+        System.out.println("f("+xy.getELMT(0, 0)+","+xy.getELMT(0, 1)+") = "+count);
+    }
+
+    public static double PangkatN(double a, int b){
+        double result = 1;
+        for (int i=0; i<b; i++){
+            result *= a;
+        }
+        return result;
     }
 }
