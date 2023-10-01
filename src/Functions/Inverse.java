@@ -37,9 +37,10 @@ public class Inverse {
                             m.setELMT(i, j, temp.getELMT(i, j+m.collumns));
                         }
                     }
-                    System.out.println("Berikut hasil matriks reduksi : ");
+                    System.out.println("Berikut hasil matriks balikan : ");
                     m.display();
-                    array_solusi[idx_array] += "Berikut hasil matriks reduksi :\n";
+                    array_solusi[idx_array] += "--------\n";
+                    array_solusi[idx_array] += "Berikut hasil matriks balikan :\n";
                     array_solusi[idx_array] += Matrix.MatrixtoString(m);
                 }
                 break;

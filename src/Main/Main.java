@@ -46,7 +46,7 @@ public class Main {
         while(usage < 100){
             printMainMenu(100,nama_sesi,date,usage);
             navigate = scan.nextInt();
-            if(navigate == 1){
+            if(navigate == 1){ // Sistem Persamaan Linear
                 System.out.println("==Pilih metode perhitungan SPL==");
                 System.out.println("--> 1. Eliminasi Gauss");
                 System.out.println("--> 2. Eliminasi Gauss Jordan");
@@ -63,13 +63,11 @@ public class Main {
                             SPL.Gauss(mainMatrix, to_be_written,usage);
                             usage++;
                             pressAnyKeytoContinue();
-                        }
-                        else{
+                        }else{
                             System.out.println("Kalkulasi matrix gagal, progress tidak disimpan.");
                             pressAnyKeytoContinue();
                         }
-                    }
-                    else if(navigate == 2){ 
+                    }else if(navigate == 2){ 
                         System.out.print("Masukkan nama file : ");
                         scan.nextLine();
                         String fileName = scan.nextLine();
@@ -78,14 +76,15 @@ public class Main {
                             SPL.Gauss(mainMatrix, to_be_written,usage);
                             usage++;
                             pressAnyKeytoContinue();
-                        }
-                        else{
+                        }else{
                             System.out.println("Kalkulasi matrix gagal, progress tidak disimpan.");
                             pressAnyKeytoContinue();
                         }
+                    }else{
+                        System.out.println("Masukan tidak dikenali.");
+                        pressAnyKeytoContinue();
                     }
-                }
-                else if(navigate == 2){ // Eliminasi Gauss Jordan
+                }else if(navigate == 2){ // Eliminasi Gauss Jordan
                     printJenisMasukan();
                     navigate = scan.nextInt();
                     if(navigate == 1){
@@ -115,38 +114,37 @@ public class Main {
                             pressAnyKeytoContinue();
                         }
                         
-                    }
-                    else{
+                    }else{
                         System.out.println("Masukan tidak dikenali.");
                         pressAnyKeytoContinue();
                     }
-                }
-                else{
+                }else if(navigate == 3){
+
+                }else if(navigate == 4){
+
+                }else{
                     System.out.println("Masukan tidak dikenali.");
                     pressAnyKeytoContinue();
                 }
             }
-            else if(navigate == 2){
+            else if(navigate == 2){ // Perhitungan determinan
                 System.out.println("==Pilih metode perhitungan Determinan==");
                 System.out.println("--> 1. Ekspansi Kofaktor");
                 System.out.println("--> 2. Reduksi baris Matriks");
                 System.out.print("Masukkan tujuan Anda : ");
                 navigate = scan.nextInt();
-                if(navigate == 1){
+                if(navigate == 1){ // Ekspansi kofaktor
                     printJenisMasukan();
                     navigate = scan.nextInt();
                     if(navigate == 1){
                         
-                    }
-                    else if(navigate == 2){
+                    }else if(navigate == 2){
                         
-                    }
-                    else{
+                    }else{
                         System.out.println("Masukan tidak dikenali.");
                         pressAnyKeytoContinue();
                     }
-                }
-                else if(navigate == 2){ // Perhitungan determinan dengan reduksi baris matriks
+                }else if(navigate == 2){ // Perhitungan determinan dengan reduksi baris matriks
                     printJenisMasukan();
                     navigate = scan.nextInt();
                     if(navigate == 1){
@@ -160,13 +158,11 @@ public class Main {
                             to_be_written[usage] += "Determinan : "+String.format("%.4f",Matrix.getDeterminanReduksi(mainMatrix)) +"\n";
                             usage++;
                             pressAnyKeytoContinue();
-                        }
-                        else{
+                        }else{
                             System.out.println("Matriks tidak memiliki determinan.");
                             pressAnyKeytoContinue();
                         }
-                    }
-                    else if(navigate == 2){
+                    }else if(navigate == 2){
                         System.out.print("Masukkan nama file : ");
                         scan.nextLine();
                         String fileName = scan.nextLine();
@@ -180,39 +176,22 @@ public class Main {
                             to_be_written[usage] += "Determinan : "+String.format("%.4f",Matrix.getDeterminanReduksi(mainMatrix)) +"\n";
                             usage++;
                             pressAnyKeytoContinue();
-                        }
-                        else{
+                        }else{
                             System.out.println("Matriks tidak memiliki determinan.");
                             pressAnyKeytoContinue();
                         }
-                    }
-                    else{
+                    }else{
                         System.out.println("Masukan tidak dikenali.");
                         pressAnyKeytoContinue();
-                    }
-                    
-                }
-                else if(navigate == 3){
-                    printJenisMasukan();
-                    if(navigate == 1){
-                        
-                    }
-                    else if(navigate == 2){
-                        
-                    }
-                    else{
-                        System.out.println("Masukan tidak dikenali.");
-                    }
-                    
-                }
-                else{
+                    }   
+                }else{
                     System.out.println("Masukan tidak dikenali.");
                 }
-            }
-            else if(navigate == 3){
+            }else if(navigate == 3){ // perhitungan invers matrix
                 System.out.println("==Pilih metode balikan matriks==");
                 System.out.println("--> 1. Invers reduksi");
                 System.out.println("--> 2. Invers determinan kofaktor");
+                System.out.print("Masukkan tujuan Anda : ");
                 navigate = scan.nextInt();
                 if(navigate == 1){ // Invers matriks dengan metode reduksi
                     printJenisMasukan();
@@ -221,25 +200,31 @@ public class Main {
                         Matrix_scan.scan_matriks_keyboard(mainMatrix, "DETERMINAN");
                         Inverse.Inverse_matrix_reduksi(mainMatrix, to_be_written, usage);
                         usage++;
+                        pressAnyKeytoContinue();
+                    }else if(navigate == 2){
+                        System.out.print("Masukkan nama file : ");
+                        scan.nextLine();
+                        String fileName = scan.nextLine();
+                        mainMatrix = Matrix_scan.scan_file(fileName);
+                        Inverse.Inverse_matrix_reduksi(mainMatrix, to_be_written, usage);
+                        usage++;
+                        pressAnyKeytoContinue();
                     }
-                    else if(navigate == 2){
-                        
+                    else{
+                        System.out.println("Masukan tidak dikenali.");
+                        pressAnyKeytoContinue();
                     }
-                }
-                else if(navigate == 2){
+                }else if(navigate == 2){
                     printJenisMasukan();
                     navigate = scan.nextInt();
                     if(navigate == 1){
                         
-                    }
-                    else if(navigate == 2){
+                    }else if(navigate == 2){
 
-                    }
-                    else{
+                    }else{
                         System.out.println("Masukan tidak dikenali.");
                     }
-                }
-                else{
+                }else{
                     System.out.println("Masukan tidak dikenali.");
                 }
                 
