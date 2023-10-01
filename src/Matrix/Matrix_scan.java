@@ -95,20 +95,24 @@ public class Matrix_scan {
             }
         }
     }
-    public static Matrix scan_file(String file_name){
+    public static Matrix scan_file(String file_name, int batas_awal, int batas_akhir){
         double[][] data_temp = new double[100][100];
         String current_line;
         int column=0, row=0,max_column=0;
+        int line=1;
         try{
         File file = new File("test\\"+file_name);
         Scanner scan_file = new Scanner(file);
-        while(scan_file.hasNextLine()){
+        while(scan_file.hasNextLine() && line<=batas_akhir){
             String[] numbers = (scan_file.nextLine()).split("\\s+");
-            for(column=0;column<numbers.length;column++){
-                data_temp[row][column] = Double.parseDouble(numbers[column]);
+            if (line >= batas_awal){
+                for(column=0;column<numbers.length;column++){
+                    data_temp[row][column] = Double.parseDouble(numbers[column]);
+                }
+                max_column = numbers.length;
+                row++;
             }
-            max_column = numbers.length;
-            row++;
+            line++;
         }
         scan_file.close();
         double[][] data_matriks = new double[row+1][max_column];
@@ -127,7 +131,9 @@ public class Matrix_scan {
         }
     }
     public static void main(String args[]){
-        Matrix baru = scan_file("tes.txt");
+        Matrix baru = scan_file("tes.txt",2, 4);
         baru.display();
+        Matrix baru2 = scan_file("tes.txt", 5, 5);
+        baru2.display();
     }
 }
