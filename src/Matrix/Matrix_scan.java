@@ -101,22 +101,37 @@ public class Matrix_scan {
                 break;
             } else if (jenis == "POLINOM") { 
                 int row, col=2;
-                System.out.println("Masukkan jumlah n titik : ");
+                System.out.print("Masukkan jumlah n titik :");
                 row = scan.nextInt();
-                System.out.println("Masukkan titik sebanyak "+row+" : ");
+                System.out.println("Masukkan titik sebanyak "+row+" :");
                 double[][] data_isi = new double[row][col];
                 for(int i=0;i<row;i++)
                 {
                     for(int j=0;j<col;j++)
                     {
                         if(j==0){
-                            System.out.print("x"+(i+1)+" :");
+                            System.out.print("x"+(i)+" :");
                         } else {
-                            System.out.print("y"+(i+1)+" :");
+                            System.out.print("y"+(i)+" :");
                         }
                         data_isi[i][j] = scan.nextDouble();
                     }
                 }
+                Matrix.set_data(m, data_isi);
+                Matrix.set_collumns(m, col);
+                Matrix.set_row(m, row);
+                break;
+            } else if (jenis == "BCB") { 
+                int row=4, col=4;
+                System.out.println("Masukkan matriks 4x4 : ");
+                double[][] data_isi = new double[row][col];
+                for(int i=0;i<row;i++)
+                {
+                    for(int j=0;j<col;j++)
+                    {
+                        data_isi[i][j] = scan.nextDouble();
+                    }
+                };
                 Matrix.set_data(m, data_isi);
                 Matrix.set_collumns(m, col);
                 Matrix.set_row(m, row);

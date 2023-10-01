@@ -15,6 +15,6 @@ public class Main_Syarafi {
         // Interpolasi.Interpolasi_Polinom(m, 9.2);
         // m.self_transpose();
         // Inverse.adjoint(m).display();;
-       Interpolasi_bcb_spline.Interpolasi_bcb(m, m2);
+    //    Interpolasi_bcb_spline.Interpolasi_bcb(m, m2);
     }
 }

@@ -86,11 +86,22 @@ public class Inverse {
         return mtest;
     }
 
-    public static Matrix Inverse_Kofaktor(Matrix m){
-        Matrix mI = new Matrix(null, 0, 0);
-        mI = Inverse.adjoint(m);
-        mI.multiplyByConst(1/Matrix.getDeterminanKofaktor(m));
-        return mI;
+    public static void Inverse_Kofaktor(Matrix m, String [] array_solusi, int idx_array){
+        if (isInversible(m)){
+            System.out.println("Menghitung inverse matriks dengan kofaktor.");
+            array_solusi[idx_array] += "Menghitung inverse matriks dengan kofaktor.\n";
+            array_solusi[idx_array] += Matrix.MatrixtoString(m);
+            Matrix mI = new Matrix(null, 0, 0);
+            mI = Inverse.adjoint(m);
+            mI.multiplyByConst(1/Matrix.getDeterminanKofaktor(m));
+            System.out.println("Berikut hasil matriks inverse balikan :");
+            array_solusi[idx_array] += "Berikut hasil matriks inverse balikan :\n";
+            array_solusi[idx_array] += Matrix.MatrixtoString(mI);
+            mI.display();
+        } else {
+            System.out.println("Matriks tidak memiliki inverse.");
+            array_solusi[idx_array] += "Matriks tidak memiliki inverse.\n";
+        }
     }
     
 

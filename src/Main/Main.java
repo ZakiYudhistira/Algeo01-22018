@@ -137,9 +137,38 @@ public class Main {
                     printJenisMasukan();
                     navigate = scan.nextInt();
                     if(navigate == 1){
-                        
+                        Matrix_scan.scan_matriks_keyboard(mainMatrix, "DETERMINAN");
+                        if(mainMatrix.isPersegi()){
+                            System.out.println("Mencari determinan matriks dengan kofaktor.");
+                            to_be_written[usage] += "Mencari determinan matriks dengan kofaktor.\n";
+                            to_be_written[usage] += Matrix.MatrixtoString(mainMatrix);
+                            mainMatrix.display();
+                            System.out.println("Determinan : "+String.format("%.4f",Matrix.getDeterminanKofaktor(mainMatrix)));
+                            to_be_written[usage] += "Determinan : "+String.format("%.4f",Matrix.getDeterminanKofaktor(mainMatrix)) +"\n";
+                            usage++;
+                        } else {
+                            System.out.println("Matriks tidak memiliki determinan.");
+                            pressAnyKeytoContinue();
+                        }
+                        pressAnyKeytoContinue();
                     }else if(navigate == 2){
-                        
+                        System.out.print("Masukkan nama file : ");
+                        scan.nextLine();
+                        String fileName = scan.nextLine();
+                        mainMatrix = Matrix_scan.scan_file(fileName);
+                        if(mainMatrix.isPersegi()){
+                            System.out.println("Mencari determinan matriks dengan kofaktor.");
+                            mainMatrix.display();
+                            to_be_written[usage] += "Mencari determinan matriks dengan kofaktor.\n";
+                            to_be_written[usage] += Matrix.MatrixtoString(mainMatrix);
+                            System.out.println("Determinan : "+String.format("%.4f",Matrix.getDeterminanKofaktor(mainMatrix)));
+                            to_be_written[usage] += "Determinan : "+String.format("%.4f",Matrix.getDeterminanKofaktor(mainMatrix)) +"\n";
+                            usage++;
+                            pressAnyKeytoContinue();
+                        }else{
+                            System.out.println("Matriks tidak memiliki determinan.");
+                            pressAnyKeytoContinue();
+                        }
                     }else{
                         System.out.println("Masukan tidak dikenali.");
                         pressAnyKeytoContinue();
@@ -218,9 +247,18 @@ public class Main {
                     printJenisMasukan();
                     navigate = scan.nextInt();
                     if(navigate == 1){
-                        
+                        Matrix_scan.scan_matriks_keyboard(mainMatrix, "DETERMINAN");
+                        Inverse.Inverse_Kofaktor(mainMatrix, to_be_written, usage);
+                        usage++;
+                        pressAnyKeytoContinue();
                     }else if(navigate == 2){
-
+                        System.out.print("Masukkan nama file : ");
+                        scan.nextLine();
+                        String fileName = scan.nextLine();
+                        mainMatrix = Matrix_scan.scan_file(fileName);
+                        Inverse.Inverse_Kofaktor(mainMatrix, to_be_written, usage);
+                        usage++;
+                        pressAnyKeytoContinue();
                     }else{
                         System.out.println("Masukan tidak dikenali.");
                     }
@@ -236,12 +274,62 @@ public class Main {
                     Matrix_scan.scan_matriks_keyboard(mainMatrix, "POLINOM");
                     System.out.println("Masukan nilai x yang ingin ditaksir : ");
                     double x = scan.nextDouble();
-                    Interpolasi.Interpolasi_Polinom(mainMatrix, x);
-                    System.out.println(" ");
+                    Interpolasi.Interpolasi_Polinom(mainMatrix, x, to_be_written, usage);
+                    usage++;
+                    pressAnyKeytoContinue();
+                } else if(navigate==2){
+                    System.out.print("Masukkan nama file : ");
+                    scan.nextLine();
+                    String fileName = scan.nextLine();
+                    mainMatrix = Matrix_scan.scan_file(fileName);
+                    System.out.println("Masukan nilai x yang ingin ditaksir : ");
+                    double x = scan.nextDouble();
+                    Interpolasi.Interpolasi_Polinom(mainMatrix, x, to_be_written, usage);
+                    usage++;
+                    pressAnyKeytoContinue();
+                } else {
+                    System.out.println("Masukan tidak dikenali.");
                 }
             }
             else if(navigate == 5){
-                
+                printJenisMasukan();
+                navigate = scan.nextInt();
+                if (navigate == 1){
+                    double [][] data_temp = new double[1][2];
+                    Matrix xy = new Matrix(data_temp, 1, 2);
+                    Matrix_scan.scan_matriks_keyboard(mainMatrix, "BCB");
+                    System.out.println("Masukan nilai x,y yang ingin ditaksir");
+                    System.out.print("x :");
+                    double x = scan.nextDouble();
+                    xy.setELMT(0, 0, x);
+                    System.out.print("y :");
+                    double y = scan.nextDouble();
+                    xy.setELMT(0, 1, y);
+                    Interpolasi_bcb_spline.Interpolasi_bcb(mainMatrix, xy, to_be_written, usage);
+                    usage++;
+                    pressAnyKeytoContinue();
+                } else if (navigate==2){
+                    System.out.print("Masukkan nama file : ");
+                    scan.nextLine();
+                    String fileName = scan.nextLine();
+                    mainMatrix = Matrix_scan.scan_file(fileName);
+                    double [][] data1 = new double[4][4];
+                    Matrix fxy = new Matrix(data1, 4, 4);
+                    for (int i=0; i<fxy.row; i++){
+                        for (int j=0; j<fxy.collumns; j++){
+                            fxy.setELMT(i, j, mainMatrix.getELMT(i, j));
+                        }
+                    }
+                    double [][] data2 = new double[1][2];
+                    Matrix xy = new Matrix(data2, 1, 2);
+                    xy.setELMT(0, 0, mainMatrix.getELMT(4, 0));
+                    xy.setELMT(0, 1, mainMatrix.getELMT(4, 1));
+                    Interpolasi_bcb_spline.Interpolasi_bcb(fxy, xy, to_be_written, usage);
+                    usage++;
+                    pressAnyKeytoContinue();
+                } else {
+                    System.out.println("Masukan tidak dikenali.");
+                }
             }
             else if(navigate == 6) { // Regresi ganda
                 printJenisMasukan();
