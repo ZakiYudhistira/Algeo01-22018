@@ -3,12 +3,61 @@ import Functions.*;
 import Matrix.*;
 
 import java.util.*;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 
 
 public class Main {
     public static Scanner scan = new Scanner(System.in);
+
+    public static void delay(long milisecond){
+        try{
+            Thread.sleep(milisecond);
+        }catch(InterruptedException e){
+            e.printStackTrace();
+        }
+    }
+
+    public static void pressAnyKeytoContinue(){
+        try{
+            System.out.println("Tekan sembarang tombol untuk melanjutkan.");
+            System.in.read();
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+    }
+
+    public static void printMainMenu(long delay_length, String sesi){
+        System.out.println("Sesi : "+sesi);
+        delay(delay_length);
+        System.out.println("==========MENU UTAMA==========");
+        delay(delay_length);
+        System.out.println("1. Sistem Persamaan Linier");
+        delay(delay_length);
+        System.out.println("2. Determinan");
+        delay(delay_length);
+        System.out.println("3. Matriks balikan");
+        delay(delay_length);
+        System.out.println("4. Interpolasi Polinom");
+        delay(delay_length);
+        System.out.println("5. Interpolasi Bicubic Spline");
+        delay(delay_length);
+        System.out.println("6. Regresi Linier Berganda");
+        delay(delay_length);
+        System.out.println("7. Keluar");
+        delay(delay_length);
+        System.out.println("Masukkan tujuan Anda :");
+    }
+
+    public static void printJenisMasukan(){
+        System.out.println("Pilih jenis masukan");
+        System.out.println("---> 1. Masukan dari keyboard");
+        System.out.println("---> 2. Masukan dari file");
+        System.out.println("Masukkan tujuan Anda :");
+    }
+
     public static void main(String[] args){
+        //----------------------------INISIASI---------------------------------//
         Date thisDate = new Date();
         SimpleDateFormat dateForm = new SimpleDateFormat("MM-dd-YY");
         String date = dateForm.format(thisDate);
@@ -22,49 +71,52 @@ public class Main {
         int navigate;
         int usage = 0;
         String nama_sesi;
-        System.out.print("Masukkan nama sesi : ");
+        System.out.println("Selamat data di program BiggerWeapons !");
+        delay(200);
+        System.out.print("Silahkan masukkan nama sesi : ");
         nama_sesi = scan.nextLine();
+        //----------------------------INISIASI---------------------------------//
         while(usage < 100){
-            System.out.println("MENU");
-            System.out.println("1. Sistem Persamaan Linier");
-            System.out.println("2. Determinan");
-            System.out.println("3. Matriks balikan");
-            System.out.println("4. Interpolasi Polinom");
-            System.out.println("5. Interpolasi Bicubic Spline");
-            System.out.println("6. Regresi Linier Berganda");
-            System.out.println("7. Keluar");
-            System.out.println("Masukkan tujuan Anda :");
+            System.out.print("Initializing ");
+            delay(400);
+            System.out.print("# ");
+            delay(400);
+            System.out.print("# ");
+            delay(400);
+            System.out.print("#");
+            delay(400);
+            System.out.print("\n");
+            printMainMenu(100,nama_sesi);
             navigate = scan.nextInt();
             if(navigate == 1){
-                System.out.println("Pilih metode perhitungan SPL");
-                System.out.println("1. Eliminasi Gauss");
-                System.out.println("2. Eliminasi Gauss Jordan");
-                System.out.println("3. Metode matriks balikan");
-                System.out.println("4. Aturan Crammer");
+                System.out.println("==Pilih metode perhitungan SPL==");
+                System.out.println("--> 1. Eliminasi Gauss");
+                System.out.println("--> 2. Eliminasi Gauss Jordan");
+                System.out.println("--> 3. Metode matriks balikan");
+                System.out.println("--> 4. Aturan Crammer");
+                System.out.println("Masukkan tujuan Anda :");
                 navigate = scan.nextInt();
-                if(navigate == 1){
-                    System.out.println("Pilih jenis masukan");
-                    System.out.println("1. Masukan dari keyboard");
-                    System.out.println("2. Masukan dari file");
+                if(navigate == 1){ // Eliminasi Gauss
+                    printJenisMasukan();
                     navigate = scan.nextInt();
                     if(navigate == 1){
                         Matrix_scan.scan_matriks_keyboard(mainMatrix, "SPL");
                         if(mainMatrix.row < mainMatrix.collumns){
                             SPL.Gauss(mainMatrix, to_be_written,usage);
                             usage++;
+                            pressAnyKeytoContinue();
                         }
                         else{
                             System.out.println("Kalkulasi matrix gagal, progress tidak disimpan.");
+                            pressAnyKeytoContinue();
                         }
                     }
-                    else if(navigate == 2){
+                    else if(navigate == 2){ 
 
                     }
                 }
-                else if(navigate == 2){
-                    System.out.println("Pilih jenis masukan");
-                    System.out.println("1. Masukan dari keyboard");
-                    System.out.println("2. Masukan dari file");
+                else if(navigate == 2){ // Eliminasi Gauss Jordan
+                    printJenisMasukan();
                     navigate = scan.nextInt();
                     if(navigate == 1){
                         if(mainMatrix.row < mainMatrix.collumns){
@@ -93,9 +145,7 @@ public class Main {
                 System.out.println("2. Reduksi baris Matriks");
                 navigate = scan.nextInt();
                 if(navigate == 1){
-                    System.out.println("Pilih jenis masukan");
-                    System.out.println("1. Masukan dari keyboard");
-                    System.out.println("2. Masukan dari file");
+                    printJenisMasukan();
                     navigate = scan.nextInt();
                     if(navigate == 1){
                         
@@ -107,10 +157,8 @@ public class Main {
                         System.out.println("Masukan tidak dikenali.");
                     }
                 }
-                else if(navigate == 2){
-                    System.out.println("Pilih jenis masukan");
-                    System.out.println("1. Masukan dari keyboard");
-                    System.out.println("2. Masukan dari file");
+                else if(navigate == 2){ // Perhitungan determinan dengan reduksi baris matriks
+                    printJenisMasukan();
                     navigate = scan.nextInt();
                     if(navigate == 1){
                         Matrix_scan.scan_matriks_keyboard(mainMatrix, "DETERMINAN");
@@ -131,9 +179,7 @@ public class Main {
                     
                 }
                 else if(navigate == 3){
-                    System.out.println("Pilih jenis masukan");
-                    System.out.println("1. Masukan dari keyboard");
-                    System.out.println("2. Masukan dari file");
+                    printJenisMasukan();
                     if(navigate == 1){
                         
                     }
@@ -154,10 +200,8 @@ public class Main {
                 System.out.println("1. Invers reduksi");
                 System.out.println("2. Invers determinan kofaktor");
                 navigate = scan.nextInt();
-                if(navigate == 1){
-                    System.out.println("Pilih jenis masukan");
-                    System.out.println("1. Masukan dari keyboard");
-                    System.out.println("2. Masukan dari file");
+                if(navigate == 1){ // Invers matriks dengan metode reduksi
+                    printJenisMasukan();
                     navigate = scan.nextInt();
                     if(navigate == 1){
                         Matrix_scan.scan_matriks_keyboard(mainMatrix, "DETERMINAN");
@@ -169,9 +213,7 @@ public class Main {
                     }
                 }
                 else if(navigate == 2){
-                    System.out.println("Pilih jenis masukan");
-                    System.out.println("1. Masukan dari keyboard");
-                    System.out.println("2. Masukan dari file");
+                    printJenisMasukan();
                     navigate = scan.nextInt();
                     if(navigate == 1){
                         
@@ -194,10 +236,8 @@ public class Main {
             else if(navigate == 5){
                 
             }
-            else if(navigate == 6) {
-                System.out.println("Pilih jenis masukan");
-                System.out.println("1. Masukan dari keyboard");
-                System.out.println("2. Masukan dari file");
+            else if(navigate == 6) { // Regresi ganda
+                printJenisMasukan();
                 navigate = scan.nextInt();
                 if (navigate == 1) {
                     Matrix_scan.scan_matriks_keyboard(mainMatrix, "REGRESI");
@@ -209,12 +249,13 @@ public class Main {
 
                 }
             }
-            else if(navigate == 7){
+            else if(navigate == 7){ // Keluar dari program
                 Matrix_save.saveFile(to_be_written, dir, nama_sesi, usage);
                 System.exit(0);
             }
             else{
                 System.out.println("input tidak dikenali.");
+                pressAnyKeytoContinue();
             }
         }
     }
