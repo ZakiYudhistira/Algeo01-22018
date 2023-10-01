@@ -130,6 +130,7 @@ public class Main {
                 System.out.println("==Pilih metode perhitungan Determinan==");
                 System.out.println("--> 1. Ekspansi Kofaktor");
                 System.out.println("--> 2. Reduksi baris Matriks");
+                System.out.print("Masukkan tujuan Anda : ");
                 navigate = scan.nextInt();
                 if(navigate == 1){
                     printJenisMasukan();
@@ -150,16 +151,40 @@ public class Main {
                     navigate = scan.nextInt();
                     if(navigate == 1){
                         Matrix_scan.scan_matriks_keyboard(mainMatrix, "DETERMINAN");
-                        System.out.println("Mencari determinan matriks dengan reduksi baris : ");
-                        to_be_written[usage] += "Mencari determinan matriks dengan reduksi baris :\n";
-                        to_be_written[usage] += Matrix.MatrixtoString(mainMatrix);
-                        mainMatrix.display();
-                        System.out.println("Determinan : "+String.format("%.4f",Matrix.getDeterminanReduksi(mainMatrix)));
-                        to_be_written[usage] += "Determinan : "+Matrix.getDeterminanReduksi(mainMatrix) +"\n";
-                        usage++;
+                        if(mainMatrix.isPersegi()){
+                            System.out.println("Mencari determinan matriks dengan reduksi baris.");
+                            to_be_written[usage] += "Mencari determinan matriks dengan reduksi baris.\n";
+                            to_be_written[usage] += Matrix.MatrixtoString(mainMatrix);
+                            mainMatrix.display();
+                            System.out.println("Determinan : "+String.format("%.4f",Matrix.getDeterminanReduksi(mainMatrix)));
+                            to_be_written[usage] += "Determinan : "+String.format("%.4f",Matrix.getDeterminanReduksi(mainMatrix)) +"\n";
+                            usage++;
+                            pressAnyKeytoContinue();
+                        }
+                        else{
+                            System.out.println("Matriks tidak memiliki determinan.");
+                            pressAnyKeytoContinue();
+                        }
                     }
                     else if(navigate == 2){
-
+                        System.out.print("Masukkan nama file : ");
+                        scan.nextLine();
+                        String fileName = scan.nextLine();
+                        mainMatrix = Matrix_scan.scan_file(fileName);
+                        if(mainMatrix.isPersegi()){
+                            System.out.println("Mencari determinan matriks dengan reduksi baris.");
+                            mainMatrix.display();
+                            to_be_written[usage] += "Mencari determinan matriks dengan reduksi baris.\n";
+                            to_be_written[usage] += Matrix.MatrixtoString(mainMatrix);
+                            System.out.println("Determinan : "+String.format("%.4f",Matrix.getDeterminanReduksi(mainMatrix)));
+                            to_be_written[usage] += "Determinan : "+String.format("%.4f",Matrix.getDeterminanReduksi(mainMatrix)) +"\n";
+                            usage++;
+                            pressAnyKeytoContinue();
+                        }
+                        else{
+                            System.out.println("Matriks tidak memiliki determinan.");
+                            pressAnyKeytoContinue();
+                        }
                     }
                     else{
                         System.out.println("Masukan tidak dikenali.");

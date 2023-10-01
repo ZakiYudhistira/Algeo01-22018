@@ -450,10 +450,10 @@ public class Matrix {
         for(i=0;i<m.row;i++){
             for(j=0;j<m.collumns;j++){
                 if(j==0){
-                    hasil += m.getELMT(i, j);
+                    hasil += String.format("%.4f",m.getELMT(i, j));
                 }
                 else{
-                    hasil += " "+m.getELMT(i, j);
+                    hasil += " "+String.format("%.4f",m.getELMT(i, j));
                 }
             }
             hasil += "\n";
