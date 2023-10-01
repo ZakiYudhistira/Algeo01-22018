@@ -3,6 +3,8 @@ import Functions.*;
 import Matrix.*;
 
 import java.util.*;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 
@@ -10,52 +12,7 @@ import java.text.SimpleDateFormat;
 public class Main {
     public static Scanner scan = new Scanner(System.in);
 
-    public static void delay(long milisecond){
-        try{
-            Thread.sleep(milisecond);
-        }catch(InterruptedException e){
-            e.printStackTrace();
-        }
-    }
-
-    public static void pressAnyKeytoContinue(){
-        try{
-            System.out.println("Tekan sembarang tombol untuk melanjutkan.");
-            System.in.read();
-        }catch(IOException e){
-            e.printStackTrace();
-        }
-    }
-
-    public static void printMainMenu(long delay_length, String sesi){
-        System.out.println("Sesi : "+sesi);
-        delay(delay_length);
-        System.out.println("==========MENU UTAMA==========");
-        delay(delay_length);
-        System.out.println("1. Sistem Persamaan Linier");
-        delay(delay_length);
-        System.out.println("2. Determinan");
-        delay(delay_length);
-        System.out.println("3. Matriks balikan");
-        delay(delay_length);
-        System.out.println("4. Interpolasi Polinom");
-        delay(delay_length);
-        System.out.println("5. Interpolasi Bicubic Spline");
-        delay(delay_length);
-        System.out.println("6. Regresi Linier Berganda");
-        delay(delay_length);
-        System.out.println("7. Keluar");
-        delay(delay_length);
-        System.out.println("Masukkan tujuan Anda :");
-    }
-
-    public static void printJenisMasukan(){
-        System.out.println("Pilih jenis masukan");
-        System.out.println("---> 1. Masukan dari keyboard");
-        System.out.println("---> 2. Masukan dari file");
-        System.out.println("Masukkan tujuan Anda :");
-    }
-
+    
     public static void main(String[] args){
         //----------------------------INISIASI---------------------------------//
         Date thisDate = new Date();
@@ -71,22 +28,23 @@ public class Main {
         int navigate;
         int usage = 0;
         String nama_sesi;
-        System.out.println("Selamat data di program BiggerWeapons !");
+        printBiggerWeapon("biggerWeapons.txt");
+        System.out.println("\n| Selamat datang di program BiggerWeapons !");
         delay(200);
-        System.out.print("Silahkan masukkan nama sesi : ");
+        System.out.print("| Silahkan masukkan nama sesi : ");
         nama_sesi = scan.nextLine();
+        System.out.print("Initializing ");
+        delay(400);
+        System.out.print("- ");
+        delay(400);
+        System.out.print("- ");
+        delay(400);
+        System.out.print("-");
+        delay(400);
+        System.out.print("\n");
         //----------------------------INISIASI---------------------------------//
         while(usage < 100){
-            System.out.print("Initializing ");
-            delay(400);
-            System.out.print("# ");
-            delay(400);
-            System.out.print("# ");
-            delay(400);
-            System.out.print("#");
-            delay(400);
-            System.out.print("\n");
-            printMainMenu(100,nama_sesi);
+            printMainMenu(100,nama_sesi,date);
             navigate = scan.nextInt();
             if(navigate == 1){
                 System.out.println("==Pilih metode perhitungan SPL==");
@@ -112,7 +70,7 @@ public class Main {
                         }
                     }
                     else if(navigate == 2){ 
-
+                        
                     }
                 }
                 else if(navigate == 2){ // Eliminasi Gauss Jordan
@@ -129,7 +87,7 @@ public class Main {
                         }
                     }
                     else if(navigate == 2){
-
+                        
                     }
                     else{
                         System.out.println("Masukan tidak dikenali.");
@@ -151,7 +109,7 @@ public class Main {
                         
                     }
                     else if(navigate == 2){
-
+                        
                     }
                     else{
                         System.out.println("Masukan tidak dikenali.");
@@ -184,12 +142,12 @@ public class Main {
                         
                     }
                     else if(navigate == 2){
-
+                        
                     }
                     else{
                         System.out.println("Masukan tidak dikenali.");
                     }
-
+                    
                 }
                 else{
                     System.out.println("Masukan tidak dikenali.");
@@ -209,7 +167,7 @@ public class Main {
                         usage++;
                     }
                     else if(navigate == 2){
-
+                        
                     }
                 }
                 else if(navigate == 2){
@@ -228,7 +186,7 @@ public class Main {
                 else{
                     System.out.println("Masukan tidak dikenali.");
                 }
-
+                
             }
             else if(navigate == 4){
                 
@@ -246,17 +204,93 @@ public class Main {
                     regresi.solusiRegresi(mainMatrix, mTaksir);
                     usage++;
                 } else if(navigate == 2) {
-
+                    
                 }
             }
             else if(navigate == 7){ // Keluar dari program
-                Matrix_save.saveFile(to_be_written, dir, nama_sesi, usage);
-                System.exit(0);
+                System.out.print("Apakah Anda mau menyimpan progress (Y/N) ? : ");
+                String yOrn; 
+                scan.nextLine(); 
+                yOrn = scan.nextLine();
+                yOrn.toUpperCase();
+                while(!yOrn.equals("Y") && !yOrn.equals("N")){
+                    System.out.print("Masukkan input yang besar (Y/N) ! :");
+                    yOrn = scan.nextLine();
+                    yOrn.toUpperCase();
+                }
+                if(yOrn == "Y"){
+                    Matrix_save.saveFile(to_be_written, dir, nama_sesi, usage);
+                    System.out.println("Terimakasih telah menggunakan program BiggerWeapons!");
+                    System.exit(0);
+                } else {
+                    System.out.println("Terimakasih telah menggunakan program BiggerWeapons!");
+                    System.exit(0);
+                }
+                
             }
             else{
                 System.out.println("input tidak dikenali.");
                 pressAnyKeytoContinue();
             }
+        }
+    }
+    public static void delay(long milisecond){
+        try{
+            Thread.sleep(milisecond);
+        }catch(InterruptedException e){
+            e.printStackTrace();
+        }
+    }
+    
+    public static void pressAnyKeytoContinue(){
+        try{
+            System.out.println("<Tekan ENTER untuk melanjutkan>");
+            System.in.read();
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+    }
+    
+    public static void printMainMenu(long delay_length, String sesi, String date){
+        System.out.println("Sesi : "+sesi+" "+date);
+        delay(delay_length);
+        System.out.println("==========MENU UTAMA==========");
+        delay(delay_length);
+        System.out.println("1. Sistem Persamaan Linier");
+        delay(delay_length);
+        System.out.println("2. Determinan");
+        delay(delay_length);
+        System.out.println("3. Matriks balikan");
+        delay(delay_length);
+        System.out.println("4. Interpolasi Polinom");
+        delay(delay_length);
+        System.out.println("5. Interpolasi Bicubic Spline");
+        delay(delay_length);
+        System.out.println("6. Regresi Linier Berganda");
+        delay(delay_length);
+        System.out.println("7. Keluar");
+        delay(delay_length);
+        System.out.println("Masukkan tujuan Anda :");
+    }
+    
+    public static void printJenisMasukan(){
+        System.out.println("Pilih jenis masukan");
+        System.out.println("---> 1. Masukan dari keyboard");
+        System.out.println("---> 2. Masukan dari file");
+        System.out.println("Masukkan tujuan Anda :");
+    }
+
+    public static void printBiggerWeapon(String file_name){
+        try{
+            File file = new File("Misc\\"+file_name);
+            Scanner scan_file = new Scanner(file);
+            while(scan_file.hasNextLine()){
+                System.out.println(scan_file.nextLine());
+                delay(100);
+            }
+            scan_file.close();
+        } catch(FileNotFoundException e){
+            System.out.println("");
         }
     }
 }

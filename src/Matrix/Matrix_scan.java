@@ -10,10 +10,8 @@ import java.io.FileNotFoundException;
 public class Matrix_scan {
     public static Scanner scan = new Scanner(System.in);
 
-    public static void scan_matriks_keyboard(Matrix m, String  jenis)
-    {
-        while(true)
-        {
+    public static void scan_matriks_keyboard(Matrix m, String  jenis){
+        while(true){
             if(jenis == "SPL"){
                 int row, collumn, i, j;
                 System.out.print("Masukkan jumlah baris : ");
