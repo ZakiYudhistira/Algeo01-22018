@@ -248,7 +248,7 @@ public class Main {
                 printJenisMasukan();
                 navigate = scan.nextInt();
                 if (navigate == 1){
-                    Matrix_scan.scan_matriks_keyboard(mainMatrix, "Polinom");
+                    Matrix_scan.scan_matriks_keyboard(mainMatrix, "POLINOM");
                     System.out.println("Masukan nilai x yang ingin ditaksir : ");
                     double x = scan.nextDouble();
                     Interpolasi.Interpolasi_Polinom(mainMatrix, x);

@@ -100,7 +100,7 @@ public class Matrix_scan {
                 Matrix.set_collumns(m, collumn);
                 Matrix.set_row(m, row);
                 break;
-            } else if (jenis == "Polinom") { 
+            } else if (jenis == "POLINOM") { 
                 int row, col=2;
                 System.out.println("Masukkan jumlah n titik : ");
                 row = scan.nextInt();
