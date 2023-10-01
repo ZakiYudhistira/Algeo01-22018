@@ -84,6 +84,7 @@ public class Main {
                         }
                         else{
                             System.out.println("Kalkulasi matrix gagal, progress tidak disimpan.");
+                            pressAnyKeytoContinue();
                         }
                     }
                     else if(navigate == 2){
@@ -91,16 +92,18 @@ public class Main {
                     }
                     else{
                         System.out.println("Masukan tidak dikenali.");
+                        pressAnyKeytoContinue();
                     }
                 }
                 else{
                     System.out.println("Masukan tidak dikenali.");
+                    pressAnyKeytoContinue();
                 }
             }
             else if(navigate == 2){
-                System.out.println("Pilih metode perhitungan Determinan");
-                System.out.println("1. Ekspansi Kofaktor");
-                System.out.println("2. Reduksi baris Matriks");
+                System.out.println("==Pilih metode perhitungan Determinan==");
+                System.out.println("--> 1. Ekspansi Kofaktor");
+                System.out.println("--> 2. Reduksi baris Matriks");
                 navigate = scan.nextInt();
                 if(navigate == 1){
                     printJenisMasukan();
@@ -113,6 +116,7 @@ public class Main {
                     }
                     else{
                         System.out.println("Masukan tidak dikenali.");
+                        pressAnyKeytoContinue();
                     }
                 }
                 else if(navigate == 2){ // Perhitungan determinan dengan reduksi baris matriks
@@ -133,6 +137,7 @@ public class Main {
                     }
                     else{
                         System.out.println("Masukan tidak dikenali.");
+                        pressAnyKeytoContinue();
                     }
                     
                 }
@@ -154,9 +159,9 @@ public class Main {
                 }
             }
             else if(navigate == 3){
-                System.out.println("Pilih metode balikan matriks.");
-                System.out.println("1. Invers reduksi");
-                System.out.println("2. Invers determinan kofaktor");
+                System.out.println("==Pilih metode balikan matriks==");
+                System.out.println("--> 1. Invers reduksi");
+                System.out.println("--> 2. Invers determinan kofaktor");
                 navigate = scan.nextInt();
                 if(navigate == 1){ // Invers matriks dengan metode reduksi
                     printJenisMasukan();
