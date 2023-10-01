@@ -44,7 +44,7 @@ public class Main {
         System.out.print("\n");
         //----------------------------INISIASI---------------------------------//
         while(usage < 100){
-            printMainMenu(100,nama_sesi,date);
+            printMainMenu(100,nama_sesi,date,usage);
             navigate = scan.nextInt();
             if(navigate == 1){
                 System.out.println("==Pilih metode perhitungan SPL==");
@@ -52,7 +52,7 @@ public class Main {
                 System.out.println("--> 2. Eliminasi Gauss Jordan");
                 System.out.println("--> 3. Metode matriks balikan");
                 System.out.println("--> 4. Aturan Crammer");
-                System.out.println("Masukkan tujuan Anda :");
+                System.out.println("Masukkan tujuan Anda : ");
                 navigate = scan.nextInt();
                 if(navigate == 1){ // Eliminasi Gauss
                     printJenisMasukan();
@@ -125,10 +125,10 @@ public class Main {
                     if(navigate == 1){
                         Matrix_scan.scan_matriks_keyboard(mainMatrix, "DETERMINAN");
                         System.out.println("Mencari determinan matriks dengan reduksi baris : ");
-                        to_be_written[usage] += "Mencari determinan matriks dengan reduksi baris :";
+                        to_be_written[usage] += "Mencari determinan matriks dengan reduksi baris :\n";
                         to_be_written[usage] += Matrix.MatrixtoString(mainMatrix);
                         mainMatrix.display();
-                        System.out.println("Determinan : "+Matrix.getDeterminanReduksi(mainMatrix));
+                        System.out.println("Determinan : "+String.format("%.4f",Matrix.getDeterminanReduksi(mainMatrix)));
                         to_be_written[usage] += "Determinan : "+Matrix.getDeterminanReduksi(mainMatrix) +"\n";
                         usage++;
                     }
@@ -231,7 +231,7 @@ public class Main {
                     yOrn = scan.nextLine();
                     yOrn.toUpperCase();
                 }
-                if(yOrn == "Y"){
+                if(yOrn.equals("Y")){
                     Matrix_save.saveFile(to_be_written, dir, nama_sesi, usage);
                     System.out.println("Terimakasih telah menggunakan program BiggerWeapons!");
                     System.exit(0);
@@ -264,8 +264,8 @@ public class Main {
         }
     }
     
-    public static void printMainMenu(long delay_length, String sesi, String date){
-        System.out.println("Sesi : "+sesi+" "+date);
+    public static void printMainMenu(long delay_length, String sesi, String date, int usage){
+        System.out.println("Sesi : "+sesi+" "+date+" "+"["+usage+"]");
         delay(delay_length);
         System.out.println("==========MENU UTAMA==========");
         delay(delay_length);
@@ -283,14 +283,14 @@ public class Main {
         delay(delay_length);
         System.out.println("7. Keluar");
         delay(delay_length);
-        System.out.println("Masukkan tujuan Anda :");
+        System.out.print("Masukkan tujuan Anda : ");
     }
     
     public static void printJenisMasukan(){
         System.out.println("Pilih jenis masukan");
         System.out.println("---> 1. Masukan dari keyboard");
         System.out.println("---> 2. Masukan dari file");
-        System.out.println("Masukkan tujuan Anda :");
+        System.out.print("Masukkan tujuan Anda : ");
     }
 
     public static void printBiggerWeapon(String file_name){
