@@ -102,22 +102,47 @@ public class Matrix_scan {
                 Matrix.set_collumns(m, collumn);
                 Matrix.set_row(m, row);
                 break;
+            } else if (jenis == "Polinom") { 
+                int row, col=2;
+                System.out.println("Masukkan jumlah n titik : ");
+                row = scan.nextInt();
+                System.out.println("Masukkan titik sebanyak "+row+" : ");
+                double[][] data_isi = new double[row][col];
+                for(int i=0;i<row;i++)
+                {
+                    for(int j=0;j<col;j++)
+                    {
+                        if(j==0){
+                            System.out.print("x"+(i+1)+" :");
+                        } else {
+                            System.out.print("y"+(i+1)+" :");
+                        }
+                        data_isi[i][j] = scan.nextDouble();
+                    }
+                }
+                Matrix.set_data(m, data_isi);
+                Matrix.set_collumns(m, col);
+                Matrix.set_row(m, row);
+                break;
             }
         }
     }
     public static Matrix scan_file(String file_name){
         double[][] data_temp = new double[100][100];
-        int column=0, row=0,max_column=0;
+        String current_line;
+        int column=0, row=0, max_column=0;
         try{
         File file = new File("test\\"+file_name);
         Scanner scan_file = new Scanner(file);
         while(scan_file.hasNextLine()){
             String[] numbers = (scan_file.nextLine()).split("\\s+");
-                for(column=0;column<numbers.length;column++){
-                    data_temp[row][column] = Double.parseDouble(numbers[column]);
+            for(column=0;column<numbers.length;column++){
+                data_temp[row][column] = Double.parseDouble(numbers[column]);
+                if (max_column<numbers.length){
+                    max_column=numbers.length;
                 }
-                max_column = numbers.length;
-                row++;
+            }
+            row++;
         }
         scan_file.close();
         double[][] data_matriks = new double[row+1][max_column];
@@ -138,7 +163,5 @@ public class Matrix_scan {
     public static void main(String args[]){
         Matrix baru = scan_file("tes.txt");
         baru.display();
-        Matrix baru2 = scan_file("tes.txt");
-        baru2.display();
     }
 }

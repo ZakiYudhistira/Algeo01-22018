@@ -231,7 +231,15 @@ public class Main {
 
             }
             else if(navigate == 4){
-                
+                printJenisMasukan();
+                navigate = scan.nextInt();
+                if (navigate == 1){
+                    Matrix_scan.scan_matriks_keyboard(mainMatrix, "Polinom");
+                    System.out.println("Masukan nilai x yang ingin ditaksir : ");
+                    double x = scan.nextDouble();
+                    Interpolasi.Interpolasi_Polinom(mainMatrix, x);
+                    System.out.println(" ");
+                }
             }
             else if(navigate == 5){
                 
