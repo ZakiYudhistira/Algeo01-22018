@@ -52,7 +52,7 @@ public class Main {
                 System.out.println("--> 2. Eliminasi Gauss Jordan");
                 System.out.println("--> 3. Metode matriks balikan");
                 System.out.println("--> 4. Aturan Crammer");
-                System.out.println("Masukkan tujuan Anda : ");
+                System.out.print("Masukkan tujuan Anda : ");
                 navigate = scan.nextInt();
                 if(navigate == 1){ // Eliminasi Gauss
                     printJenisMasukan();
@@ -70,7 +70,19 @@ public class Main {
                         }
                     }
                     else if(navigate == 2){ 
-                        
+                        System.out.print("Masukkan nama file : ");
+                        scan.nextLine();
+                        String fileName = scan.nextLine();
+                        mainMatrix = Matrix_scan.scan_file(fileName);
+                        if(mainMatrix.row < mainMatrix.collumns){
+                            SPL.Gauss(mainMatrix, to_be_written,usage);
+                            usage++;
+                            pressAnyKeytoContinue();
+                        }
+                        else{
+                            System.out.println("Kalkulasi matrix gagal, progress tidak disimpan.");
+                            pressAnyKeytoContinue();
+                        }
                     }
                 }
                 else if(navigate == 2){ // Eliminasi Gauss Jordan
@@ -81,6 +93,7 @@ public class Main {
                             Matrix_scan.scan_matriks_keyboard(mainMatrix, "SPL");
                             SPL.Gauss_Jordan(mainMatrix, to_be_written,usage);
                             usage++;
+                            pressAnyKeytoContinue();
                         }
                         else{
                             System.out.println("Kalkulasi matrix gagal, progress tidak disimpan.");
@@ -88,6 +101,19 @@ public class Main {
                         }
                     }
                     else if(navigate == 2){
+                        System.out.print("Masukkan nama file : ");
+                        scan.nextLine();
+                        String fileName = scan.nextLine();
+                        mainMatrix = Matrix_scan.scan_file(fileName);
+                        if(mainMatrix.row < mainMatrix.collumns){
+                            SPL.Gauss_Jordan(mainMatrix, to_be_written,usage);
+                            usage++;
+                            pressAnyKeytoContinue();
+                        }
+                        else{
+                            System.out.println("Kalkulasi matrix gagal, progress tidak disimpan.");
+                            pressAnyKeytoContinue();
+                        }
                         
                     }
                     else{

@@ -1,0 +1,18 @@
+[1]-----------------------
+Menghitung SPL dengan metode GAUSS.
+21.0 98.0 125.0 153.0
+51.0 101.0 161.0 59.0
+0.0 42.0 72.0 210.0
+Berikut solusi dari SPL :
+x0 = -7.7842
+x1 = -1.9182
+x2 = 4.0356
+[2]-----------------------
+Menghitung SPL dengan metode GAUSS JORDAN.
+21.0 98.0 125.0 153.0
+51.0 101.0 161.0 59.0
+0.0 42.0 72.0 210.0
+Berikut solusi dari SPL :
+x0 = -7.7842
+x1 = -1.9182
+x2 = 4.0356

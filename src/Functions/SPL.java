@@ -116,6 +116,7 @@ public class SPL {
         System.out.println("Menghitung SPL dengan metode GAUSS JORDAN.");
         array_solusi[idx_array] += "Menghitung SPL dengan metode GAUSS JORDAN.\n";
         array_solusi[idx_array] += Matrix.MatrixtoString(m);
+        m.display();
         m.removeZeroCollumn();
         m.normalize();
         m.p_reduksi_eselon(true);
@@ -204,7 +205,7 @@ public class SPL {
             array_solusi[idx_array] += "Berikut solusi dari SPL :\n";
             for(i=0;i<m.row;i++){
                 System.out.println("x" + i + " = " + String.format("%.4f",solusi[i]));
-                array_solusi[idx_array] += "x" + i + " = " + solusi[i]+"\n";
+                array_solusi[idx_array] += "x" + i + " = " + String.format("%.4f",solusi[i])+"\n";
             }
         }
     }
