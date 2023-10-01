@@ -194,8 +194,20 @@ public class Main {
             else if(navigate == 5){
                 
             }
-            else if(navigate == 6){
-                
+            else if(navigate == 6) {
+                System.out.println("Pilih jenis masukan");
+                System.out.println("1. Masukan dari keyboard");
+                System.out.println("2. Masukan dari file");
+                navigate = scan.nextInt();
+                if (navigate == 1) {
+                    Matrix_scan.scan_matriks_keyboard(mainMatrix, "REGRESI");
+                    Matrix mTaksir = new Matrix(null, mainMatrix.collumns-1, 1);
+                    Matrix_scan.scan_matriks_keyboard(mTaksir, "TAKSIRAN");
+                    regresi.solusiRegresi(mainMatrix, mTaksir);
+                    usage++;
+                } else if(navigate == 2) {
+
+                }
             }
             else if(navigate == 7){
                 Matrix_save.saveFile(to_be_written, dir, nama_sesi, usage);

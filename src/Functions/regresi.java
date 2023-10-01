@@ -4,6 +4,7 @@ import Functions.SPL;
 
 public class regresi {
     public static Matrix solusi_regresi;
+    public static double hasil_taksir;
 
     public static Matrix normalEstEq(Matrix m) {
         double[][] data_hasil = new double[m.collumns][m.collumns+1];
@@ -27,14 +28,19 @@ public class regresi {
         return mnew;
     }
 
-    public static void solusiRegresi(Matrix m) {
-        double[][] reg_data = new double[m.collumns][m.collumns+1];
-        Matrix mReg = new Matrix(reg_data, m.collumns, m.collumns+1);
+    public static void solusiRegresi(Matrix mUtama, Matrix mTaksir) {
+        double[][] reg_data = new double[mUtama.collumns][mUtama.collumns+1];
+        Matrix mReg = new Matrix(reg_data, mUtama.collumns, mUtama.collumns+1);
 
-        mReg = normalEstEq(m);
+        mReg = normalEstEq(mUtama);
         SPL.Inverse(mReg);
         solusi_regresi = SPL.solusi_spl;
-        solusi_regresi.display();
-    }
 
+        hasil_taksir = solusi_regresi.getELMT(0, 0);
+        int i;
+        for (i=1; i<solusi_regresi.row; i++) {
+            hasil_taksir += solusi_regresi.getELMT(i, 0)*mTaksir.getELMT(i-1, 0);
+        }
+        System.out.println(hasil_taksir);
+    }
 }

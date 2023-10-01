@@ -65,7 +65,7 @@ public class Matrix_scan {
                 Matrix.set_collumns(m, row);
                 Matrix.set_row(m, row);
                 break;
-            } else if (jenis == "LAINNYA") { // Untuk regresi dan interpolasi
+            } else if (jenis == "REGRESI") { 
                 int row, collumn, i, j;
                 System.out.print("Masukkan jumlah baris : ");
                 row = scan.nextInt();
@@ -87,6 +87,17 @@ public class Matrix_scan {
                     {
                         data_isi[i][j] = scan.nextDouble();
                     }
+                }
+                Matrix.set_data(m, data_isi);
+                Matrix.set_collumns(m, collumn);
+                Matrix.set_row(m, row);
+                break;
+            } else if (jenis == "TAKSIRAN") { 
+                int row=m.row, collumn=1, i;
+                System.out.println("Masukkan nilai yang ingin ditaksir :");
+                double[][] data_isi = new double[row][collumn];
+                for (i=0; i<row; i++) {
+                    data_isi[i][0] = scan.nextDouble();
                 }
                 Matrix.set_data(m, data_isi);
                 Matrix.set_collumns(m, collumn);
