@@ -39,8 +39,7 @@ public class Matrix_scan {
                 Matrix.set_collumns(m, collumn);
                 Matrix.set_row(m, row);
                 break;
-            }
-            else if(jenis == "DETERMINAN"){
+            }else if(jenis == "DETERMINAN"){
                 int row;
                 System.out.print("Masukkan jumlah kolom : ");
                 row = scan.nextInt();
@@ -127,7 +126,6 @@ public class Matrix_scan {
     }
     public static Matrix scan_file(String file_name){
         double[][] data_temp = new double[100][100];
-        String current_line;
         int column=0, row=0, max_column=0;
         try{
         File file = new File("test\\"+file_name);
