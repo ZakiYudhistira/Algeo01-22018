@@ -1,11 +1,9 @@
 [1]-----------------------
-Masukkan jumlah n titik :3
-Masukkan jumlah titik sebanyak 3 :
-x0 :8.0
-y0 :2.0794
-x1 :9.0
-y1 :2.1972
-x2 :9.5
-y2 :2.2513
-Masukkan nilai x yang ingin ditaksir :9.2
-f(x) = -0.0063999999999998875x^2+0.226599999999998x+0.6762000000000088,f(9.2) = 2.2192239999999996
+Menghitung inverse matriks dengan kofaktor.
+2.0000 4.0000 3.0000
+9.0000 9.0000 9.0000
+3.0000 4.0000 1.0000
+Berikut hasil matriks inverse balikan :
+-0.6000 0.1778 0.2000
+0.4000 -0.1556 0.2000
+0.2000 0.0889 -0.4000

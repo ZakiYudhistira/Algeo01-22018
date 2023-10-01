@@ -261,9 +261,11 @@ public class Main {
                         pressAnyKeytoContinue();
                     }else{
                         System.out.println("Masukan tidak dikenali.");
+                        pressAnyKeytoContinue();
                     }
                 }else{
                     System.out.println("Masukan tidak dikenali.");
+                    pressAnyKeytoContinue();
                 }
                 
             }
@@ -289,6 +291,7 @@ public class Main {
                     pressAnyKeytoContinue();
                 } else {
                     System.out.println("Masukan tidak dikenali.");
+                    pressAnyKeytoContinue();
                 }
             }
             else if(navigate == 5){
@@ -329,6 +332,7 @@ public class Main {
                     pressAnyKeytoContinue();
                 } else {
                     System.out.println("Masukan tidak dikenali.");
+                    pressAnyKeytoContinue();
                 }
             }
             else if(navigate == 6) { // Regresi ganda
