@@ -7,8 +7,8 @@ public class Interpolasi_bcb_spline {
         array_solusi[idx_array] += "Masukkan matriks 4x4 :\n";
         array_solusi[idx_array] += Matrix.MatrixtoString(fxy);
         array_solusi[idx_array] += "Masukkan nilai x,y yang ingin ditaksir\n";
-        array_solusi[idx_array] += "x :"+xy.getELMT(0, 0)+"\n";
-        array_solusi[idx_array] += "y :"+xy.getELMT(0, 1)+"\n";
+        array_solusi[idx_array] += "x : "+xy.getELMT(0, 0)+"\n";
+        array_solusi[idx_array] += "y : "+xy.getELMT(0, 1)+"\n";
         double [][] X = {{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},{1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0},{1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,0},
         {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0},{0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},{0,1,2,3,0,0,0,0,0,0,0,0,0,0,0,0,0},
         {0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0},{0,1,2,3,0,1,2,3,0,1,2,3,0,1,2,3,0},{0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0},
