@@ -5,8 +5,8 @@ public class Interpolasi {
     public static void Interpolasi_Polinom(Matrix m, double val, String [] array_solusi, int idx_array){
         double [][] data = new double[m.row][m.row+1];
         Matrix mp = new Matrix(data, m.row, m.row+1);
-        array_solusi[idx_array] += "Masukkan jumlah n titik :"+m.row+"\n";
-        array_solusi[idx_array] += "Masukkan jumlah titik sebanyak "+m.row+" :"+"\n";
+        array_solusi[idx_array] += "Masukkan jumlah n titik : "+m.row+"\n";
+        array_solusi[idx_array] += "Masukkan jumlah titik sebanyak "+m.row+" : "+"\n";
         for (int i=0; i<m.row; i++){// ngisi bagian augmented
             mp.setELMT(i, m.row, m.getELMT(i, 1));
         }
