@@ -47,7 +47,7 @@ public class Interpolasi {
                 System.out.print("+"+SPL.HitungSPL(mp)[p]+"x^"+p);
             }
         }
-        array_solusi[idx_array] +="f("+val+") = "+ result;
+        array_solusi[idx_array] +="f("+val+") = "+ result+"\n";
         System.out.println("f("+val+") = "+ result);
     }
 
