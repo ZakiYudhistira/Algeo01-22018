@@ -302,10 +302,10 @@ public class Main {
                     Matrix xy = new Matrix(data_temp, 1, 2);
                     Matrix_scan.scan_matriks_keyboard(mainMatrix, "BCB");
                     System.out.println("Masukan nilai x,y yang ingin ditaksir");
-                    System.out.print("x :");
+                    System.out.print("x : ");
                     double x = scan.nextDouble();
                     xy.setELMT(0, 0, x);
-                    System.out.print("y :");
+                    System.out.print("y : ");
                     double y = scan.nextDouble();
                     xy.setELMT(0, 1, y);
                     Interpolasi_bcb_spline.Interpolasi_bcb(mainMatrix, xy, to_be_written, usage);
