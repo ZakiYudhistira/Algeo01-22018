@@ -226,7 +226,7 @@ public class SPL {
     }
 
     // Metode Inverse Matriks
-    public static void Inverse(Matrix m) {
+    public static void Inverse(Matrix m, String[] array_solusi, int idx_array) {
         double[][] mSPL_data = new double[m.row][m.collumns-1];
         Matrix mSPL = new Matrix(mSPL_data, m.row, m.collumns-1);
 
@@ -245,7 +245,7 @@ public class SPL {
                     solusi_spl.setELMT(i, 0, 0);;
                 }
             } else {
-                Inverse.Inverse_matrix_reduksi(mSPL,pp,0);
+                Inverse.Inverse_matrix_reduksi(mSPL, false, pp, 0);
                 solusi_spl = Matrix.multiplyMatrix(mSPL, mJwb);
             }
         } else {
@@ -254,7 +254,7 @@ public class SPL {
     }
 
     // Metode Cramer
-    public static void Cramer(Matrix m) {
+    public static void Cramer(Matrix m, String[] array_solusi, int idx_array) {
         double[][] mSPL_data = new double[m.row][m.collumns-1];
         Matrix mSPL = new Matrix(mSPL_data, m.row, m.collumns-1);
 
