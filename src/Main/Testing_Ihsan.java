@@ -22,7 +22,6 @@ public class Testing_Ihsan {
         Matrix_scan.scan_matriks_keyboard(m1, "REGRESI");
         Matrix m2 = new Matrix(null, m1.collumns-1, 1);
         Matrix_scan.scan_matriks_keyboard(m2, "TAKSIRAN");
-        
-        regresi.solusiRegresi(m1, m2);
+        regresi.solusiRegresi(m1, m2, args, 0);        
     }
 }
