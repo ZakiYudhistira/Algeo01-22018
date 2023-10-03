@@ -119,9 +119,73 @@ public class Main {
                         pressAnyKeytoContinue();
                     }
                 }else if(navigate == 3){
-
+                    printJenisMasukan();
+                    navigate = scan.nextInt();
+                    if(navigate == 1){
+                        if(mainMatrix.row < mainMatrix.collumns){
+                            Matrix_scan.scan_matriks_keyboard(mainMatrix, "SPL");
+                            SPL.Inverse(mainMatrix, to_be_written, usage);
+                            usage++;
+                            pressAnyKeytoContinue();
+                        }
+                        else{
+                            System.out.println("Kalkulasi matrix gagal, progress tidak disimpan.");
+                            pressAnyKeytoContinue();
+                        }
+                    }
+                    else if(navigate == 2){
+                        System.out.print("Masukkan nama file : ");
+                        scan.nextLine();
+                        String fileName = scan.nextLine();
+                        mainMatrix = Matrix_scan.scan_file(fileName);
+                        if(mainMatrix.row < mainMatrix.collumns){
+                            SPL.Inverse(mainMatrix, to_be_written, usage);
+                            usage++;
+                            pressAnyKeytoContinue();
+                        }
+                        else{
+                            System.out.println("Kalkulasi matrix gagal, progress tidak disimpan.");
+                            pressAnyKeytoContinue();
+                        }
+                        
+                    }else{
+                        System.out.println("Masukan tidak dikenali.");
+                        pressAnyKeytoContinue();
+                    }
                 }else if(navigate == 4){
-
+                    printJenisMasukan();
+                    navigate = scan.nextInt();
+                    if(navigate == 1){
+                        if(mainMatrix.row < mainMatrix.collumns){
+                            Matrix_scan.scan_matriks_keyboard(mainMatrix, "SPL");
+                            SPL.Cramer(mainMatrix, to_be_written, usage);
+                            usage++;
+                            pressAnyKeytoContinue();
+                        }
+                        else{
+                            System.out.println("Kalkulasi matrix gagal, progress tidak disimpan.");
+                            pressAnyKeytoContinue();
+                        }
+                    }
+                    else if(navigate == 2){
+                        System.out.print("Masukkan nama file : ");
+                        scan.nextLine();
+                        String fileName = scan.nextLine();
+                        mainMatrix = Matrix_scan.scan_file(fileName);
+                        if(mainMatrix.row < mainMatrix.collumns){
+                            SPL.Cramer(mainMatrix, to_be_written, usage);
+                            usage++;
+                            pressAnyKeytoContinue();
+                        }
+                        else{
+                            System.out.println("Kalkulasi matrix gagal, progress tidak disimpan.");
+                            pressAnyKeytoContinue();
+                        }
+                        
+                    }else{
+                        System.out.println("Masukan tidak dikenali.");
+                        pressAnyKeytoContinue();
+                    }
                 }else{
                     System.out.println("Masukan tidak dikenali.");
                     pressAnyKeytoContinue();
@@ -227,7 +291,7 @@ public class Main {
                     navigate = scan.nextInt();
                     if(navigate == 1){
                         Matrix_scan.scan_matriks_keyboard(mainMatrix, "DETERMINAN");
-                        Inverse.Inverse_matrix_reduksi(mainMatrix, to_be_written, usage);
+                        Inverse.Inverse_matrix_reduksi(mainMatrix, true, to_be_written, usage);
                         usage++;
                         pressAnyKeytoContinue();
                     }else if(navigate == 2){
@@ -235,7 +299,7 @@ public class Main {
                         scan.nextLine();
                         String fileName = scan.nextLine();
                         mainMatrix = Matrix_scan.scan_file(fileName);
-                        Inverse.Inverse_matrix_reduksi(mainMatrix, to_be_written, usage);
+                        Inverse.Inverse_matrix_reduksi(mainMatrix, true, to_be_written, usage);
                         usage++;
                         pressAnyKeytoContinue();
                     }
@@ -335,17 +399,24 @@ public class Main {
                     pressAnyKeytoContinue();
                 }
             }
-            else if(navigate == 6) { // Regresi ganda
+            else if(navigate == 6) { // Regresi Linier Berganda
                 printJenisMasukan();
                 navigate = scan.nextInt();
                 if (navigate == 1) {
                     Matrix_scan.scan_matriks_keyboard(mainMatrix, "REGRESI");
                     Matrix mTaksir = new Matrix(null, mainMatrix.collumns-1, 1);
                     Matrix_scan.scan_matriks_keyboard(mTaksir, "TAKSIRAN");
-                    regresi.solusiRegresi(mainMatrix, mTaksir);
+                    regresi.solusiRegresi(mainMatrix, mTaksir, to_be_written, usage);
                     usage++;
                 } else if(navigate == 2) {
-                    
+                    System.out.print("Masukkan nama file : ");
+                    scan.nextLine();
+                    String fileName = scan.nextLine();
+                    mainMatrix = Matrix_scan.scan_file(fileName);
+                    Matrix mTaksir = new Matrix(null, mainMatrix.collumns-1, 1);
+                    Matrix_scan.scan_matriks_keyboard(mTaksir, "TAKSIRAN");
+                    regresi.solusiRegresi(mainMatrix, mTaksir, to_be_written, usage);
+                    usage++;
                 }
             }
             else if(navigate == 7){ // Keluar dari program
