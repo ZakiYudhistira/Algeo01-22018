@@ -372,7 +372,7 @@ public class Main {
                     System.out.print("y : ");
                     double y = scan.nextDouble();
                     xy.setELMT(0, 1, y);
-                    bcbSpline.Interpolasi_bcb(mainMatrix, xy, to_be_written, usage);
+                    BcbSpline.Interpolasi_bcb(mainMatrix, xy, to_be_written, usage);
                     usage++;
                     pressAnyKeytoContinue();
                 } else if (navigate==2){
@@ -391,7 +391,7 @@ public class Main {
                     Matrix xy = new Matrix(data2, 1, 2);
                     xy.setELMT(0, 0, mainMatrix.getELMT(4, 0));
                     xy.setELMT(0, 1, mainMatrix.getELMT(4, 1));
-                    bcbSpline.Interpolasi_bcb(fxy, xy, to_be_written, usage);
+                    BcbSpline.Interpolasi_bcb(fxy, xy, to_be_written, usage);
                     usage++;
                     pressAnyKeytoContinue();
                 } else {
@@ -406,7 +406,7 @@ public class Main {
                     Matrix_scan.scan_matriks_keyboard(mainMatrix, "REGRESI");
                     Matrix mTaksir = new Matrix(null, mainMatrix.collumns-1, 1);
                     Matrix_scan.scan_matriks_keyboard(mTaksir, "TAKSIRAN");
-                    regresi.solusiRegresi(mainMatrix, mTaksir, to_be_written, usage);
+                    Regresi.solusiRegresi(mainMatrix, mTaksir, to_be_written, usage);
                     usage++;
                 } else if(navigate == 2) {
                     System.out.print("Masukkan nama file : ");
@@ -415,7 +415,7 @@ public class Main {
                     mainMatrix = Matrix_scan.scan_file(fileName);
                     Matrix mTaksir = new Matrix(null, mainMatrix.collumns-1, 1);
                     Matrix_scan.scan_matriks_keyboard(mTaksir, "TAKSIRAN");
-                    regresi.solusiRegresi(mainMatrix, mTaksir, to_be_written, usage);
+                    Regresi.solusiRegresi(mainMatrix, mTaksir, to_be_written, usage);
                     usage++;
                 }
             }

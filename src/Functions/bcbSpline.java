@@ -1,7 +1,7 @@
 package Functions;
 import Matrix.Matrix;
 
-public class bcbSpline {
+public class BcbSpline {
     public static void Interpolasi_bcb(Matrix fxy, Matrix xy, String [] array_solusi, int idx_array){
         double count = 0;
         array_solusi[idx_array] += "Masukkan matriks 4x4 :\n";

@@ -1,7 +1,7 @@
 package Functions;
 import Matrix.Matrix;
 
-public class regresi {
+public class Regresi {
     public static Matrix solusi_regresi;
     public static double hasil_taksir;
 
