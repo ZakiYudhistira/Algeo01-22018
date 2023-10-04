@@ -426,9 +426,14 @@ public class Matrix {
     }
 
     public void divideByPivot(){
-        int i;
+        int i,j;
         for(i=0;i<this.row;i++){
-            divideBaris(i, this.getELMT(i, i));
+            for(j=0;j<this.collumns;j++){
+                if(this.getELMT(i, j) != 0){
+                    this.divideBaris(i, this.getELMT(i, j));
+                    break;
+                }
+            }
         }
     }
 

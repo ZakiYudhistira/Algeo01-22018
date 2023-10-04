@@ -433,9 +433,11 @@ public class Main {
                 if(yOrn.equals("Y")){
                     Matrix_save.saveFile(to_be_written, dir, nama_sesi, usage);
                     System.out.println("Terimakasih telah menggunakan program BiggerWeapons!");
+                    pressAnyKeytoContinue();
                     System.exit(0);
                 } else {
                     System.out.println("Terimakasih telah menggunakan program BiggerWeapons!");
+                    pressAnyKeytoContinue();
                     System.exit(0);
                 }
                 
