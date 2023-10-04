@@ -372,7 +372,7 @@ public class Main {
                     System.out.print("y : ");
                     double y = scan.nextDouble();
                     xy.setELMT(0, 1, y);
-                    Interpolasi_bcb_spline.Interpolasi_bcb(mainMatrix, xy, to_be_written, usage);
+                    bcbSpline.Interpolasi_bcb(mainMatrix, xy, to_be_written, usage);
                     usage++;
                     pressAnyKeytoContinue();
                 } else if (navigate==2){
@@ -391,7 +391,7 @@ public class Main {
                     Matrix xy = new Matrix(data2, 1, 2);
                     xy.setELMT(0, 0, mainMatrix.getELMT(4, 0));
                     xy.setELMT(0, 1, mainMatrix.getELMT(4, 1));
-                    Interpolasi_bcb_spline.Interpolasi_bcb(fxy, xy, to_be_written, usage);
+                    bcbSpline.Interpolasi_bcb(fxy, xy, to_be_written, usage);
                     usage++;
                     pressAnyKeytoContinue();
                 } else {
