@@ -38,4 +38,4 @@ Kontributor :
 ```
 
 ## Cara Menggunakan Kalkulator Matriks
-### Instalasi Java
+### Instalasi Java (Lewati jika sudah terinstall)
