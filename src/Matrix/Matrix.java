@@ -267,7 +267,7 @@ public class Matrix {
         }
         return mtemp;
     }
-
+    
     public static Matrix addCol(Matrix m, boolean right) {
         double[][] data_temp = new double[m.row][m.collumns+1];
         Matrix mtemp = new Matrix(data_temp, m.row, m.collumns+1);
@@ -295,10 +295,21 @@ public class Matrix {
         }
         return mtemp;
     }
-
+    
+    public void divideByPivot(){
+        int i,j;
+        for(i=0;i<this.row;i++){
+            for(j=0;j<this.collumns;j++){
+                if(this.getELMT(i, j) > Math.pow(10,-6) || this.getELMT(i, j)< -Math.pow(10,-6)){
+                    this.divideBaris(i, this.getELMT(i, j));
+                    break;
+                }
+            }
+        }
+    }
 
     //--------------------------------PERHITUNGAN REDUKSI ESELON------------------------------------//
-
+    
     public void p_reduksi_eselon(boolean btm){ // ini kaga ngereturn value
         if(btm){
             int i=0,j=0,i_pivot=0,j_pivot=0, k;
@@ -361,6 +372,7 @@ public class Matrix {
             }   
         }
     }
+    
 
     //--------------------------------PERHITUNGAN DETERMINAN------------------------------------//
     public static double getDeterminanReduksi(Matrix m){
@@ -425,17 +437,16 @@ public class Matrix {
         return hasil;
     }
 
-    public void divideByPivot(){
-        int i,j;
-        for(i=0;i<this.row;i++){
-            for(j=0;j<this.collumns;j++){
-                if(this.getELMT(i, j) != 0){
-                    this.divideBaris(i, this.getELMT(i, j));
-                    break;
-                }
+    public static int countRowNotZero(Matrix m, int row){
+        int i, j, count = 0;
+        for(i=0;i<m.collumns;i++){
+            if(m.getELMT(row, i) != 0){
+                count++;
             }
         }
+        return count;
     }
+
 
     public Matrix copyMatrix(){
         double[][] data_hasil = new double[this.row][this.collumns];

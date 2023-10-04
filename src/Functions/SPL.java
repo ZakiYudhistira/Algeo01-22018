@@ -14,6 +14,7 @@ public class SPL {
         m.removeZeroCollumn();
         m.normalize();
         m.p_reduksi_eselon(true);
+        m.divideByPivot();
         if(m.isRowZero(m.row-1, m.collumns-2) && m.getELMT(m.row-1, m.collumns-1) != 0){
             System.out.println("SPL tidak memiliki solusi.");
             array_solusi[idx_array] += "SPL tidak memiliki solusi.\n";
@@ -29,30 +30,9 @@ public class SPL {
                     count_var++;
                 }
             }
-            double[][] array_jawaban = new double[m.row][count_var+1];
-            for(i=0;i<m.row;i++){
-                for(j=0;j<count_var+1;j++){
-                    array_jawaban[i][j] = 0;
-                }
-            }
-            for(i=0;i<m.row;i++){
-                if(!m.isRowZero(i, m.collumns-1)){
-                    array_jawaban[i][0] = m.getELMT(i, m.collumns-1);
-                }
-            }
-            count_var = 1;
-            // perhitungan
-            for(i=m.row-1;i>=0;i--){
-                if(m.isRowZero(i, m.collumns-1)){
-                    array_jawaban[i][count_var] = 1;
-                    count_var++;
-                }
-                else{
-                    for(j=i+1;j<m.collumns-1;j++){
-                        Matrix.kurang_array(array_jawaban[i], Matrix.kali_array(array_jawaban[j], m.getELMT(i,j)));
-                    }
-                }
-            }
+            double[][] array_jawaban;
+            array_jawaban = getJawabanSPL2(m);
+            
             for(i=0;i<array_jawaban.length;i++){
                 for(j=0;j<array_jawaban[0].length;j++){
                     if(j==0){
@@ -61,18 +41,22 @@ public class SPL {
                             array_solusi[idx_array] += "x"+i+" = ";
                         }
                         else{
-                            System.out.print("x"+i+" = " + array_jawaban[i][j]);
-                            array_solusi[idx_array] += "x"+i+" = " + array_jawaban[i][j];
+                            System.out.print("x"+i+" = " + String.format("%.4f",array_jawaban[i][j]));
+                            array_solusi[idx_array] += "x"+i+" = " + String.format("%.4f",array_jawaban[i][j]);
                         }
                     }
                     else{
-                        if(array_jawaban[i][j] > 0){
-                            System.out.print("+"+array_jawaban[i][j]+alphabet[j-1]);
-                            array_solusi[idx_array] += "+"+array_jawaban[i][j]+alphabet[j-1]; 
+                        if(array_jawaban[i][j] > 0 && array_jawaban[i][0]==0){
+                            System.out.print(String.format("%.4f",array_jawaban[i][j])+alphabet[j-1]);
+                            array_solusi[idx_array] += String.format("%.4f",array_jawaban[i][j])+alphabet[j-1]; 
+                        }
+                        else if(array_jawaban[i][j] > 0){
+                            System.out.print("+"+String.format("%.4f",array_jawaban[i][j])+alphabet[j-1]);
+                            array_solusi[idx_array] += "+"+String.format("%.4f",array_jawaban[i][j])+alphabet[j-1]; 
                         }
                         else if(array_jawaban[i][j]<0){
-                            System.out.print(array_jawaban[i][j]+alphabet[j-1]);
-                            array_solusi[idx_array] += array_jawaban[i][j]+alphabet[j-1];
+                            System.out.print(String.format("%.4f",array_jawaban[i][j])+alphabet[j-1]);
+                            array_solusi[idx_array] += String.format("%.4f",array_jawaban[i][j])+alphabet[j-1];
                         }
                     }
                 }
@@ -81,7 +65,6 @@ public class SPL {
             }
         }
         else{
-            m.divideByPivot();
             double[] solusi = new double[m.row];
             int i;
             for(i=m.row-1;i>=0;i--){
@@ -116,6 +99,7 @@ public class SPL {
         m.removeZeroCollumn();
         m.normalize();
         m.p_reduksi_eselon(true);
+        m.divideByPivot();
 
         // Tidak punya solusi
         if(m.isRowZero(m.row-1, m.collumns-2) && m.getELMT(m.row-1, m.collumns-1) != 0){
@@ -135,30 +119,9 @@ public class SPL {
                     count_var++;
                 }
             }
-            double[][] array_jawaban = new double[m.row][count_var+1];
-            for(i=0;i<m.row;i++){
-                for(j=0;j<count_var+1;j++){
-                    array_jawaban[i][j] = 0;
-                }
-            }
-            for(i=0;i<m.row;i++){
-                if(!m.isRowZero(i, m.collumns-1)){
-                    array_jawaban[i][0] = m.getELMT(i, m.collumns-1);
-                }
-            }
-            count_var = 1;
-            // perhitungan
-            for(i=m.row-1;i>=0;i--){
-                if(m.isRowZero(i, m.collumns-1)){
-                    array_jawaban[i][count_var] = 1;
-                    count_var++;
-                }
-                else{
-                    for(j=i+1;j<m.collumns-1;j++){
-                        Matrix.kurang_array(array_jawaban[i], Matrix.kali_array(array_jawaban[j], m.getELMT(i,j)));
-                    }
-                }
-            }
+            double[][] array_jawaban;
+            array_jawaban = getJawabanSPL2(m);
+            
             for(i=0;i<array_jawaban.length;i++){
                 for(j=0;j<array_jawaban[0].length;j++){
                     if(j==0){
@@ -167,32 +130,34 @@ public class SPL {
                             array_solusi[idx_array] += "x"+i+" = ";
                         }
                         else{
-                            System.out.print("x"+i+" = " + array_jawaban[i][j]);
-                            array_solusi[idx_array] += "x"+i+" = " + array_jawaban[i][j];
+                            System.out.print("x"+i+" = " + String.format("%.4f",array_jawaban[i][j]));
+                            array_solusi[idx_array] += "x"+i+" = " + String.format("%.4f",array_jawaban[i][j]);
                         }
                     }
                     else{
-                        if(array_jawaban[i][j] > 0){
-                            System.out.print("+"+array_jawaban[i][j]+alphabet[j-1]);
-                            array_solusi[idx_array] += "+"+array_jawaban[i][j]+alphabet[j-1]; 
+                        if(array_jawaban[i][j] > 0 && array_jawaban[i][0]==0){
+                            System.out.print(String.format("%.4f",array_jawaban[i][j])+alphabet[j-1]);
+                            array_solusi[idx_array] += String.format("%.4f",array_jawaban[i][j])+alphabet[j-1]; 
+                        }
+                        else if(array_jawaban[i][j] > 0){
+                            System.out.print("+"+String.format("%.4f",array_jawaban[i][j])+alphabet[j-1]);
+                            array_solusi[idx_array] += "+"+String.format("%.4f",array_jawaban[i][j])+alphabet[j-1]; 
                         }
                         else if(array_jawaban[i][j]<0){
-                            System.out.print(array_jawaban[i][j]+alphabet[j-1]);
-                            array_solusi[idx_array] += array_jawaban[i][j]+alphabet[j-1];
+                            System.out.print(String.format("%.4f",array_jawaban[i][j])+alphabet[j-1]);
+                            array_solusi[idx_array] += String.format("%.4f",array_jawaban[i][j])+alphabet[j-1];
                         }
                     }
                 }
                 System.out.println("");
                 array_solusi[idx_array] += "\n";
             }
-
         }
 
         // Solusi unik
         else{
             double[] solusi = new double[m.row];
             m.p_reduksi_eselon(false);
-            m.divideByPivot();
             int i;
             for(i=m.row-1;i>=0;i--){
                 solusi[i] = m.getELMT(i, m.collumns-1);
@@ -276,6 +241,85 @@ public class SPL {
         } else {
             System.out.println("SPL tidak dapat diselesaikan menggunakan metode Cramer");
         }
+    }
+    public static double[][] getJawabanSPL2(Matrix m){
+        double[][] baris_ket = new double[m.collumns-1][m.collumns];
+        int i,j;
+        int nullity = 0;
+        int var = 2;
+        int pointer_parametrik = 1;
+
+        for(i=0;i<baris_ket.length;i++){
+            for(j=0;j<baris_ket[0].length;j++){
+                baris_ket[i][j] = 0;
+            }
+        }
+        for(i=0;i<baris_ket.length;i++){
+            for(j=0;j<baris_ket[0].length;j++){
+                if(m.getELMT(i, j) == 1){
+                    nullity++;
+                    break;
+                }
+            }
+        }
+
+        nullity = m.row - nullity;
+        for(i=m.row-1;i>=0;i--){
+            int leading_one = -1;
+            for(j=0;j<m.collumns-1;j++){
+                if(m.getELMT(i, j) == 1){
+                    leading_one = j;
+                    break;
+                }
+            }
+            if(leading_one == -1){
+                continue;
+            }
+            else{
+                if(m.collumns - leading_one == var){
+                    var++;
+                    continue;
+                } else {
+                    int k;
+                    for(k=leading_one+1;k<=m.collumns-var;k++){
+                        baris_ket[k][pointer_parametrik] = 1;
+                        pointer_parametrik++;
+                    }
+                    var = m.collumns - leading_one + 1;
+                }
+            }
+            i = 0;
+            for(i=m.row-1;i>=0;i--){
+                if(m.isRowZero(i, m.collumns-1)){
+                    continue;
+                }else{
+                    for(j=0;j<m.collumns-1;j++){
+                        if(m.getELMT(i, j)==1){
+                            leading_one = j;
+                            break;
+                        }
+                    }
+                    baris_ket[leading_one][0] = m.getELMT(i, m.collumns-1);
+                    continue;
+                }
+            }
+            for(i=m.row-1;i>=0;i--){
+                if(m.isRowZero(i, m.collumns-1)){
+                    continue;
+                }else{
+                    for(j=0;j<m.collumns-1;j++){
+                        if(m.getELMT(i, j)==1){
+                            leading_one = j;
+                            break;
+                        }
+                    }
+                    for(j=leading_one+1;j<m.collumns-1;j++){
+                        Matrix.kurang_array(baris_ket[leading_one], Matrix.kali_array(baris_ket[j],m.getELMT(i, j)));
+                    }
+                }
+            }
+        }
+        return baris_ket;
     }
 }
     //----------------------------PENYELESAIAN PARAMETRIK----------------------------------//

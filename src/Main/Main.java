@@ -88,8 +88,8 @@ public class Main {
                     printJenisMasukan();
                     navigate = scan.nextInt();
                     if(navigate == 1){
+                        Matrix_scan.scan_matriks_keyboard(mainMatrix, "SPL");
                         if(mainMatrix.row < mainMatrix.collumns){
-                            Matrix_scan.scan_matriks_keyboard(mainMatrix, "SPL");
                             SPL.Gauss_Jordan(mainMatrix, to_be_written,usage);
                             usage++;
                             pressAnyKeytoContinue();
