@@ -23,13 +23,7 @@ public class SPL {
             System.out.println("SPL tidak memiliki solusi tunggal.");
             array_solusi[idx_array] += "SPL tidak memiliki solusi tunggal.\n";
             String[] alphabet = {"a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"};
-            int count_var = 0;
             int i,j;
-            for(i=0;i<m.row;i++){
-                if(m.isRowZero(i,m.collumns-1)){
-                    count_var++;
-                }
-            }
             double[][] array_jawaban;
             array_jawaban = getJawabanSPL2(m);
             
