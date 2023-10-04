@@ -31,6 +31,7 @@ public class Interpolasi_bcb_spline {
         for (int y=0; y<4; y++){ 
             for (int x=0; x<4; x++){
                 count += SPL.HitungSPL(Xmatrix)[h]*PangkatN(xy.getELMT(0, 0), x)*PangkatN(xy.getELMT(0, 1), y);
+                h++;
             }
         }
         System.out.println("f("+xy.getELMT(0, 0)+","+xy.getELMT(0, 1)+") = "+count);
