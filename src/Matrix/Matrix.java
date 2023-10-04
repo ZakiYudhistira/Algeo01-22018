@@ -438,7 +438,7 @@ public class Matrix {
     }
 
     public static int countRowNotZero(Matrix m, int row){
-        int i, j, count = 0;
+        int i, count = 0;
         for(i=0;i<m.collumns;i++){
             if(m.getELMT(row, i) != 0){
                 count++;
