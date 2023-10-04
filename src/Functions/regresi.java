@@ -1,6 +1,5 @@
 package Functions;
 import Matrix.Matrix;
-import Functions.SPL;
 
 public class regresi {
     public static Matrix solusi_regresi;

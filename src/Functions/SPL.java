@@ -1,12 +1,8 @@
 package Functions;
 import Matrix.Matrix;
-import Functions.Inverse;
 
 public class SPL {
     public static Matrix solusi_spl;
-    private static boolean tanpaSolusi;
-    private static boolean banyakSolusi;
-    private static boolean solusiUnik;
     
     //--------------------------------TEMPLATE PROSEDUR PENYELESAIAN SPL----------------------------------//
     // Metode Gauss

@@ -1,8 +1,5 @@
 package Matrix;
 import java.util.*;
-
-import Functions.regresi;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 // Library berisi fungsi untuk membaca matrix
@@ -171,8 +168,8 @@ public class Matrix_scan {
             return hasil;
         }
     }
-    public static void main(String args[]){
-        Matrix baru = scan_file("tes.txt");
-        baru.display();
-    }
+    // public static void main(String args[]){
+    //     Matrix baru = scan_file("tes.txt");
+    //     baru.display();
+    // }
 }
