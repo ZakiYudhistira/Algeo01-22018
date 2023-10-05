@@ -413,9 +413,9 @@ public class Main {
                     scan.nextLine();
                     String fileName = scan.nextLine();
                     mainMatrix = Matrix_scan.scan_file(fileName);
-                    Matrix mTaksir = new Matrix(null, mainMatrix.collumns-1, 1);
-                    Matrix_scan.scan_matriks_keyboard(mTaksir, "TAKSIRAN");
-                    Regresi.solusiRegresi(mainMatrix, mTaksir, to_be_written, usage);
+                    Matrix mData = new Matrix(null, mainMatrix.row-1, mainMatrix.collumns-1);
+                    Matrix mApprox = new Matrix(null, mainMatrix.collumns-1, 1);
+                    Regresi.solusiRegresi(mData, mApprox, to_be_written, usage);
                     usage++;
                 }
             }
