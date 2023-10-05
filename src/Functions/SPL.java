@@ -175,7 +175,7 @@ public class SPL {
     }
 
     // Metode Inverse Matriks
-    public static void Inverse(Matrix m, String[] array_solusi, int idx_array) {
+    public static void Inverse(Matrix m, boolean utama, String[] array_solusi, int idx_array) {
         double[][] mSPL_data = new double[m.row][m.collumns-1];
         Matrix mSPL = new Matrix(mSPL_data, m.row, m.collumns-1);
 
@@ -188,17 +188,27 @@ public class SPL {
         solusi_spl = new Matrix(solusi, mSPL.row, 1);
         String[] pp = new String[1];
 
+        int i;
+        for (i=0; i<mSPL.collumns; i++) {
+            solusi_spl.setELMT(i, 0, 0);;
+        }
+
         if (Inverse.isInversible(mSPL)) {
-            if (Matrix.isMatrixZero(mJwb)) {
-                for (int i=0; i<mSPL.collumns; i++) {
-                    solusi_spl.setELMT(i, 0, 0);;
-                }
-            } else {
+            if (!Matrix.isMatrixZero(mJwb)) {
                 Inverse.Inverse_matrix_reduksi(mSPL, false, pp, 0);
                 solusi_spl = Matrix.multiplyMatrix(mSPL, mJwb);
             }
+            if (utama) {
+                System.out.println("Berikut Solusi dari SPL menggunakan metode inverse :");
+                array_solusi[idx_array] += "Berikut Solusi dari SPL menggunakan metode inverse :";
+                for(i=0; i<solusi_spl.row; i++){
+                    System.out.println("x" + i + " = " + String.format("%.4f",solusi_spl.getELMT(i, 0)));
+                    array_solusi[idx_array] += "x" + i + " = " + String.format("%.4f",solusi_spl.getELMT(i, 0))+"\n";
+                }
+            }
         } else {
             System.out.println("SPL tidak dapat diselesaikan menggunakan metode inverse");
+            array_solusi[idx_array] += "SPL tidak dapat diselesaikan menggunakan metode inverse";
         }
     }
 
@@ -225,9 +235,15 @@ public class SPL {
                 double detTemp = Matrix.getDeterminanReduksi(mtemp);
                 solusi_spl.setELMT(i, 0, (detTemp/detUtama));
             }
-            solusi_spl.display();
+            System.out.println("Berikut Solusi dari SPL menggunakan kaidah Cramer :");
+            array_solusi[idx_array] += "Berikut Solusi dari SPL menggunakan kaidah Cramer :";
+            for(i=0; i<solusi_spl.row; i++){
+                System.out.println("x" + i + " = " + String.format("%.4f",solusi_spl.getELMT(i, 0)));
+                array_solusi[idx_array] += "x" + i + " = " + String.format("%.4f",solusi_spl.getELMT(i, 0))+"\n";
+            }
         } else {
             System.out.println("SPL tidak dapat diselesaikan menggunakan metode Cramer");
+            array_solusi[idx_array] += "SPL tidak dapat diselesaikan menggunakan metode Cramer";
         }
     }
     public static double[][] getJawabanSPL2(Matrix m){
