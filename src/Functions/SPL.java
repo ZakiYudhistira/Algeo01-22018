@@ -9,9 +9,9 @@ public class SPL {
     public static void Gauss(Matrix m, String[] array_solusi, int idx_array) {
         System.out.println("Menghitung SPL dengan metode GAUSS.");
         array_solusi[idx_array] += "Menghitung SPL dengan metode GAUSS.\n";
-        array_solusi[idx_array] += Matrix.MatrixtoString(m);
         m.display();
         m.removeZeroCollumn();
+        array_solusi[idx_array] += Matrix.MatrixtoString(m);
         m.normalize();
         m.p_reduksi_eselon(true);
         m.divideByPivot();
@@ -88,9 +88,9 @@ public class SPL {
     public static void Gauss_Jordan(Matrix m, String[] array_solusi, int idx_array) {
         System.out.println("Menghitung SPL dengan metode GAUSS JORDAN.");
         array_solusi[idx_array] += "Menghitung SPL dengan metode GAUSS JORDAN.\n";
-        array_solusi[idx_array] += Matrix.MatrixtoString(m);
         m.display();
         m.removeZeroCollumn();
+        array_solusi[idx_array] += Matrix.MatrixtoString(m);
         m.normalize();
         m.p_reduksi_eselon(true);
         m.divideByPivot();
