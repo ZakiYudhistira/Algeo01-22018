@@ -1,6 +1,5 @@
 # Kalkulator Matriks BiggerWeapons
 
-
 Program Kalkulator Matriks ini digunakan untuk mencari determinan maupun balikan matriks untuk menyelesaikan Sistem Persamaan Linier dengan berbagai metode, dan selanjutnya dapat memecahkan persoalan Interpolasi Polinomial, Regresi Linier Berganda, maupun Bicubic Spline Interpolation.
 
 Kontributor :
@@ -53,7 +52,7 @@ Kontributor :
 2. Bila belum compile, jalankan compile.bat terlebih dahulu
 3. Program kalkulator matriks BiggerWeapons siap digunakan
 Disclaimer. Program kami dapat digunakan dalam sistem operasi Windows, untuk sistem operasi lain harus melakukan compile manual melalui terminal masing-masing
-### Instalasi Java (Lewati jika sudah terinstall)
+## Instalasi Java (Lewati jika sudah terinstall)
 1. Buka website java dan unduh java
 2. Ikuti instruksi instalasi java sesuai dengan sistem operasi
 3. Buka website JDK dan unduh JDK
