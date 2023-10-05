@@ -498,11 +498,9 @@ public class Matrix {
             for (j=0; j<mAwal.collumns; j++) {
                 if (i == mAwal.row-1) {
                     if (j != mAwal.collumns-1) {
-                        System.out.println("Test1");
                         mApprox.setELMT(j, 0, mAwal.getELMT(i, j));
                     }
                 } else {
-                    System.out.println("Test2");
                     mData.setELMT(i, j, mAwal.getELMT(i, j));
                 }
             }
