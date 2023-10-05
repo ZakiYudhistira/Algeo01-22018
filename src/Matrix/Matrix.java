@@ -491,6 +491,22 @@ public class Matrix {
         }
     }
 
+    public static void splitDataAndApprox(Matrix mAwal, Matrix mData, Matrix mApprox) {
+        // mAwal berukuran mxn, mData berukuran m-1xn, mApprox berukuran n-1x1
+        int i, j;
+        for (i=0; i<mAwal.row; i++) {
+            for (j=0; j<mAwal.collumns; j++) {
+                if (i == mAwal.row-1) {
+                    if (i != mAwal.collumns-1) {
+                        mApprox.setELMT(j, 0, mAwal.getELMT(i, j));
+                    }
+                } else {
+                    mData.setELMT(i, j, mAwal.getELMT(i, j));
+                }
+            }
+        }
+    }
+
     //-----------------------------------OPERASI MATRIKS------------------------------------//
     public static Matrix multiplyMatrix(Matrix m1, Matrix m2) {
         double[][] data_hasil = new double[m1.row][m2.collumns];
