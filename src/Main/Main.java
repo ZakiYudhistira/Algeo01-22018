@@ -426,7 +426,7 @@ public class Main {
                 yOrn = scan.nextLine();
                 yOrn.toUpperCase();
                 while(!yOrn.equals("Y") && !yOrn.equals("N")){
-                    System.out.print("Masukkan input yang besar (Y/N) ! :");
+                    System.out.print("Masukkan input yang besar (Y/N) ! : ");
                     yOrn = scan.nextLine();
                     yOrn.toUpperCase();
                 }
