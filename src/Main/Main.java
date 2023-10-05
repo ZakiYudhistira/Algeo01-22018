@@ -413,8 +413,14 @@ public class Main {
                     scan.nextLine();
                     String fileName = scan.nextLine();
                     mainMatrix = Matrix_scan.scan_file(fileName);
-                    Matrix mData = new Matrix(null, mainMatrix.row-1, mainMatrix.collumns-1);
-                    Matrix mApprox = new Matrix(null, mainMatrix.collumns-1, 1);
+
+                    double[][] mData_data = new double[mainMatrix.row-1][mainMatrix.collumns];
+                    Matrix mData = new Matrix(mData_data, mainMatrix.row-1, mainMatrix.collumns);
+
+                    double[][] mApprox_data = new double[mainMatrix.collumns-1][1];
+                    Matrix mApprox = new Matrix(mApprox_data, mainMatrix.collumns-1, 1);
+
+                    Matrix.splitDataAndApprox(mainMatrix, mData, mApprox);
                     Regresi.solusiRegresi(mData, mApprox, to_be_written, usage);
                     usage++;
                 }
