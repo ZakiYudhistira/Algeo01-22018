@@ -124,7 +124,7 @@ public class Main {
                     if(navigate == 1){
                         if(mainMatrix.row < mainMatrix.collumns){
                             Matrix_scan.scan_matriks_keyboard(mainMatrix, "SPL");
-                            SPL.Inverse(mainMatrix, to_be_written, usage);
+                            SPL.Inverse(mainMatrix, true, to_be_written, usage);
                             usage++;
                             pressAnyKeytoContinue();
                         }
@@ -139,7 +139,7 @@ public class Main {
                         String fileName = scan.nextLine();
                         mainMatrix = Matrix_scan.scan_file(fileName);
                         if(mainMatrix.row < mainMatrix.collumns){
-                            SPL.Inverse(mainMatrix, to_be_written, usage);
+                            SPL.Inverse(mainMatrix, true, to_be_written, usage);
                             usage++;
                             pressAnyKeytoContinue();
                         }
