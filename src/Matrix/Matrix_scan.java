@@ -139,6 +139,12 @@ public class Matrix_scan {
     public static Matrix scan_file(String file_name){
         double[][] data_temp = new double[100][100];
         int column=0, row=0, max_column=0;
+        int k,l;
+        for(k=0;k<100;k++){
+            for(l=0;l<100;l++){
+                data_temp[k][l] = 0;
+            }
+        }
         try{
         File file = new File("test\\"+file_name);
         Scanner scan_file = new Scanner(file);
